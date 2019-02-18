@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class EventBusiness
+    public class EventBusiness
     {
         private PODbContext poDbContext;
 
