@@ -7,7 +7,7 @@ using Business;
 
 namespace UI
 {
-    class Display
+    public class Display
     {
         private EventBusiness eventBusiness = new EventBusiness();
         private UserBusiness userBusiness = new UserBusiness();
