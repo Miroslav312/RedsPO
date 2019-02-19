@@ -26,6 +26,6 @@ CREATE TABLE IF NOT EXISTS `Events` (
     )
 );
 
-ALTER TABLE `Event` ADD CONSTRAINT `fk_Event_UserId` FOREIGN KEY(`UserId`)
-REFERENCES `User` (`UserId`);
+ALTER TABLE `Events` ADD CONSTRAINT `fk_Event_UserId` FOREIGN KEY(`UserId`)
+REFERENCES `Users` (`UserId`);
 
