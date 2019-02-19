@@ -97,9 +97,10 @@ namespace UI
             Console.WriteLine(" 5. List all events");
             Console.WriteLine(" 6. Fetch an event for a certain day");
             Console.WriteLine(" 7. List all completed events");
-            Console.WriteLine(" 8. List all uncompleted events");
-            Console.WriteLine(" 9. Remove all completed events");
-            Console.WriteLine("10. Remove all events");
+            Console.WriteLine(" 8. List all events on a certain date");
+            Console.WriteLine(" 9. List all uncompleted events");
+            Console.WriteLine(" 10. Remove all completed events");
+            Console.WriteLine("11. Remove all events");
             Console.WriteLine(new string('-', 40));
         }
 
@@ -141,16 +142,18 @@ namespace UI
                     case 7:
                         ListAllCompletedEvents();
                         break;
-
                     case 8:
-                        ListAllIncompletedEvents();
                         break;
 
                     case 9:
-                        RemoveAllCompletedEvents();
+                        ListAllIncompletedEvents();
                         break;
 
                     case 10:
+                        RemoveAllCompletedEvents();
+                        break;
+
+                    case 11:
                         RemoveAllEvents();
                         break;
                     default:
@@ -194,7 +197,7 @@ namespace UI
             Console.Clear();
             Console.WriteLine("Enter event id: ");
             int id = int.Parse(Console.ReadLine());
-            Event @event = eventBusiness.FetchEvent(id, user);
+            Event @event = eventBusiness.FetchEventById(id, user);
             Console.WriteLine("Enter new title: ");
             @event.Title = Console.ReadLine();
             Console.WriteLine("Enter new due time: ");
@@ -227,7 +230,7 @@ namespace UI
             Console.Clear();
             Console.WriteLine("Enter event id: ");
             int id = int.Parse(Console.ReadLine());
-            Event @event = eventBusiness.FetchEvent(id, user);
+            Event @event = eventBusiness.FetchEventById(id, user);
             if (@event == null || @event.IsDone == true)
             {
                 Console.WriteLine("Event is already completed or does not exist");
@@ -257,7 +260,7 @@ namespace UI
         public static void FetchEvent()
         {
             int id = int.Parse(Console.ReadLine());
-            Event @event = eventBusiness.FetchEvent(id, user);
+            Event @event = eventBusiness.FetchEventById(id, user);
             if (@event == null)
             {
                 Console.WriteLine($"There is no event with id {id}");
@@ -274,6 +277,23 @@ namespace UI
         public static void ListAllCompletedEvents()
         {
             List<Event> events = eventBusiness.ListAllCompletedEvents(user);
+            foreach (var item in events)
+            {
+                Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");
+            }
+        }
+
+        /// <summary>
+        /// Lists all events on a certain Date.
+        /// </summary>
+        public static void ListAllEventsByDate()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Date [e.g '2015-01-01 00:00:00']:");
+            DateTime inputDate = DateTime.Parse(Console.ReadLine());
+            List<Event> events = eventBusiness.ListAllEventsByDate(inputDate, user);
+            Console.WriteLine($"[{inputDate.Date}]");
             foreach (var item in events)
             {
                 Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");

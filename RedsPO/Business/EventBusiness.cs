@@ -15,6 +15,7 @@ namespace Business
             using (poDbContext = new PODbContext())
             {
                 poDbContext.Events.Add(userEvent);
+                poDbContext.SaveChanges();
             }
         }
 
@@ -70,7 +71,7 @@ namespace Business
             }
         }
 
-        public Event FetchEvent(int id, User user)
+        public Event FetchEventById(int id, User user)
         {
             using (poDbContext = new PODbContext())
             {
@@ -103,6 +104,14 @@ namespace Business
             }
         }
 
+        public List<Event> ListAllEventsByDate(DateTime date, User user)
+        {
+            using (poDbContext = new PODbContext())
+            {
+                return poDbContext.Events.Where(r => r.DueTime.Date == date.Date && r.UserId == user.UserId).ToList();
+            }
+        }
+
         public List<Event> ListAllUncompletedEvents(User user)
         {
             using (poDbContext = new PODbContext())
@@ -122,6 +131,8 @@ namespace Business
                         poDbContext.Events.Remove(item);
                     }
                 }
+
+                poDbContext.SaveChanges();
             }
         }
 
@@ -136,6 +147,8 @@ namespace Business
                         poDbContext.Events.Remove(item);
                     }
                 }
+
+                poDbContext.SaveChanges();
             }
         }
     }
