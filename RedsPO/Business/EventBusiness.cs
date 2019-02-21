@@ -10,6 +10,8 @@ namespace Business
     {
         private PODbContext poDbContext;
 
+        /// <summary>Adds the event.</summary>
+        /// <param name="userEvent">The user event.</param>
         public void AddEvent(Event userEvent)
         {
             using (poDbContext = new PODbContext())
@@ -19,6 +21,9 @@ namespace Business
             }
         }
 
+        /// <summary>Modifies the event.</summary>
+        /// <param name="userEvent">The user event.</param>
+        /// <param name="user">The user.</param>
         public void ModifyEvent(Event userEvent, User user)
         {
             using (poDbContext = new PODbContext())
@@ -37,6 +42,9 @@ namespace Business
             }
         }
 
+        /// <summary>Deletes the event.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="user">The user.</param>
         public void DeleteEvent(int id, User user)
         {
             using (poDbContext = new PODbContext())
@@ -54,6 +62,9 @@ namespace Business
             }
         }
 
+        /// <summary>Completes the event.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="user">The user.</param>
         public void CompleteEvent(int id, User user)
         {
             using (poDbContext = new PODbContext())
@@ -71,6 +82,9 @@ namespace Business
             }
         }
 
+        /// <summary>Fetches the event by identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="user">The user.</param>
         public Event FetchEventById(int id, User user)
         {
             using (poDbContext = new PODbContext())
@@ -87,6 +101,8 @@ namespace Business
             }
         }
 
+        /// <summary>Lists all events.</summary>
+        /// <param name="user">The user.</param>
         public List<Event> ListAllEvents(User user)
         {
             using (poDbContext = new PODbContext())
@@ -96,6 +112,8 @@ namespace Business
         }
 
 
+        /// <summary>Lists all completed events.</summary>
+        /// <param name="user">The user.</param>
         public List<Event> ListAllCompletedEvents(User user)
         {
             using (poDbContext = new PODbContext())
@@ -104,6 +122,9 @@ namespace Business
             }
         }
 
+        /// <summary>Lists all events by date.</summary>
+        /// <param name="date">The date.</param>
+        /// <param name="user">The user.</param>
         public List<Event> ListAllEventsByDate(DateTime date, User user)
         {
             using (poDbContext = new PODbContext())
@@ -112,6 +133,8 @@ namespace Business
             }
         }
 
+        /// <summary>Lists all uncompleted events.</summary>
+        /// <param name="user">The user.</param>
         public List<Event> ListAllUncompletedEvents(User user)
         {
             using (poDbContext = new PODbContext())
@@ -120,6 +143,8 @@ namespace Business
             }
         }
 
+        /// <summary>Removes all completed events.</summary>
+        /// <param name="user">The user.</param>
         public void RemoveAllCompletedEvents(User user)
         {
             using (poDbContext = new PODbContext())
@@ -136,6 +161,8 @@ namespace Business
             }
         }
 
+        /// <summary>Removes all events.</summary>
+        /// <param name="user">The user.</param>
         public void RemoveAllEvents(User user)
         {
             using (poDbContext = new PODbContext())

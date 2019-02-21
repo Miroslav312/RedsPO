@@ -27,8 +27,8 @@ namespace UI
         public static void LoginOrRegisterMenu()
         {
             Console.WriteLine(new string('-', 40));
-            Console.WriteLine("1. Make an account");
-            Console.WriteLine("2. Already have an account");
+            Console.WriteLine("1. Register an Account");
+            Console.WriteLine("2. Sign in your Account");
             Console.WriteLine(new string('-', 40));
             int command = int.Parse(Console.ReadLine());
             switch (command)
@@ -47,18 +47,49 @@ namespace UI
         }
 
         /// <summary>
+        /// Determines whether to go to the Main Menu or to Exit the program.
+        /// </summary>
+        public static void MenuOrExit()
+        {
+            Console.WriteLine("Do you want to go to the Main Menu or to Exit the Program? [Menu/Exit]");
+            string answer = Console.ReadLine();
+            if (answer.ToLower() == "menu")
+            {
+                ShowMenu();
+            }
+            else if (answer.ToLower() == "exit")
+            {
+                ExitProgram();
+            }
+            else
+            {
+                MenuOrExit();
+            }
+        }
+
+        /// <summary>
         /// Logins the User into his Account.
         /// </summary>
         public static void Login()
         {
             Console.Clear();
-            //To-do: Add hash commands
+
             Console.WriteLine("Enter Username:");
             string username = Console.ReadLine();
+
             Console.WriteLine("Enter Password:");
-            string password = Console.ReadLine();
-            user = userBusiness.Get(username, password);
-            ShowMenu();
+            string passwordHash = UserBusiness.HashPassword(ReadPassword());
+
+            user = userBusiness.FetchUser(username, passwordHash);
+
+            if (user == null)
+            {
+                Console.WriteLine("There was an error logging in the application. Please try again later!");
+            }
+            else
+            {
+                ShowMenu();
+            }
         }
 
         /// <summary>
@@ -67,17 +98,23 @@ namespace UI
         public static void Register()
         {
             Console.Clear();
-            //To-do: Add hash commands
+            
             User user = new User();
+
             Console.WriteLine("Enter Username: ");
             user.UserName = Console.ReadLine();
+
             Console.WriteLine("Enter Password:");
-            user.PasswordHash = Console.ReadLine();
+            user.PasswordHash = UserBusiness.HashPassword(ReadPassword());
+
             Console.WriteLine("First Name: ");
             user.FirstName = Console.ReadLine();
+
             Console.WriteLine("Last Name: ");
             user.LastName = Console.ReadLine();
+
             userBusiness.Register(user);
+
             Login();
         }
 
@@ -100,8 +137,20 @@ namespace UI
             Console.WriteLine(" 8. List all events on a certain date");
             Console.WriteLine(" 9. List all uncompleted events");
             Console.WriteLine(" 10. Remove all completed events");
-            Console.WriteLine("11. Remove all events");
+            Console.WriteLine(" 11. Remove all events");
             Console.WriteLine(new string('-', 40));
+        }
+
+
+        /// <summary>
+        /// Exits the program.
+        /// </summary>
+        public static void ExitProgram()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Have a nice day!");
+            Environment.Exit(0);
         }
 
         /// <summary>
@@ -146,7 +195,7 @@ namespace UI
                         break;
 
                     case 9:
-                        ListAllIncompletedEvents();
+                        ListAllUncompletedEvents();
                         break;
 
                     case 10:
@@ -156,7 +205,9 @@ namespace UI
                     case 11:
                         RemoveAllEvents();
                         break;
+
                     default:
+                        ExitProgram();
                         break;
                 }
             }
@@ -168,25 +219,36 @@ namespace UI
         public static void AddEvent()
         {
             Console.Clear();
+
             Event @event = new Event();
+
             Console.WriteLine("Enter event title: ");
             @event.Title = Console.ReadLine();
+
             Console.WriteLine("Enter event year: ");
             int year = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter event month: ");
             int month = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter event day: ");
             int day = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter event hour: ");
             int hour = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter event minute: ");
             int minute = int.Parse(Console.ReadLine());
+
             @event.DueTime = new DateTime(year, month, day, hour, minute, 0);
-            Console.WriteLine("Enter event importance: ");
+
+            Console.WriteLine("Enter event importance [Low, Medium, High]: ");
             @event.Importance = Console.ReadLine();
 
             eventBusiness.AddEvent(@event);
             Console.WriteLine("Event successfully added");
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -195,19 +257,25 @@ namespace UI
         public static void ModifyEvent()
         {
             Console.Clear();
+
             Console.WriteLine("Enter event id: ");
             int id = int.Parse(Console.ReadLine());
+
             Event @event = eventBusiness.FetchEventById(id, user);
+
             Console.WriteLine("Enter new title: ");
             @event.Title = Console.ReadLine();
+
             Console.WriteLine("Enter new due time: ");
-            Console.WriteLine("Examples: ");
             @event.DueTime = DateTime.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter new importance: ");
             @event.Importance = Console.ReadLine();
 
             eventBusiness.ModifyEvent(@event, user);
             Console.WriteLine("Event successfully Modified");
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -216,10 +284,15 @@ namespace UI
         public static void DeleteEvent()
         {
             Console.Clear();
+
             Console.WriteLine("Enter event id: ");
             int id = int.Parse(Console.ReadLine());
+
             eventBusiness.DeleteEvent(id, user);
+
             Console.WriteLine("Event successfully deleted");
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -228,9 +301,12 @@ namespace UI
         public static void MarkEventAsDone()
         {
             Console.Clear();
+
             Console.WriteLine("Enter event id: ");
             int id = int.Parse(Console.ReadLine());
+
             Event @event = eventBusiness.FetchEventById(id, user);
+
             if (@event == null || @event.IsDone == true)
             {
                 Console.WriteLine("Event is already completed or does not exist");
@@ -240,6 +316,8 @@ namespace UI
                 eventBusiness.CompleteEvent(id, user);
                 Console.WriteLine("Event successfully completed");
             }
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -247,11 +325,15 @@ namespace UI
         /// </summary>
         public static void ListAllEvents()
         {
+            Console.Clear();
+
             List<Event> events = eventBusiness.ListAllEvents(user);
             foreach (var item in events)
             {
                 Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");
             }
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -259,7 +341,11 @@ namespace UI
         /// </summary>
         public static void FetchEvent()
         {
+            Console.Clear();
+
+            Console.WriteLine("Enter event id: ");
             int id = int.Parse(Console.ReadLine());
+
             Event @event = eventBusiness.FetchEventById(id, user);
             if (@event == null)
             {
@@ -267,8 +353,11 @@ namespace UI
             }
             else
             {
+                Console.WriteLine($"Listing the event with the id {id}...");
                 Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -276,11 +365,17 @@ namespace UI
         /// </summary>
         public static void ListAllCompletedEvents()
         {
+            Console.Clear();
+
             List<Event> events = eventBusiness.ListAllCompletedEvents(user);
-            foreach (var item in events)
+
+            Console.WriteLine("Listing all completed tasks...");
+            foreach (Event @event in events)
             {
-                Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");
+                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -290,26 +385,36 @@ namespace UI
         {
             Console.Clear();
 
-            Console.WriteLine("Date [e.g '2015-01-01 00:00:00']:");
+            Console.WriteLine("Enter your date [e.g '2015-01-01']:");
             DateTime inputDate = DateTime.Parse(Console.ReadLine());
+
             List<Event> events = eventBusiness.ListAllEventsByDate(inputDate, user);
-            Console.WriteLine($"[{inputDate.Date}]");
-            foreach (var item in events)
+
+            Console.WriteLine($"Listing all events on {inputDate.Date}...");
+            foreach (Event @event in events)
             {
-                Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");
+                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
+
+            MenuOrExit();
         }
 
         /// <summary>
-        /// Lists all incompleted events.
+        /// Lists all uncompleted events.
         /// </summary>
-        public static void ListAllIncompletedEvents()
+        public static void ListAllUncompletedEvents()
         {
+            Console.Clear();
+
             List<Event> events = eventBusiness.ListAllUncompletedEvents(user);
-            foreach (var item in events)
+            
+            Console.WriteLine("Listing all uncompleted events...");
+            foreach (Event @event in events)
             {
-                Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");
+                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -317,8 +422,12 @@ namespace UI
         /// </summary>
         public static void RemoveAllCompletedEvents()
         {
+            Console.Clear();
+
             eventBusiness.RemoveAllCompletedEvents(user);
             Console.WriteLine("All completed events have successfully been removed");
+
+            MenuOrExit();
         }
 
         /// <summary>
@@ -326,8 +435,52 @@ namespace UI
         /// </summary>
         public static void RemoveAllEvents()
         {
+            Console.Clear();
+
             eventBusiness.RemoveAllEvents(user);
             Console.WriteLine("All events have successfully been removed");
+
+            MenuOrExit();
+        }
+
+        /// <summary>
+        /// Reads the password, hiding the input.
+        /// </summary>
+        public static string ReadPassword()
+        {
+            string inputPassword = "";
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+            while (keyInfo.Key != ConsoleKey.Enter)
+            {
+                if (keyInfo.Key != ConsoleKey.Backspace)
+                {
+                    Console.Write("*");
+                    inputPassword += keyInfo.KeyChar;
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace)
+                {
+                    if (!string.IsNullOrEmpty(inputPassword))
+                    {
+                        // Remove one character from the list of password characters
+                        inputPassword = inputPassword.Substring(0, inputPassword.Length - 1);
+                        // Get the location of the cursor
+                        int cursorPosition = Console.CursorLeft;
+                        // Move the cursor to the left by one character
+                        Console.SetCursorPosition(cursorPosition - 1, Console.CursorTop);
+                        // Replace it with space
+                        Console.Write(" ");
+                        // Move the cursor to the left by one character again
+                        Console.SetCursorPosition(cursorPosition - 1, Console.CursorTop);
+                    }
+                }
+
+                keyInfo = Console.ReadKey(true);
+            }
+
+            Console.WriteLine();
+
+            return inputPassword;
         }
     }
 }
