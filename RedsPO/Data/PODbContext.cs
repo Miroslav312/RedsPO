@@ -1,9 +1,10 @@
 ﻿using System.Data.Entity;
 
+[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
 public class PODbContext : DbContext
 {
     public PODbContext()
-        : base("name=PODbContext")
+        : base("SERVER=localhost; DATABASE=redspo; UID=root; PASSWORD=root")
     {
 
     }

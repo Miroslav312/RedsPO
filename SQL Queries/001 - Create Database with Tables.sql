@@ -1,6 +1,6 @@
 ﻿CREATE DATABASE IF NOT EXISTS redspo;
 USE redspo;
-CREATE TABLE IF NOT EXISTS `User` (
+CREATE TABLE IF NOT EXISTS `Users` (
     `UserId` INT AUTO_INCREMENT NOT NULL ,
     `UserName` VARCHAR(255)  NOT NULL ,
     `PasswordHash` VARCHAR(64)  NOT NULL ,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `User` (
     )
 );
 
-CREATE TABLE IF NOT EXISTS `Event` (
+CREATE TABLE IF NOT EXISTS `Events` (
     `EventId` INT AUTO_INCREMENT NOT NULL ,
     `Title` VARCHAR(255)  NOT NULL ,
     `DueTime` DATETIME  NOT NULL ,
@@ -26,6 +26,6 @@ CREATE TABLE IF NOT EXISTS `Event` (
     )
 );
 
-ALTER TABLE `Event` ADD CONSTRAINT `fk_Event_UserId` FOREIGN KEY(`UserId`)
-REFERENCES `User` (`UserId`);
+ALTER TABLE `Events` ADD CONSTRAINT `fk_Event_UserId` FOREIGN KEY(`UserId`)
+REFERENCES `Users` (`UserId`);
 
