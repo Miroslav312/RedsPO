@@ -1,13 +1,11 @@
 ﻿using System;
+using static System.Console;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business;
 
 namespace UI
 {
-    public class ConsoleUI
+    public class I
     {
         private static EventBusiness eventBusiness = new EventBusiness();
         private static UserBusiness userBusiness = new UserBusiness();
@@ -26,11 +24,15 @@ namespace UI
         /// </summary>
         public static void LoginOrRegisterMenu()
         {
-            Console.WriteLine(new string('-', 40));
-            Console.WriteLine("1. Register an Account");
-            Console.WriteLine("2. Sign in your Account");
-            Console.WriteLine(new string('-', 40));
-            int command = int.Parse(Console.ReadLine());
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 19) + "HI" + new string(' ', 19));
+            WriteLine(new string('-', 40));
+            WriteLine("1. Register an Account");
+            WriteLine("2. Sign in your Account");
+            WriteLine(new string('-', 40));
+
+            int command = int.Parse(ReadLine());
+
             switch (command)
             {
                 case 1:
@@ -51,8 +53,8 @@ namespace UI
         /// </summary>
         public static void MenuOrExit()
         {
-            Console.WriteLine("Do you want to go to the Main Menu or to Exit the Program? [Menu/Exit]");
-            string answer = Console.ReadLine();
+            WriteLine("Do you want to go to the Main Menu or to Exit the Program? [Menu/Exit]");
+            string answer = ReadLine();
             if (answer.ToLower() == "menu")
             {
                 ShowMenu();
@@ -72,19 +74,23 @@ namespace UI
         /// </summary>
         public static void Login()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Enter Username:");
-            string username = Console.ReadLine();
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 17) + "LOGIN" + new string(' ', 18));
+            WriteLine(new string('-', 40));
 
-            Console.WriteLine("Enter Password:");
+            WriteLine("Enter Username:");
+            string username = ReadLine();
+
+            WriteLine("Enter Password:");
             string passwordHash = UserBusiness.HashPassword(ReadPassword());
 
             user = userBusiness.FetchUser(username, passwordHash);
 
             if (user == null)
             {
-                Console.WriteLine("There was an error logging in the application. Please try again later!");
+                WriteLine("There was an error logging in the application. Please try again later!");
             }
             else
             {
@@ -97,21 +103,25 @@ namespace UI
         /// </summary>
         public static void Register()
         {
-            Console.Clear();
-            
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 16) + "REGISTER" + new string(' ', 16));
+            WriteLine(new string('-', 40));
+
             User user = new User();
 
-            Console.WriteLine("Enter Username: ");
-            user.UserName = Console.ReadLine();
+            WriteLine("Enter Username: ");
+            user.UserName = ReadLine();
 
-            Console.WriteLine("Enter Password:");
+            WriteLine("Enter Password:");
             user.PasswordHash = UserBusiness.HashPassword(ReadPassword());
 
-            Console.WriteLine("First Name: ");
-            user.FirstName = Console.ReadLine();
+            WriteLine("First Name: ");
+            user.FirstName = ReadLine();
 
-            Console.WriteLine("Last Name: ");
-            user.LastName = Console.ReadLine();
+            WriteLine("Last Name: ");
+            user.LastName = ReadLine();
 
             userBusiness.Register(user);
 
@@ -123,22 +133,24 @@ namespace UI
         /// </summary>
         public static void ShowMenu()
         {
-            Console.Clear();
-            Console.WriteLine(new string('-', 40));
-            Console.WriteLine(new string(' ', 18) + "MENU" + new string(' ', 18));
-            Console.WriteLine(new string('-', 40));
-            Console.WriteLine(" 1. Add an event");
-            Console.WriteLine(" 2. Modify an event");
-            Console.WriteLine(" 3. Delete an event");
-            Console.WriteLine(" 4. Complete an event");
-            Console.WriteLine(" 5. List all events");
-            Console.WriteLine(" 6. Fetch an event for a certain day");
-            Console.WriteLine(" 7. List all completed events");
-            Console.WriteLine(" 8. List all events on a certain date");
-            Console.WriteLine(" 9. List all uncompleted events");
-            Console.WriteLine(" 10. Remove all completed events");
-            Console.WriteLine(" 11. Remove all events");
-            Console.WriteLine(new string('-', 40));
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 18) + "MENU" + new string(' ', 18));
+            WriteLine(new string('-', 40));
+
+            WriteLine(" 1. Add an event");
+            WriteLine(" 2. Modify an event");
+            WriteLine(" 3. Delete an event");
+            WriteLine(" 4. Complete an event");
+            WriteLine(" 5. List all events");
+            WriteLine(" 6. Fetch an event for a certain day");
+            WriteLine(" 7. List all completed events");
+            WriteLine(" 8. List all events on a certain date");
+            WriteLine(" 9. List all uncompleted events");
+            WriteLine(" 10. Remove all completed events");
+            WriteLine(" 11. Remove all events");
+            WriteLine(new string('-', 40));
         }
 
 
@@ -147,9 +159,9 @@ namespace UI
         /// </summary>
         public static void ExitProgram()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Have a nice day!");
+            WriteLine("Have a nice day!");
             Environment.Exit(0);
         }
 
@@ -161,7 +173,7 @@ namespace UI
             LoginOrRegisterMenu();
             while (true)
             {
-                int command = int.Parse(Console.ReadLine());
+                int command = int.Parse(ReadLine());
                 switch (command)
                 {
                     case 1:
@@ -218,35 +230,39 @@ namespace UI
         /// </summary>
         public static void AddEvent()
         {
-            Console.Clear();
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 15) + "ADD EVENT" + new string(' ', 16));
+            WriteLine(new string('-', 40));
 
             Event @event = new Event();
 
-            Console.WriteLine("Enter event title: ");
-            @event.Title = Console.ReadLine();
+            WriteLine("Enter event title: ");
+            @event.Title = ReadLine();
 
-            Console.WriteLine("Enter event year: ");
-            int year = int.Parse(Console.ReadLine());
+            WriteLine("Enter event year: ");
+            int year = int.Parse(ReadLine());
 
-            Console.WriteLine("Enter event month: ");
-            int month = int.Parse(Console.ReadLine());
+            WriteLine("Enter event month: ");
+            int month = int.Parse(ReadLine());
 
-            Console.WriteLine("Enter event day: ");
-            int day = int.Parse(Console.ReadLine());
+            WriteLine("Enter event day: ");
+            int day = int.Parse(ReadLine());
 
-            Console.WriteLine("Enter event hour: ");
-            int hour = int.Parse(Console.ReadLine());
+            WriteLine("Enter event hour: ");
+            int hour = int.Parse(ReadLine());
 
-            Console.WriteLine("Enter event minute: ");
-            int minute = int.Parse(Console.ReadLine());
+            WriteLine("Enter event minute: ");
+            int minute = int.Parse(ReadLine());
 
             @event.DueTime = new DateTime(year, month, day, hour, minute, 0);
 
-            Console.WriteLine("Enter event importance [Low, Medium, High]: ");
-            @event.Importance = Console.ReadLine();
+            WriteLine("Enter event importance [Low, Medium, High]: ");
+            @event.Importance = ReadLine();
 
             eventBusiness.AddEvent(@event);
-            Console.WriteLine("Event successfully added");
+            WriteLine("Event successfully added");
 
             MenuOrExit();
         }
@@ -256,24 +272,28 @@ namespace UI
         /// </summary>
         public static void ModifyEvent()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Enter event id: ");
-            int id = int.Parse(Console.ReadLine());
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 17) + "MODIFY" + new string(' ', 17));
+            WriteLine(new string('-', 40));
+
+            WriteLine("Enter event id: ");
+            int id = int.Parse(ReadLine());
 
             Event @event = eventBusiness.FetchEventById(id, user);
 
-            Console.WriteLine("Enter new title: ");
-            @event.Title = Console.ReadLine();
+            WriteLine("Enter new title: ");
+            @event.Title = ReadLine();
 
-            Console.WriteLine("Enter new due time: ");
-            @event.DueTime = DateTime.Parse(Console.ReadLine());
+            WriteLine("Enter new due time: ");
+            @event.DueTime = DateTime.Parse(ReadLine());
 
-            Console.WriteLine("Enter new importance: ");
-            @event.Importance = Console.ReadLine();
+            WriteLine("Enter new importance: ");
+            @event.Importance = ReadLine();
 
             eventBusiness.ModifyEvent(@event, user);
-            Console.WriteLine("Event successfully Modified");
+            WriteLine("Event successfully Modified");
 
             MenuOrExit();
         }
@@ -283,14 +303,18 @@ namespace UI
         /// </summary>
         public static void DeleteEvent()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Enter event id: ");
-            int id = int.Parse(Console.ReadLine());
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 17) + "DELETE" + new string(' ', 17));
+            WriteLine(new string('-', 40));
+
+            WriteLine("Enter event id: ");
+            int id = int.Parse(ReadLine());
 
             eventBusiness.DeleteEvent(id, user);
 
-            Console.WriteLine("Event successfully deleted");
+            WriteLine("Event successfully deleted");
 
             MenuOrExit();
         }
@@ -300,21 +324,25 @@ namespace UI
         /// </summary>
         public static void MarkEventAsDone()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Enter event id: ");
-            int id = int.Parse(Console.ReadLine());
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 11) + "MARK EVENT AS DONE" + new string(' ', 11));
+            WriteLine(new string('-', 40));
+
+            WriteLine("Enter event id: ");
+            int id = int.Parse(ReadLine());
 
             Event @event = eventBusiness.FetchEventById(id, user);
 
             if (@event == null || @event.IsDone == true)
             {
-                Console.WriteLine("Event is already completed or does not exist");
+                WriteLine("Event is already completed or does not exist");
             }
             else
             {
                 eventBusiness.CompleteEvent(id, user);
-                Console.WriteLine("Event successfully completed");
+                WriteLine("Event successfully completed");
             }
 
             MenuOrExit();
@@ -325,12 +353,16 @@ namespace UI
         /// </summary>
         public static void ListAllEvents()
         {
-            Console.Clear();
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 12) + "LIST ALL EVENTS" + new string(' ', 13));
+            WriteLine(new string('-', 40));
 
             List<Event> events = eventBusiness.ListAllEvents(user);
-            foreach (var item in events)
+            foreach (Event @event in events)
             {
-                Console.WriteLine($"{item.EventId} {item.Title} {item.DueTime} {item.Importance}");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
 
             MenuOrExit();
@@ -341,20 +373,24 @@ namespace UI
         /// </summary>
         public static void FetchEvent()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Enter event id: ");
-            int id = int.Parse(Console.ReadLine());
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 14) + "FETCH EVENT" + new string(' ', 15));
+            WriteLine(new string('-', 40));
+
+            WriteLine("Enter event id: ");
+            int id = int.Parse(ReadLine());
 
             Event @event = eventBusiness.FetchEventById(id, user);
             if (@event == null)
             {
-                Console.WriteLine($"There is no event with id {id}");
+                WriteLine($"There is no event with id {id}");
             }
             else
             {
-                Console.WriteLine($"Listing the event with the id {id}...");
-                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine($"Listing the event with the id {id}...");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
 
             MenuOrExit();
@@ -365,14 +401,18 @@ namespace UI
         /// </summary>
         public static void ListAllCompletedEvents()
         {
-            Console.Clear();
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 12) + "COMPLETED EVENTS" + new string(' ', 12));
+            WriteLine(new string('-', 40));
 
             List<Event> events = eventBusiness.ListAllCompletedEvents(user);
 
-            Console.WriteLine("Listing all completed tasks...");
+            WriteLine("Listing all completed tasks...");
             foreach (Event @event in events)
             {
-                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
 
             MenuOrExit();
@@ -383,17 +423,21 @@ namespace UI
         /// </summary>
         public static void ListAllEventsByDate()
         {
-            Console.Clear();
+            Clear();
 
-            Console.WriteLine("Enter your date [e.g '2015-01-01']:");
-            DateTime inputDate = DateTime.Parse(Console.ReadLine());
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 13) + "EVENTS BY DATE" + new string(' ', 13));
+            WriteLine(new string('-', 40));
+
+            WriteLine("Enter your date [e.g '2015-01-01']:");
+            DateTime inputDate = DateTime.Parse(ReadLine());
 
             List<Event> events = eventBusiness.ListAllEventsByDate(inputDate, user);
 
-            Console.WriteLine($"Listing all events on {inputDate.Date}...");
+            WriteLine($"Listing all events on {inputDate.Date}...");
             foreach (Event @event in events)
             {
-                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
 
             MenuOrExit();
@@ -404,14 +448,18 @@ namespace UI
         /// </summary>
         public static void ListAllUncompletedEvents()
         {
-            Console.Clear();
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 11) + "UNCOMPLETED EVENTS" + new string(' ', 11));
+            WriteLine(new string('-', 40));
 
             List<Event> events = eventBusiness.ListAllUncompletedEvents(user);
             
-            Console.WriteLine("Listing all uncompleted events...");
+            WriteLine("Listing all uncompleted events...");
             foreach (Event @event in events)
             {
-                Console.WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
             }
 
             MenuOrExit();
@@ -422,10 +470,14 @@ namespace UI
         /// </summary>
         public static void RemoveAllCompletedEvents()
         {
-            Console.Clear();
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 8) + "REMOVE COMPLETED EVENTS" + new string(' ', 8));
+            WriteLine(new string('-', 40));
 
             eventBusiness.RemoveAllCompletedEvents(user);
-            Console.WriteLine("All completed events have successfully been removed");
+            WriteLine("All completed events have successfully been removed");
 
             MenuOrExit();
         }
@@ -435,10 +487,14 @@ namespace UI
         /// </summary>
         public static void RemoveAllEvents()
         {
-            Console.Clear();
+            Clear();
+
+            WriteLine(new string('-', 40));
+            WriteLine(new string(' ', 11) + "REMOVE ALL EVENTS" + new string(' ', 12));
+            WriteLine(new string('-', 40));
 
             eventBusiness.RemoveAllEvents(user);
-            Console.WriteLine("All events have successfully been removed");
+            WriteLine("All events have successfully been removed");
 
             MenuOrExit();
         }
@@ -449,13 +505,13 @@ namespace UI
         public static string ReadPassword()
         {
             string inputPassword = "";
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            ConsoleKeyInfo keyInfo = ReadKey(true);
 
             while (keyInfo.Key != ConsoleKey.Enter)
             {
                 if (keyInfo.Key != ConsoleKey.Backspace)
                 {
-                    Console.Write("*");
+                    Write("*");
                     inputPassword += keyInfo.KeyChar;
                 }
                 else if (keyInfo.Key == ConsoleKey.Backspace)
@@ -465,20 +521,20 @@ namespace UI
                         // Remove one character from the list of password characters
                         inputPassword = inputPassword.Substring(0, inputPassword.Length - 1);
                         // Get the location of the cursor
-                        int cursorPosition = Console.CursorLeft;
+                        int cursorPosition = CursorLeft;
                         // Move the cursor to the left by one character
-                        Console.SetCursorPosition(cursorPosition - 1, Console.CursorTop);
+                        SetCursorPosition(cursorPosition - 1, CursorTop);
                         // Replace it with space
-                        Console.Write(" ");
+                        Write(" ");
                         // Move the cursor to the left by one character again
-                        Console.SetCursorPosition(cursorPosition - 1, Console.CursorTop);
+                        SetCursorPosition(cursorPosition - 1, CursorTop);
                     }
                 }
 
-                keyInfo = Console.ReadKey(true);
+                keyInfo = ReadKey(true);
             }
 
-            Console.WriteLine();
+            WriteLine();
 
             return inputPassword;
         }
