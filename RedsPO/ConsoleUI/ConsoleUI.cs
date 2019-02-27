@@ -5,7 +5,7 @@ using Business;
 
 namespace UI
 {
-    public class I
+    public class GraphicalUI
     {
         private static EventBusiness eventBusiness = new EventBusiness();
         private static UserBusiness userBusiness = new UserBusiness();
@@ -16,7 +16,21 @@ namespace UI
         /// </summary>
         public static void Main()
         {
-            Input();
+            InitialiseWindow();
+            TakeInput();
+        }
+
+        /// <summary>
+        /// Initialises the window.
+        /// </summary>
+        private static void InitialiseWindow()
+        {
+            BackgroundColor = ConsoleColor.White;
+            ForegroundColor = ConsoleColor.Black;
+
+            Clear();
+
+            Title = "RedsPO";
         }
 
         /// <summary>
@@ -24,27 +38,37 @@ namespace UI
         /// </summary>
         public static void LoginOrRegisterMenu()
         {
-            WriteLine(new string('-', 40));
-            WriteLine(new string(' ', 19) + "HI" + new string(' ', 19));
-            WriteLine(new string('-', 40));
-            WriteLine("1. Register an Account");
-            WriteLine("2. Sign in your Account");
-            WriteLine(new string('-', 40));
-
-            int command = int.Parse(ReadLine());
-
-            switch (command)
+            try
             {
-                case 1:
-                    Register();
-                    break;
+                Clear();
 
-                case 2:
-                    Login();
-                    break;
+                WriteLine(new string('-', 40));
+                WriteLine(new string(' ', 19) + "HI" + new string(' ', 19));
+                WriteLine(new string('-', 40));
+                WriteLine("1. Register an Account");
+                WriteLine("2. Sign in your Account");
+                WriteLine(new string('-', 40));
 
-                default:
-                    break;
+                int command = int.Parse(ReadLine());
+
+                switch (command)
+                {
+                    case 1:
+                        Register();
+                        break;
+
+                    case 2:
+                        Login();
+                        break;
+
+                    default:
+                        LoginOrRegisterMenu();
+                        break;
+                }
+            }
+            catch
+            {
+                LoginOrRegisterMenu();
             }
         }
 
@@ -53,11 +77,14 @@ namespace UI
         /// </summary>
         public static void MenuOrExit()
         {
+            WriteLine(new string('-', 40));
             WriteLine("Do you want to go to the Main Menu or to Exit the Program? [Menu/Exit]");
+
             string answer = ReadLine();
             if (answer.ToLower() == "menu")
             {
                 ShowMenu();
+                TakeInput();
             }
             else if (answer.ToLower() == "exit")
             {
@@ -74,27 +101,36 @@ namespace UI
         /// </summary>
         public static void Login()
         {
-            Clear();
-
-            WriteLine(new string('-', 40));
-            WriteLine(new string(' ', 17) + "LOGIN" + new string(' ', 18));
-            WriteLine(new string('-', 40));
-
-            WriteLine("Enter Username:");
-            string username = ReadLine();
-
-            WriteLine("Enter Password:");
-            string passwordHash = UserBusiness.HashPassword(ReadPassword());
-
-            user = userBusiness.FetchUser(username, passwordHash);
-
-            if (user == null)
+            try
             {
-                WriteLine("There was an error logging in the application. Please try again later!");
+                Clear();
+
+                WriteLine(new string('-', 40));
+                WriteLine(new string(' ', 17) + "LOGIN" + new string(' ', 18));
+                WriteLine(new string('-', 40));
+
+                WriteLine("Enter Username:");
+                string username = ReadLine();
+
+                WriteLine("Enter Password:");
+                string passwordHash = UserBusiness.HashPassword(ReadPassword());
+
+                user = userBusiness.FetchUser(username, passwordHash);
+
+                if (user == null)
+                {
+                    throw new InvalidOperationException("Unknown Username or Password!");
+                }
+                else
+                {
+                    ShowMenu();
+                }
             }
-            else
+            catch(Exception currentException)
             {
-                ShowMenu();
+                WriteLine("An unexpected ERROR occured! Please try again later.");
+                WriteLine($"[{currentException.Message}]");
+                Environment.Exit(1);
             }
         }
 
@@ -103,29 +139,37 @@ namespace UI
         /// </summary>
         public static void Register()
         {
-            Clear();
+            try
+            {
+                Clear();
 
-            WriteLine(new string('-', 40));
-            WriteLine(new string(' ', 16) + "REGISTER" + new string(' ', 16));
-            WriteLine(new string('-', 40));
+                WriteLine(new string('-', 40));
+                WriteLine(new string(' ', 16) + "REGISTER" + new string(' ', 16));
+                WriteLine(new string('-', 40));
 
-            User user = new User();
+                User user = new User();
 
-            WriteLine("Enter Username: ");
-            user.UserName = ReadLine();
+                WriteLine("Enter Username: ");
+                user.UserName = ReadLine();
 
-            WriteLine("Enter Password:");
-            user.PasswordHash = UserBusiness.HashPassword(ReadPassword());
+                WriteLine("Enter Password:");
+                user.PasswordHash = UserBusiness.HashPassword(ReadPassword());
 
-            WriteLine("First Name: ");
-            user.FirstName = ReadLine();
+                WriteLine("First Name: ");
+                user.FirstName = ReadLine();
 
-            WriteLine("Last Name: ");
-            user.LastName = ReadLine();
+                WriteLine("Last Name: ");
+                user.LastName = ReadLine();
 
-            userBusiness.Register(user);
+                userBusiness.Register(user);
 
-            Login();
+                Login();
+            }
+            catch
+            {
+                WriteLine("An unexpected ERROR occured! Please try again later.");
+                Environment.Exit(1);
+            }
         }
 
         /// <summary>
@@ -133,6 +177,8 @@ namespace UI
         /// </summary>
         public static void ShowMenu()
         {
+            if (user == null) throw new InvalidOperationException("Not logged into an Account!");
+
             Clear();
 
             WriteLine(new string('-', 40));
@@ -168,60 +214,73 @@ namespace UI
         /// <summary>
         /// Gets the input from the User.
         /// </summary>
-        public static void Input()
+        public static void TakeInput()
         {
-            LoginOrRegisterMenu();
-            while (true)
+            if(user == null)
+                LoginOrRegisterMenu();
+
+            try
             {
-                int command = int.Parse(ReadLine());
-                switch (command)
+                while (true)
                 {
-                    case 1:
-                        AddEvent();
-                        break;
+                    int command = int.Parse(ReadLine());
+                    switch (command)
+                    {
+                        case 1:
+                            AddEvent();
+                            break;
 
-                    case 2:
-                        ModifyEvent();
-                        break;
+                        case 2:
+                            ModifyEvent();
+                            break;
 
-                    case 3:
-                        DeleteEvent();
-                        break;
+                        case 3:
+                            DeleteEvent();
+                            break;
 
-                    case 4:
-                        MarkEventAsDone();
-                        break;
+                        case 4:
+                            MarkEventAsDone();
+                            break;
 
-                    case 5:
-                        ListAllEvents();
-                        break;
+                        case 5:
+                            ListAllEvents();
+                            break;
 
-                    case 6:
-                        FetchEvent();
-                        break;
+                        case 6:
+                            FetchEvent();
+                            break;
 
-                    case 7:
-                        ListAllCompletedEvents();
-                        break;
-                    case 8:
-                        break;
+                        case 7:
+                            ListAllCompletedEvents();
+                            break;
 
-                    case 9:
-                        ListAllUncompletedEvents();
-                        break;
+                        case 8:
+                            ListAllEventsByDate();
+                            break;
 
-                    case 10:
-                        RemoveAllCompletedEvents();
-                        break;
+                        case 9:
+                            ListAllUncompletedEvents();
+                            break;
 
-                    case 11:
-                        RemoveAllEvents();
-                        break;
+                        case 10:
+                            RemoveAllCompletedEvents();
+                            break;
 
-                    default:
-                        ExitProgram();
-                        break;
+                        case 11:
+                            RemoveAllEvents();
+                            break;
+
+                        default:
+                            ExitProgram();
+                            break;
+                    }
                 }
+            }
+            catch(Exception currentException)
+            {
+                WriteLine("An unexpected ERROR occured! Please try again later.");
+                WriteLine($"[{currentException.Message}]");
+                MenuOrExit();
             }
         }
 

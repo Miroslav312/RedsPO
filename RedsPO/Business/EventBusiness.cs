@@ -31,11 +31,11 @@ namespace Business
                 Event @event = poDbContext.Events.Find(userEvent.EventId);
                 if (@event == null && @event.UserId != user.UserId)
                 {
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                     //Warning: Event either does not exist or is in another user
                 }
                 else
                 {
-
                     poDbContext.Entry(@event).CurrentValues.SetValues(userEvent);
                     poDbContext.SaveChanges();
                 }
@@ -52,6 +52,7 @@ namespace Business
                 Event @event = poDbContext.Events.Find(id);
                 if (@event == null && @event.UserId != user.UserId)
                 {
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                     //Warning: Event either does not exist or is in another user
                 }
                 else
@@ -72,6 +73,7 @@ namespace Business
                 Event @event = poDbContext.Events.Find(id);
                 if (@event == null && @event.UserId != user.UserId)
                 {
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                     //Warning: Event either does not exist or is in another user
                 }
                 else
@@ -92,7 +94,7 @@ namespace Business
                 Event @event = poDbContext.Events.Find(id);
                 if (@event == null && @event.UserId != user.UserId)
                 {
-                    return null;
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                 }
                 else
                 {
