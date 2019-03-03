@@ -2,6 +2,7 @@
 using static System.Console;
 using System.Collections.Generic;
 using Business;
+using System.Globalization;
 
 namespace UI
 {
@@ -190,12 +191,13 @@ namespace UI
             WriteLine(" 3. Delete an event");
             WriteLine(" 4. Complete an event");
             WriteLine(" 5. List all events");
-            WriteLine(" 6. Fetch an event for a certain day");
+            WriteLine(" 6. Fetch an event");
             WriteLine(" 7. List all completed events");
-            WriteLine(" 8. List all events on a certain date");
-            WriteLine(" 9. List all uncompleted events");
+            WriteLine(" 8. List all uncompleted events");
+            WriteLine(" 9. List all events on a certain date");
             WriteLine(" 10. Remove all completed events");
             WriteLine(" 11. Remove all events");
+
             WriteLine(new string('-', 40));
         }
 
@@ -255,11 +257,11 @@ namespace UI
                             break;
 
                         case 8:
-                            ListAllEventsByDate();
+                            ListAllUncompletedEvents();
                             break;
 
                         case 9:
-                            ListAllUncompletedEvents();
+                            ListAllEventsByDate(); 
                             break;
 
                         case 10:
@@ -295,30 +297,21 @@ namespace UI
             WriteLine(new string(' ', 15) + "ADD EVENT" + new string(' ', 16));
             WriteLine(new string('-', 40));
 
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
             Event @event = new Event();
 
             WriteLine("Enter event title: ");
             @event.Title = ReadLine();
 
-            WriteLine("Enter event year: ");
-            int year = int.Parse(ReadLine());
+            WriteLine("Enter event due time (e.g yyyy-mm-dd): ");
 
-            WriteLine("Enter event month: ");
-            int month = int.Parse(ReadLine());
-
-            WriteLine("Enter event day: ");
-            int day = int.Parse(ReadLine());
-
-            WriteLine("Enter event hour: ");
-            int hour = int.Parse(ReadLine());
-
-            WriteLine("Enter event minute: ");
-            int minute = int.Parse(ReadLine());
-
-            @event.DueTime = new DateTime(year, month, day, hour, minute, 0);
+            @event.DueTime = DateTime.ParseExact(ReadLine(), "yyyy-mm-dd", provider);
 
             WriteLine("Enter event importance [Low, Medium, High]: ");
             @event.Importance = ReadLine();
+
+            @event.UserId = user.UserId;
 
             eventBusiness.AddEvent(@event);
             WriteLine("Event successfully added");
@@ -337,6 +330,8 @@ namespace UI
             WriteLine(new string(' ', 17) + "MODIFY" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
             WriteLine("Enter event id: ");
             int id = int.Parse(ReadLine());
 
@@ -345,8 +340,8 @@ namespace UI
             WriteLine("Enter new title: ");
             @event.Title = ReadLine();
 
-            WriteLine("Enter new due time: ");
-            @event.DueTime = DateTime.Parse(ReadLine());
+            WriteLine("Enter new due time (e.g : yyyy-mm-dd): ");
+            @event.DueTime = DateTime.ParseExact(ReadLine(), "yyyy-mm-dd", provider);
 
             WriteLine("Enter new importance: ");
             @event.Importance = ReadLine();
@@ -419,9 +414,16 @@ namespace UI
             WriteLine(new string('-', 40));
 
             List<Event> events = eventBusiness.ListAllEvents(user);
-            foreach (Event @event in events)
+            if (events.Count > 0)
             {
-                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                foreach (Event @event in events)
+                {
+                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                }
+            }
+            else
+            {
+                WriteLine("No events found!");
             }
 
             MenuOrExit();
@@ -469,9 +471,16 @@ namespace UI
             List<Event> events = eventBusiness.ListAllCompletedEvents(user);
 
             WriteLine("Listing all completed tasks...");
-            foreach (Event @event in events)
+            if(events.Count > 0)
+            { 
+                foreach (Event @event in events)
+                {
+                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                }
+            }
+            else
             {
-                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine("No events found!");
             }
 
             MenuOrExit();
@@ -488,15 +497,24 @@ namespace UI
             WriteLine(new string(' ', 13) + "EVENTS BY DATE" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
-            WriteLine("Enter your date [e.g '2015-01-01']:");
-            DateTime inputDate = DateTime.Parse(ReadLine());
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
+            WriteLine("Enter your date (e.g 'yyyy-mm-dd'):");
+            DateTime inputDate = DateTime.ParseExact(ReadLine(), "yyyy-mm-dd", provider);
 
             List<Event> events = eventBusiness.ListAllEventsByDate(inputDate, user);
 
-            WriteLine($"Listing all events on {inputDate.Date}...");
-            foreach (Event @event in events)
+            WriteLine($"Listing all events on {inputDate.ToString("d")}...");
+            if(events.Count > 0)
+            { 
+                foreach (Event @event in events)
+                {
+                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("d")} {@event.Importance}");
+                }
+            }
+            else
             {
-                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine("No events found!");
             }
 
             MenuOrExit();
@@ -516,9 +534,15 @@ namespace UI
             List<Event> events = eventBusiness.ListAllUncompletedEvents(user);
             
             WriteLine("Listing all uncompleted events...");
+            if(events.Count > 0) { 
             foreach (Event @event in events)
             {
                 WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+            }
+            }
+            else
+            {
+                WriteLine("No events found!");
             }
 
             MenuOrExit();

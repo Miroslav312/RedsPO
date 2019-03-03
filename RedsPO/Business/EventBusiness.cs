@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -131,7 +132,7 @@ namespace Business
         {
             using (poDbContext = new PODbContext())
             {
-                return poDbContext.Events.Where(r => r.DueTime.Date == date.Date && r.UserId == user.UserId).ToList();
+                return poDbContext.Events.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
             }
         }
 

@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
 CREATE TABLE IF NOT EXISTS `Events` (
     `EventId` INT AUTO_INCREMENT NOT NULL ,
     `Title` VARCHAR(255)  NOT NULL ,
-    `DueTime` DATETIME  NOT NULL ,
+    `DueTime` DATE  NOT NULL ,
     `IsDone` BOOL  NOT NULL ,
     `Importance` VARCHAR(10)  NOT NULL ,
     `UserId` INT  NOT NULL ,
