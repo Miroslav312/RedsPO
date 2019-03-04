@@ -304,9 +304,9 @@ namespace UI
             WriteLine("Enter event title: ");
             @event.Title = ReadLine();
 
-            WriteLine("Enter event due time (e.g yyyy-mm-dd): ");
+            WriteLine("Enter event due time (e.g dd/MM/yyyy): ");
 
-            @event.DueTime = DateTime.ParseExact(ReadLine(), "yyyy-mm-dd", provider);
+            @event.DueTime = DateTime.ParseExact(ReadLine(), "dd'/'MM'/'yyyy", provider);
 
             WriteLine("Enter event importance [Low, Medium, High]: ");
             @event.Importance = ReadLine();
@@ -340,8 +340,8 @@ namespace UI
             WriteLine("Enter new title: ");
             @event.Title = ReadLine();
 
-            WriteLine("Enter new due time (e.g : yyyy-mm-dd): ");
-            @event.DueTime = DateTime.ParseExact(ReadLine(), "yyyy-mm-dd", provider);
+            WriteLine("Enter new due time (e.g : dd/MM/yyyy): ");
+            @event.DueTime = DateTime.ParseExact(ReadLine(), "dd'/'MM'/'yyyy", provider);
 
             WriteLine("Enter new importance: ");
             @event.Importance = ReadLine();
@@ -417,7 +417,7 @@ namespace UI
             {
                 foreach (Event @event in events)
                 {
-                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("dd'/'MM'/'yyyy")} {@event.Importance}");
                 }
             }
             else
@@ -450,7 +450,7 @@ namespace UI
             else
             {
                 WriteLine($"Listing the event with the id {id}...");
-                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("dd'/'MM'/'yyyy")} {@event.Importance}");
             }
 
             MenuOrExit();
@@ -474,7 +474,7 @@ namespace UI
             { 
                 foreach (Event @event in events)
                 {
-                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("dd'/'MM'/'yyyy")} {@event.Importance}");
                 }
             }
             else
@@ -498,17 +498,17 @@ namespace UI
 
             CultureInfo provider = CultureInfo.InvariantCulture;
 
-            WriteLine("Enter your date (e.g 'yyyy-mm-dd'):");
-            DateTime inputDate = DateTime.ParseExact(ReadLine(), "yyyy-mm-dd", provider);
+            WriteLine("Enter your date (e.g dd/MM/yyyy):");
+            DateTime inputDate = DateTime.ParseExact(ReadLine(), "dd'/'MM'/'yyyy", provider);
 
             List<Event> events = eventBusiness.ListAllEventsByDate(inputDate, user);
 
-            WriteLine($"Listing all events on {inputDate.ToString("d")}...");
+            WriteLine($"Listing all events on {inputDate.ToString("dd'/'MM'/'yyyy")}...");
             if(events.Count > 0)
             { 
                 foreach (Event @event in events)
                 {
-                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("d")} {@event.Importance}");
+                    WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("dd'/'MM'/'yyyy")} {@event.Importance}");
                 }
             }
             else
@@ -536,7 +536,7 @@ namespace UI
             if(events.Count > 0) { 
             foreach (Event @event in events)
             {
-                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime} {@event.Importance}");
+                WriteLine($"{@event.EventId} {@event.Title} {@event.DueTime.ToString("dd'/'MM'/'yyyy")} {@event.Importance}");
             }
             }
             else
