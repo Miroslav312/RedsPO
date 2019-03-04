@@ -4,7 +4,7 @@
 public class PODbContext : DbContext
 {
     public PODbContext()
-        : base("SERVER=localhost; DATABASE=redspo; UID=root; PASSWORD=root")
+        : base("name = PODbContext")
     {
 
     }

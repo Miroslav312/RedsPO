@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace UI
 {
-    public class GraphicalUI
+    public class ConsoleUI
     {
         private static EventBusiness eventBusiness = new EventBusiness();
         private static UserBusiness userBusiness = new UserBusiness();
@@ -367,7 +367,6 @@ namespace UI
             int id = int.Parse(ReadLine());
 
             eventBusiness.DeleteEvent(id, user);
-
             WriteLine("Event successfully deleted");
 
             MenuOrExit();
