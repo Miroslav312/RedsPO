@@ -90,7 +90,7 @@ namespace UI
             catch (Exception currentException)
             {
                 WriteLine("An unexpected ERROR occured! Please try again later.");
-                WriteLine($"[{currentException.GetBaseException().Message}]");
+                WriteLine($"[{currentException.Message}]");
                 MenuOrExit();
             }
         }
