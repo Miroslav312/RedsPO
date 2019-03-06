@@ -62,6 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ReminderModel.cs" />
+    <Compile Include="Model\TaskModel.cs" />
     <Compile Include="PODbContext.cs" />
     <Compile Include="Model\EventModel.cs" />
     <Compile Include="Model\UserModel.cs" />

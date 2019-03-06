@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Event
+public class Reminder
 {
     [Key]
     [Required]
-    public int EventId { get; set; }
+    public int ReminderId { get; set; }
 
     [Required]
     public string Name { get; set; }
