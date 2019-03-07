@@ -4,10 +4,12 @@
 public class PODbContext : DbContext
 {
     public PODbContext()
-        : base("SERVER=localhost; DATABASE=redspo; UID=root; PASSWORD=root")
+        : base("name = PODbContext")
     {
 
     }
     public DbSet<User> Users { get; set; }
     public DbSet<Event> Events { get; set; }
+    public DbSet<Task> Tasks { get; set; }
+    public DbSet<Reminder> Reminders { get; set; }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,11 +32,11 @@ namespace Business
                 Event @event = poDbContext.Events.Find(userEvent.EventId);
                 if (@event == null && @event.UserId != user.UserId)
                 {
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                     //Warning: Event either does not exist or is in another user
                 }
                 else
                 {
-
                     poDbContext.Entry(@event).CurrentValues.SetValues(userEvent);
                     poDbContext.SaveChanges();
                 }
@@ -52,31 +53,12 @@ namespace Business
                 Event @event = poDbContext.Events.Find(id);
                 if (@event == null && @event.UserId != user.UserId)
                 {
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                     //Warning: Event either does not exist or is in another user
                 }
                 else
                 {
                     poDbContext.Events.Remove(@event);
-                    poDbContext.SaveChanges();
-                }
-            }
-        }
-
-        /// <summary>Completes the event.</summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="user">The user.</param>
-        public void CompleteEvent(int id, User user)
-        {
-            using (poDbContext = new PODbContext())
-            {
-                Event @event = poDbContext.Events.Find(id);
-                if (@event == null && @event.UserId != user.UserId)
-                {
-                    //Warning: Event either does not exist or is in another user
-                }
-                else
-                {
-                    @event.IsDone = true;
                     poDbContext.SaveChanges();
                 }
             }
@@ -92,7 +74,7 @@ namespace Business
                 Event @event = poDbContext.Events.Find(id);
                 if (@event == null && @event.UserId != user.UserId)
                 {
-                    return null;
+                    throw new InvalidOperationException("Event either does not exist or is in another user!");
                 }
                 else
                 {
@@ -111,17 +93,6 @@ namespace Business
             }
         }
 
-
-        /// <summary>Lists all completed events.</summary>
-        /// <param name="user">The user.</param>
-        public List<Event> ListAllCompletedEvents(User user)
-        {
-            using (poDbContext = new PODbContext())
-            {
-                return poDbContext.Events.Where(r => r.IsDone == true && r.UserId == user.UserId).ToList();
-            }
-        }
-
         /// <summary>Lists all events by date.</summary>
         /// <param name="date">The date.</param>
         /// <param name="user">The user.</param>
@@ -129,35 +100,7 @@ namespace Business
         {
             using (poDbContext = new PODbContext())
             {
-                return poDbContext.Events.Where(r => r.DueTime.Date == date.Date && r.UserId == user.UserId).ToList();
-            }
-        }
-
-        /// <summary>Lists all uncompleted events.</summary>
-        /// <param name="user">The user.</param>
-        public List<Event> ListAllUncompletedEvents(User user)
-        {
-            using (poDbContext = new PODbContext())
-            {
-                return poDbContext.Events.Where(r => r.IsDone == false && r.UserId == user.UserId).ToList();
-            }
-        }
-
-        /// <summary>Removes all completed events.</summary>
-        /// <param name="user">The user.</param>
-        public void RemoveAllCompletedEvents(User user)
-        {
-            using (poDbContext = new PODbContext())
-            {
-                foreach (var item in poDbContext.Events)
-                {
-                    if (item.IsDone == true && item.UserId == user.UserId)
-                    {
-                        poDbContext.Events.Remove(item);
-                    }
-                }
-
-                poDbContext.SaveChanges();
+                return poDbContext.Events.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
             }
         }
 

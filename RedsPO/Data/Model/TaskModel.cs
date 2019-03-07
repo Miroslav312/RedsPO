@@ -1,17 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Event
+public class Task
 {
     [Key]
     [Required]
-    public int EventId { get; set; }
+    public int TaskId { get; set; }
 
     [Required]
     public string Name { get; set; }
 
     [Required]
-    public DateTime DueTime { get; set; }
+    public DateTime Date { get; set; }
+
+    [Required]
+    public bool IsDone { get; set; }
 
     [Required]
     public int UserId { get; set; }
