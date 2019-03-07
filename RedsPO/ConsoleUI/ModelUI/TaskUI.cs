@@ -30,7 +30,7 @@ namespace UI
             WriteLine(" 7. List all tasks on a certain date");
             WriteLine(" 8. List all completed tasks");
             WriteLine(" 9. List all uncompleted tasks");
-            WriteLine(" 10. remove all completed tasks");
+            WriteLine(" 10. Remove all completed tasks");
             WriteLine(" 11. Remove all tasks");
             WriteLine(" 12. Exit the program");
 
