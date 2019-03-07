@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Business;
 using static System.Console;
 using static UI.EventUI;
@@ -142,13 +142,13 @@ namespace UI
                             break;
 
                         case 2:
-                            //TODO: ShowTaskMenu();
-                            //TODO: TakeTaskInput();
+                            ShowTaskMenu();
+                            TakeTaskInput();
                             break;
 
                         case 3:
-                            //TODO: ShowReminderMenu();
-                            //TODO: TakeReminderInput();
+                            ShowReminderMenu();
+                            TakeReminderInput();
                             break;
 
                         default:
