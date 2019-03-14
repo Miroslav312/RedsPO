@@ -7,17 +7,21 @@ namespace Business
 {
     public class EventBusiness
     {
-        private PODbContext poDbContext;
+        private PODbContext _poDbContext;
+
+        public PODbContext GetPODbContext => _poDbContext;
+
+        public EventBusiness(PODbContext poDbContext)
+        {
+            _poDbContext = poDbContext;
+        }
 
         /// <summary>Adds the event.</summary>
         /// <param name="userEvent">The user event.</param>
         public void AddEvent(Event userEvent)
         {
-            using (poDbContext = new PODbContext())
-            {
-                poDbContext.Events.Add(userEvent);
-                poDbContext.SaveChanges();
-            }
+            _poDbContext.Events.Add(userEvent);
+            _poDbContext.SaveChanges();
         }
 
         /// <summary>Modifies the event.</summary>
@@ -25,19 +29,16 @@ namespace Business
         /// <param name="user">The user.</param>
         public void ModifyEvent(Event userEvent, User user)
         {
-            using (poDbContext = new PODbContext())
+            Event @event = _poDbContext.Events.Find(userEvent.EventId);
+            if (@event == null && @event.UserId != user.UserId)
             {
-                Event @event = poDbContext.Events.Find(userEvent.EventId);
-                if (@event == null && @event.UserId != user.UserId)
-                {
-                    throw new InvalidOperationException("Event either does not exist or is in another user!");
-                    //Warning: Event either does not exist or is in another user
-                }
-                else
-                {
-                    poDbContext.Entry(@event).CurrentValues.SetValues(userEvent);
-                    poDbContext.SaveChanges();
-                }
+                throw new InvalidOperationException("Event either does not exist or is in another user!");
+                //Warning: Event either does not exist or is in another user
+            }
+            else
+            {
+                _poDbContext.Entry(@event).CurrentValues.SetValues(userEvent);
+                _poDbContext.SaveChanges();
             }
         }
 
@@ -46,19 +47,16 @@ namespace Business
         /// <param name="user">The user.</param>
         public void DeleteEvent(int id, User user)
         {
-            using (poDbContext = new PODbContext())
+            Event @event = _poDbContext.Events.Find(id);
+            if (@event == null && @event.UserId != user.UserId)
             {
-                Event @event = poDbContext.Events.Find(id);
-                if (@event == null && @event.UserId != user.UserId)
-                {
-                    throw new InvalidOperationException("Event either does not exist or is in another user!");
-                    //Warning: Event either does not exist or is in another user
-                }
-                else
-                {
-                    poDbContext.Events.Remove(@event);
-                    poDbContext.SaveChanges();
-                }
+                throw new InvalidOperationException("Event either does not exist or is in another user!");
+                //Warning: Event either does not exist or is in another user
+            }
+            else
+            {
+                _poDbContext.Events.Remove(@event);
+                _poDbContext.SaveChanges();
             }
         }
 
@@ -67,17 +65,14 @@ namespace Business
         /// <param name="user">The user.</param>
         public Event FetchEventById(int id, User user)
         {
-            using (poDbContext = new PODbContext())
+            Event @event = _poDbContext.Events.Find(id);
+            if (@event == null && @event.UserId != user.UserId)
             {
-                Event @event = poDbContext.Events.Find(id);
-                if (@event == null && @event.UserId != user.UserId)
-                {
-                    throw new InvalidOperationException("Event either does not exist or is in another user!");
-                }
-                else
-                {
-                    return @event;
-                }
+                throw new InvalidOperationException("Event either does not exist or is in another user!");
+            }
+            else
+            {
+                return @event;
             }
         }
 
@@ -85,10 +80,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Event> ListAllEvents(User user)
         {
-            using (poDbContext = new PODbContext())
-            {
-                return poDbContext.Events.Where(r => r.UserId == user.UserId).ToList();
-            }
+            return _poDbContext.Events.Where(r => r.UserId == user.UserId).ToList();
         }
 
         /// <summary>Lists all events by date.</summary>
@@ -96,28 +88,22 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Event> ListAllEventsByDate(DateTime date, User user)
         {
-            using (poDbContext = new PODbContext())
-            {
-                return poDbContext.Events.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
-            }
+            return _poDbContext.Events.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
         }
 
         /// <summary>Removes all events.</summary>
         /// <param name="user">The user.</param>
         public void RemoveAllEvents(User user)
         {
-            using (poDbContext = new PODbContext())
+            foreach (var item in _poDbContext.Events)
             {
-                foreach (var item in poDbContext.Events)
+                if (item.UserId == user.UserId)
                 {
-                    if (item.UserId == user.UserId)
-                    {
-                        poDbContext.Events.Remove(item);
-                    }
+                    _poDbContext.Events.Remove(item);
                 }
-
-                poDbContext.SaveChanges();
             }
+
+            _poDbContext.SaveChanges();
         }
     }
 }

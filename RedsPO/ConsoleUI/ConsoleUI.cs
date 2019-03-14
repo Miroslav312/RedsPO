@@ -10,10 +10,10 @@ namespace UI
 {
     public static class ConsoleUI
     {
-        public static EventBusiness EBusiness = new EventBusiness();
-        public static ReminderBusiness RBusiness = new ReminderBusiness();
-        public static TaskBusiness TBusiness = new TaskBusiness();
-        public static UserBusiness UBusiness = new UserBusiness();
+        public static EventBusiness EBusiness = new EventBusiness(new PODbContext());
+        public static ReminderBusiness RBusiness = new ReminderBusiness(new PODbContext());
+        public static TaskBusiness TBusiness = new TaskBusiness(new PODbContext());
+        public static UserBusiness UBusiness = new UserBusiness(new PODbContext());
         public static User CurrentUser;
 
         /// <summary>
