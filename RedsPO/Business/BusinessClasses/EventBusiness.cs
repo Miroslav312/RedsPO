@@ -20,6 +20,9 @@ namespace Business
         /// <param name="userEvent">The user event.</param>
         public void AddEvent(Event userEvent)
         {
+            if (userEvent == null)
+                throw new InvalidOperationException("Event should not be null!");
+
             _poDbContext.Events.Add(userEvent);
             _poDbContext.SaveChanges();
         }

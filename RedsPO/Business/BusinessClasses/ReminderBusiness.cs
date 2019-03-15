@@ -19,6 +19,9 @@ namespace Business
         /// <param name="userReminder">The user reminder.</param>
         public void AddReminder(Reminder userReminder)
         {
+            if (userReminder == null)
+                throw new InvalidOperationException("Reminder should not be null!");
+
             _poDbContext.Reminders.Add(userReminder);
             _poDbContext.SaveChanges();
         }

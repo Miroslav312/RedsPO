@@ -20,6 +20,9 @@ namespace Business
         /// <param name="userTask">The user task.</param>
         public void AddTask(Task userTask)
         {
+            if (userTask == null)
+                throw new InvalidOperationException("Task should not be null!");
+
             _poDbContext.Tasks.Add(userTask);
             _poDbContext.SaveChanges();
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -34,6 +35,9 @@ namespace Business
         /// <param name="user">The user.</param>
         public void Register(User user)
         {
+            if (user == null)
+                throw new InvalidOperationException("User should not be null!");
+
             _poDbContext.Users.Add(user);
             _poDbContext.SaveChanges();
         }

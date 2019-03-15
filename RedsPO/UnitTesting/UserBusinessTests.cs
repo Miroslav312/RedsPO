@@ -9,6 +9,7 @@ using static UnitTesting.UnitTestMethods;
 
 namespace Tests
 {
+    [TestFixture]
     public class UserBusinessTests
     {
         private Mock<DbSet<Event>> _mockEvents;
@@ -62,7 +63,7 @@ namespace Tests
         }
 
         [Test]
-        public void Add_New_User_To_The_Database()
+        public void TestRegisterNewUserToTheDatabase()
         {
             UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
 
@@ -70,7 +71,52 @@ namespace Tests
 
             mockUserBusiness.Register(mockUser);
 
-            Assert.Contains(mockUser, mockUserBusiness.GetPODbContext.Users.ToList());
+            Assert.Contains(mockUser, mockUserBusiness.GetPODbContext.Users.ToList(), "User not registered properly!");
+        }
+
+        [Test]
+        public void TestRegisterNullUserToTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User mockUser = null;
+
+            Assert.Catch(() => mockUserBusiness.Register(mockUser), "Null user registered to the database!");
+        }
+
+        [Test]
+        public void TestFetchAllUsersFromTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            List<User> mockUsers = mockUserBusiness.FetchAllUsers();
+
+            Assert.AreEqual(mockUsers.Count(), mockUserBusiness.GetPODbContext.Users.Count(), "Not all users are fetched!");
+        }
+
+        [Test]
+        public void TestFetchUserFromTheDatabase()
+        {
+            string userName = "userName1";
+            string passwordHash = "passwordHash";
+
+            int expectedId = 1;
+
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
+
+            Assert.AreEqual(mockUser.UserId, expectedId, "User not fetched correctly!");
+        }
+
+        [Test]
+        public void TestUserIsExistingInTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User expectedUser = mockUserBusiness.GetPODbContext.Users.ToList()[0];
+
+            Assert.True(mockUserBusiness.IsExisting(expectedUser), "User is not in the database!");
         }
     }
 }
