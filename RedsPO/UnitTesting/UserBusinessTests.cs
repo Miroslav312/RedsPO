@@ -95,6 +95,18 @@ namespace Tests
         }
 
         [Test]
+        public void TestFalseFetchAllUsersFromTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            List<User> mockUsers = mockUserBusiness.FetchAllUsers();
+
+            mockUsers.Add(new User());
+
+            Assert.AreNotEqual(mockUsers.Count(), mockUserBusiness.GetPODbContext.Users.Count(), "Not all users are fetched!");
+        }
+
+        [Test]
         public void TestFetchUserFromTheDatabase()
         {
             string userName = "userName1";
@@ -106,7 +118,20 @@ namespace Tests
 
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            Assert.AreEqual(mockUser.UserId, expectedId, "User not fetched correctly!");
+            Assert.AreEqual(expectedId, mockUser.UserId,  "User not fetched correctly!");
+        }
+
+        [Test]
+        public void TestFalseFetchUserFromTheDatabase()
+        {
+            string userName = "nonExisting";
+            string passwordHash = "nonExisting";
+
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
+
+            Assert.AreEqual(null, mockUser, "Non existent user fetched!");
         }
 
         [Test]
@@ -114,9 +139,39 @@ namespace Tests
         {
             UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
 
-            User expectedUser = mockUserBusiness.GetPODbContext.Users.ToList()[0];
+            User existingUser = mockUserBusiness.GetPODbContext.Users.ToList()[0];
 
-            Assert.True(mockUserBusiness.IsExisting(expectedUser), "User is not in the database!");
+            Assert.True(mockUserBusiness.IsExisting(existingUser), "IsExisting() returns False for existing User!");
+        }
+
+        [Test]
+        public void TestUserNotExistingInTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User nonExistingUser = new User();
+
+            Assert.False(mockUserBusiness.IsExisting(nonExistingUser), "IsExisting() returns True for non existing User!");
+        }
+
+        [Test]
+        public void TestHashPassword()
+        {
+            string text = "testText";
+
+            string expectedHash = "85AC464C2F22837C991C50FDAA5FACC25A09FD7664B5D50427F69B4DF7744BDC";
+
+            string returnedHash = UserBusiness.HashPassword(text);
+
+            Assert.True(expectedHash == returnedHash, "Hashing of passwords is incorrect!");
+        }
+
+        [Test]
+        public void TestHashNullPassword()
+        {
+            string text = null;
+
+            Assert.Catch(() => UserBusiness.HashPassword(text), "Null password is hashed!");
         }
     }
 }
