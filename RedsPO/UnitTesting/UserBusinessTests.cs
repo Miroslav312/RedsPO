@@ -19,6 +19,9 @@ namespace Tests
 
         private Mock<PODbContext> _mockContext;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -62,6 +65,9 @@ namespace Tests
 
         }
 
+        /// <summary>
+        /// Tests - Register new user to the database.
+        /// </summary>
         [Test]
         public void TestRegisterNewUserToTheDatabase()
         {
@@ -74,6 +80,9 @@ namespace Tests
             Assert.Contains(mockUser, mockUserBusiness.GetPODbContext.Users.ToList(), "User not registered properly!");
         }
 
+        /// <summary>
+        /// Test - Register null user to the database.
+        /// </summary>
         [Test]
         public void TestRegisterNullUserToTheDatabase()
         {
@@ -84,6 +93,9 @@ namespace Tests
             Assert.Catch(() => mockUserBusiness.Register(mockUser), "Null user registered to the database!");
         }
 
+        /// <summary>
+        /// Test - Fetch all users from the database.
+        /// </summary>
         [Test]
         public void TestFetchAllUsersFromTheDatabase()
         {
@@ -94,6 +106,9 @@ namespace Tests
             Assert.AreEqual(mockUsers.Count(), mockUserBusiness.GetPODbContext.Users.Count(), "Not all users are fetched!");
         }
 
+        /// <summary>
+        /// Test - False fetch all users from the database.
+        /// </summary>
         [Test]
         public void TestFalseFetchAllUsersFromTheDatabase()
         {
@@ -106,6 +121,9 @@ namespace Tests
             Assert.AreNotEqual(mockUsers.Count(), mockUserBusiness.GetPODbContext.Users.Count(), "Not all users are fetched!");
         }
 
+        /// <summary>
+        /// Tests - Fetch user from the database.
+        /// </summary>
         [Test]
         public void TestFetchUserFromTheDatabase()
         {
@@ -121,6 +139,9 @@ namespace Tests
             Assert.AreEqual(expectedId, mockUser.UserId,  "User not fetched correctly!");
         }
 
+        /// <summary>
+        /// Test - False fetch user from the database.
+        /// </summary>
         [Test]
         public void TestFalseFetchUserFromTheDatabase()
         {
@@ -134,6 +155,9 @@ namespace Tests
             Assert.AreEqual(null, mockUser, "Non existent user fetched!");
         }
 
+        /// <summary>
+        /// Test - User is existing in the database.
+        /// </summary>
         [Test]
         public void TestUserIsExistingInTheDatabase()
         {
@@ -144,6 +168,9 @@ namespace Tests
             Assert.True(mockUserBusiness.IsExisting(existingUser), "IsExisting() returns False for existing User!");
         }
 
+        /// <summary>
+        /// Test - User not existing in the database.
+        /// </summary>
         [Test]
         public void TestUserNotExistingInTheDatabase()
         {
@@ -154,6 +181,9 @@ namespace Tests
             Assert.False(mockUserBusiness.IsExisting(nonExistingUser), "IsExisting() returns True for non existing User!");
         }
 
+        /// <summary>
+        /// Test - Hash password.
+        /// </summary>
         [Test]
         public void TestHashPassword()
         {
@@ -166,6 +196,9 @@ namespace Tests
             Assert.True(expectedHash == returnedHash, "Hashing of passwords is incorrect!");
         }
 
+        /// <summary>
+        /// Test - Hash null password.
+        /// </summary>
         [Test]
         public void TestHashNullPassword()
         {
