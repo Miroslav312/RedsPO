@@ -98,14 +98,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllEvents(User user)
         {
-            foreach (var item in _poDbContext.Events)
-            {
-                if (item.UserId == user.UserId)
-                {
-                    _poDbContext.Events.Remove(item);
-                }
-            }
-
+            _poDbContext.Events.RemoveRange(_poDbContext.Events.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }
     }

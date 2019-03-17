@@ -51,11 +51,19 @@ namespace Tests
 
             _mockEvents = GetQueryableMockDbSet(events);
 
+            _mockEvents.Setup(m => m.Find(It.IsAny<object[]>())).Returns<object[]>(ids => events.AsQueryable().FirstOrDefault(d => d.EventId == (int)ids[0]));
+
             _mockReminders = GetQueryableMockDbSet(reminders);
+
+            _mockReminders.Setup(m => m.Find(It.IsAny<object[]>())).Returns<object[]>(ids => reminders.AsQueryable().FirstOrDefault(d => d.ReminderId == (int)ids[0]));
 
             _mockTasks = GetQueryableMockDbSet(tasks);
 
+            _mockTasks.Setup(m => m.Find(It.IsAny<object[]>())).Returns<object[]>(ids => tasks.AsQueryable().FirstOrDefault(d => d.TaskId == (int)ids[0]));
+
             _mockUsers = GetQueryableMockDbSet(users);
+
+            _mockUsers.Setup(m => m.Find(It.IsAny<object[]>())).Returns<object[]>(ids => users.AsQueryable().FirstOrDefault(d => d.UserId == (int)ids[0]));
 
             _mockContext = new Mock<PODbContext>();
             _mockContext.Setup(m => m.Events).Returns(_mockEvents.Object);
@@ -66,7 +74,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Tests - Register new user to the database.
+        /// Test - Register new user to the database.
         /// </summary>
         [Test]
         public void TestRegisterNewUserToTheDatabase()
@@ -122,7 +130,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Tests - Fetch user from the database.
+        /// Test - Fetch user from the database.
         /// </summary>
         [Test]
         public void TestFetchUserFromTheDatabase()
