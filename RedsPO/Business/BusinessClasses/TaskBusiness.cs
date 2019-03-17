@@ -130,14 +130,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllCompletedTasks(User user)
         {
-            foreach (Task @task in _poDbContext.Tasks)
-            {
-                if (@task.IsDone == true && @task.UserId == user.UserId)
-                {
-                    _poDbContext.Tasks.Remove(@task);
-                }
-            }
-
+            _poDbContext.Tasks.RemoveRange(_poDbContext.Tasks.Where(x => x.UserId == user.UserId && x.IsDone == true));
             _poDbContext.SaveChanges();
         }
 
@@ -145,14 +138,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllTasks(User user)
         {
-            foreach (Task @task in _poDbContext.Tasks)
-            {
-                if (task.UserId == user.UserId)
-                {
-                    _poDbContext.Tasks.Remove(task);
-                }
-            }
-
+            _poDbContext.Tasks.RemoveRange(_poDbContext.Tasks.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }
     }

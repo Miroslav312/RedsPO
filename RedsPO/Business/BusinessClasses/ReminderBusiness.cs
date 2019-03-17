@@ -98,14 +98,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllReminders(User user)
         {
-            foreach (Reminder @reminder in _poDbContext.Reminders)
-            {
-                if (@reminder.UserId == user.UserId)
-                {
-                    _poDbContext.Reminders.Remove(@reminder);
-                }
-            }
-
+            _poDbContext.Reminders.RemoveRange(_poDbContext.Reminders.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }
     }
