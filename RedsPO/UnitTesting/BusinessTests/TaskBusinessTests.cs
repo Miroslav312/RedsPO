@@ -305,35 +305,7 @@ namespace UnitTesting.BusinessTests
             
             Assert.Catch(() => mockTaskBusiness.CompleteTask(taskId, mockUser), "Non existent task was completed!");
         }
-
-        /// <summary>
-        /// Test - List all user tasks by date from the database.
-        /// </summary>
-        [Test]
-        public void TestListAllUserTasksByDateFromTheDatabase()
-        {
-            TaskBusiness mockTaskBusiness = new TaskBusiness(_mockContext.Object);
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            string userName = "userName1";
-            string passwordHash = "passwordHash";
-
-            User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
-
-            DateTime date = new DateTime(2019, 1, 1);
-
-            Task mockTask1 = new Task() { TaskId = 3, Date = date, Name = "name", IsDone = true, UserId = 1 };
-            Task mockTask2 = new Task() { TaskId = 4, Date = date, Name = "name", IsDone = true, UserId = 1 };
-
-            mockTaskBusiness.AddTask(mockTask1);
-            mockTaskBusiness.AddTask(mockTask2);
-
-            int count = mockTaskBusiness.ListAllTasksByDate(date, mockUser).Count();
-            int expectedCount = mockTaskBusiness.GetPODbContext.Tasks.Where(x => x.UserId == mockUser.UserId && x.Date == date).ToList().Count();
-
-            Assert.AreEqual(expectedCount, count, "Not all tasks were fetched!");
-        }
-
+        
         /// <summary>
         /// Test - List all completed user tasks from the database.
         /// </summary>
