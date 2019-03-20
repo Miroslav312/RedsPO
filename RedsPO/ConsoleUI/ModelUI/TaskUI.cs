@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Business;
+using System.Globalization;
 using static System.Console;
 using static UI.ConsoleUI;
 
@@ -30,7 +30,7 @@ namespace UI
             WriteLine(" 7. List all tasks on a certain date");
             WriteLine(" 8. List all completed tasks");
             WriteLine(" 9. List all uncompleted tasks");
-            WriteLine(" 10. remove all completed tasks");
+            WriteLine(" 10. Remove all completed tasks");
             WriteLine(" 11. Remove all tasks");
             WriteLine(" 12. Exit the program");
 
@@ -130,8 +130,8 @@ namespace UI
             WriteLine("Enter task title: ");
             @task.Name = ReadLine();
 
-            WriteLine("Enter task date (e.g 2009/02/26 18:37:58): ");
-            @task.Date = DateTime.Parse(ReadLine());
+            WriteLine("Enter task date (e.g 26/02/2009): ");
+            @task.Date = DateTime.ParseExact(ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             @task.UserId = CurrentUser.UserId;
 
@@ -160,8 +160,8 @@ namespace UI
             WriteLine("Enter new title: ");
             @task.Name = ReadLine();
 
-            WriteLine("Enter new date (e.g : 2009/02/26 18:37:58): ");
-            @task.Date = DateTime.Parse(ReadLine());
+            WriteLine("Enter new date (e.g : 26/02/2009): ");
+            @task.Date = DateTime.ParseExact(ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             TBusiness.ModifyTask(@task, CurrentUser);
             WriteLine("Task successfully Modified");
@@ -240,7 +240,7 @@ namespace UI
             else
             {
                 WriteLine($"Listing the task with the id {id}...");
-                WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("g")}");
+                WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("d")} {(@task.IsDone ? "DONE" : "NOT DONE")}");
             }
 
             MenuOrExit();
@@ -262,7 +262,7 @@ namespace UI
             {
                 foreach (Task @task in tasks)
                 {
-                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("g")}");
+                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("d")} {(@task.IsDone ? "DONE" : "NOT DONE")}");
                 }
             }
             else
@@ -284,8 +284,8 @@ namespace UI
             WriteLine(new string(' ', 13) + "TASKS BY DATE" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
-            WriteLine("Enter your date (e.g 2009/02/26):");
-            DateTime inputDate = DateTime.Parse(ReadLine());
+            WriteLine("Enter your date (e.g 26/02/2009):");
+            DateTime inputDate = DateTime.ParseExact(ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             List<Task> tasks= TBusiness.ListAllTasksByDate(inputDate, CurrentUser);
 
@@ -294,7 +294,7 @@ namespace UI
             {
                 foreach (Task @task in tasks)
                 {
-                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("g")}");
+                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("d")} {(@task.IsDone ? "DONE" : "NOT DONE")}");
                 }
             }
             else
@@ -323,7 +323,8 @@ namespace UI
             {
                 foreach (Task @task in tasks)
                 {
-                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("g")}");
+                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("d")} {(@task.IsDone ? "DONE" : "NOT DONE")}");
+
                 }
             }
             else
@@ -352,7 +353,7 @@ namespace UI
             {
                 foreach (Task @task in tasks)
                 {
-                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("g")}");
+                    WriteLine($"{@task.TaskId} {@task.Name} {@task.Date.ToString("d")} {(@task.IsDone ? "DONE" : "NOT DONE")}");
                 }
             }
             else

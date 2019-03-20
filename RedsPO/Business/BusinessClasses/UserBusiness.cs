@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Business
 {
     public class UserBusiness
     {
-        private PODbContext poDbContext;
+        private PODbContext _poDbContext;
+
+        public PODbContext GetPODbContext => _poDbContext;
+
+        public UserBusiness(PODbContext poDbContext)
+        {
+            _poDbContext = poDbContext;
+        }
 
         /// <summary>Fetches all users.</summary>
         public List<User> FetchAllUsers()
         {
-            using (poDbContext = new PODbContext())
-            {
-                return poDbContext.Users.ToList();
-            }
+            return _poDbContext.Users.ToList();
         }
 
         /// <summary>Fetches the user.</summary>
@@ -25,21 +28,18 @@ namespace Business
         /// <param name="passwordHash">The password hash.</param>
         public User FetchUser(string userName, string passwordHash)
         {
-            using (poDbContext = new PODbContext())
-            {
-                return poDbContext.Users.FirstOrDefault(x => x.UserName == userName && x.PasswordHash == passwordHash.ToString());
-            }
+            return _poDbContext.Users.FirstOrDefault(x => x.UserName == userName && x.PasswordHash == passwordHash.ToString());
         }
 
         /// <summary>Registers the specified user.</summary>
         /// <param name="user">The user.</param>
         public void Register(User user)
         {
-            using (poDbContext = new PODbContext())
-            {
-                poDbContext.Users.Add(user);
-                poDbContext.SaveChanges();
-            }
+            if (user == null)
+                throw new InvalidOperationException("User should not be null!");
+
+            _poDbContext.Users.Add(user);
+            _poDbContext.SaveChanges();
         }
 
         /// <summary>Determines whether the specified user is existing.</summary>
@@ -48,10 +48,7 @@ namespace Business
         ///   <c>true</c> if the specified user is existing; otherwise, <c>false</c>.</returns>
         public bool IsExisting(User user)
         {
-            using(poDbContext = new PODbContext())
-            {
-                return FetchAllUsers().Contains(user); 
-            }
+            return FetchAllUsers().Contains(user); 
         }
 
         /// <summary>Hashes the password with SHA256 Hash.</summary>

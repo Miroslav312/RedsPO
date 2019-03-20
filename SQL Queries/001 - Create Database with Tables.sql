@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `Events` (
 
 CREATE TABLE IF NOT EXISTS `Tasks` (
     `TaskId` INT AUTO_INCREMENT NOT NULL ,
-    `Title` VARCHAR(255)  NOT NULL ,
+    `Name` VARCHAR(255)  NOT NULL ,
     `Date` DATE  NOT NULL ,
     `IsDone` BOOL  NOT NULL ,
     `UserId` INT  NOT NULL ,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Tasks` (
 
 CREATE TABLE IF NOT EXISTS `Reminders` (
     `ReminderId` INT AUTO_INCREMENT NOT NULL ,
-    `Title` VARCHAR(255)  NOT NULL ,
+    `Name` VARCHAR(255)  NOT NULL ,
     `DueTime` DATETIME  NOT NULL ,
     `UserId` INT  NOT NULL ,
     PRIMARY KEY (
