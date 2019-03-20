@@ -7,7 +7,7 @@ using Moq;
 using Business;
 using static UnitTesting.UnitTestMethods;
 
-namespace UnitTesting.BusinessTests
+namespace Tests
 {
     [TestFixture]
     public class TaskBusinessTests
