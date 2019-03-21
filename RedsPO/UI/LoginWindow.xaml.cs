@@ -20,6 +20,8 @@ namespace UI
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private RegisterWindow _registerWindow;
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -35,6 +37,24 @@ namespace UI
         {
             //Shuts down the Application
             Application.Current.Shutdown();
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Hides the instance of the window
+            this.Hide();
+
+            if (_registerWindow == null)
+            {
+                //Creates a new register window
+                _registerWindow = new RegisterWindow();
+            }
+
+            //Shows the register window
+            _registerWindow.Show();
+
+            //Closes the instance of this window
+            this.Close();
         }
     }
 }
