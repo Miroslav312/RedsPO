@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static UI.UIProperties;
+using Business;
 
 namespace UI
 {
@@ -21,6 +23,7 @@ namespace UI
     public partial class LoginWindow : Window
     {
         private RegisterWindow _registerWindow;
+        private MainWindow _mainWindow;
 
         public LoginWindow()
         {
@@ -55,6 +58,42 @@ namespace UI
 
             //Closes the instance of this window
             this.Close();
+        }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(UsernameBox.Text) || string.IsNullOrEmpty(PasswordBox.Password))
+                    //Shows a message box with a warning
+                    ShowWarning("All fields should be full!");
+
+                else
+                {
+                    //Sets the current user
+                    currentUser = userBusiness.FetchUser(UsernameBox.Text, UserBusiness.HashPassword(PasswordBox.Password));
+
+                    //Hides the instance of the window
+                    this.Hide();
+
+                    if (_mainWindow == null)
+                    {
+                        //Creates a new main window
+                        _mainWindow = new MainWindow();
+                    }
+
+                    //Shows the main window
+                    _mainWindow.Show();
+
+                    //Closes the instance of this window
+                    this.Close();
+                }
+            }
+            catch(Exception exception)
+            {
+                //Shows the message of the current exception
+                ShowError(exception.Message);
+            }
         }
     }
 }

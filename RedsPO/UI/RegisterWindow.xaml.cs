@@ -46,31 +46,29 @@ namespace UI
             {
                 if (string.IsNullOrEmpty(UsernameBox.Text) || string.IsNullOrEmpty(PasswordBox.Password) || string.IsNullOrEmpty(FirstnameBox.Text) || string.IsNullOrEmpty(LastnameBox.Text))
                     //Shows a message box with a warning
-                    MessageBox.Show("All fields should be full!", "Warning", MessageBoxButton.OK);
+                    ShowWarning("All fields should be full!");
 
                 else
                 {
                     //Creates new instance of user
-                    User user = new User();
-
-                    //Sets properties for the user
-                    user.UserName = UsernameBox.Text;
-                    user.PasswordHash = UserBusiness.HashPassword(PasswordBox.Password);
-                    user.FirstName = FirstnameBox.Text;
-                    user.LastName = LastnameBox.Text;
+                    User user = new User
+                    {
+                        //Sets properties for the user
+                        UserName = UsernameBox.Text,
+                        PasswordHash = UserBusiness.HashPassword(PasswordBox.Password),
+                        FirstName = FirstnameBox.Text,
+                        LastName = LastnameBox.Text
+                    };
 
                     //Registers the user
                     userBusiness.Register(user);
-
-                    //Sets the current user to user
-                    currentUser = user;
 
                     //Hides the instance of the window
                     this.Hide();
 
                     if (_loginWindow == null)
                     {
-                        //Creates a new register window
+                        //Creates a new main window
                         _loginWindow = new LoginWindow();
                     }
 

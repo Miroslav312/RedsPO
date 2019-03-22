@@ -19,8 +19,7 @@
         <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Left" Height="35" Margin="55,237,0,-232" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="White" FontFamily="Segoe UI Light" FontSize="16"/>
         <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="23" Margin="55,277,0,-260" VerticalAlignment="Top" Width="288" Background="#FF706F6F" Foreground="White" BorderBrush="White" SelectionBrush="#FF00F070"/>
         <TextBox x:Name="UsernameBox" HorizontalAlignment="Left" Height="23" Margin="55,214,0,-197" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="White" SelectionBrush="#FF00F070" Background="#FF706F6F" BorderBrush="White"/>
-        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Height="40
-                " Margin="115,319,0,-319" VerticalAlignment="Top" Width="173" Background="#FF706F6F" Foreground="White" BorderBrush="White" FontFamily="Segoe UI Black"/>
+        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Height="40" Margin="115,319,0,-319" VerticalAlignment="Top" Width="173" Background="#FF706F6F" Foreground="White" BorderBrush="White" FontFamily="Segoe UI Black" Click="SubmitButton_Click"/>
         <Rectangle x:Name="ProgramIcon" HorizontalAlignment="Left" Height="30" RadiusY="25" RadiusX="25" VerticalAlignment="Top" Width="30" Margin="10,5,0,0" Stroke="#FF00F070">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Icons/loginIcon.png"/>
