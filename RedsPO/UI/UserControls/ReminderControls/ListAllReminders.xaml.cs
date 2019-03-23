@@ -14,36 +14,36 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static UI.UIProperties;
 
-namespace UI.UserControls.EventControls
+namespace UI.UserControls.ReminderControls
 {
     /// <summary>
-    /// Interaction logic for ListAllEvents.xaml
+    /// Interaction logic for ListAllReminders.xaml
     /// </summary>
-    public partial class ListAllEvents : UserControl
+    public partial class ListAllReminders : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAllEvents"/> class.
+        /// Initializes a new instance of the <see cref="ListAllReminders"/> class.
         /// </summary>
-        public ListAllEvents()
+        public ListAllReminders()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// Loads the event ListView.
+        /// Loads the reminder ListView.
         /// </summary>
-        public void LoadEventListView()
+        public void LoadReminderListView()
         {
-            //Gets all user events
-            List<Event> events = eventBusiness.ListAllEvents(currentUser);
+            //Gets all user Reminders
+            List<Reminder> Reminders = reminderBusiness.ListAllReminders(currentUser);
 
             //Deletes current items
-            EventListView.Items.Clear();
+            ReminderListView.Items.Clear();
 
-            //Adds events to the List View
-            foreach (Event @event in events)
+            //Adds Reminders to the List View
+            foreach (Reminder @Reminder in Reminders)
             {
-                EventListView.Items.Add(@event);
+                ReminderListView.Items.Add(@Reminder);
             }
         }
     }

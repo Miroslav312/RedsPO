@@ -14,17 +14,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static UI.UIProperties;
 
-namespace UI.UserControls.EventControls
+namespace UI.UserControls.ReminderControls
 {
     /// <summary>
-    /// Interaction logic for ModifyEvent.xaml
+    /// Interaction logic for ModifyReminder.xaml
     /// </summary>
-    public partial class ModifyEvent : UserControl
+    public partial class ModifyReminder : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModifyEvent"/> class.
+        /// Initializes a new instance of the <see cref="ModifyReminder"/> class.
         /// </summary>
-        public ModifyEvent()
+        public ModifyReminder()
         {
             InitializeComponent();
         }
@@ -36,27 +36,27 @@ namespace UI.UserControls.EventControls
         {
             try
             {
-                if (EventListBox.SelectedItem == null || string.IsNullOrEmpty(NewNameBox.Text) || string.IsNullOrEmpty(NewDatePicker.Text))
+                if (ReminderListBox.SelectedItem == null || string.IsNullOrEmpty(NewNameBox.Text) || string.IsNullOrEmpty(NewDatePicker.Text))
                     //Shows a message box with a warning
                     ShowWarning("All fields should be full!");
 
                 else
                 {
-                    //Gets the event from the box
-                    Event selectedEvent = (Event)EventListBox.SelectedItem;
+                    //Gets the Reminder from the box
+                    Reminder selectedReminder = (Reminder)ReminderListBox.SelectedItem;
 
-                    //Make changes to the event
-                    selectedEvent.Name = NewNameBox.Text;
-                    selectedEvent.DueTime = DateTime.Parse(NewDatePicker.Text);
+                    //Make changes to the Reminder
+                    selectedReminder.Name = NewNameBox.Text;
+                    selectedReminder.DueTime = DateTime.Parse(NewDatePicker.Text);
 
-                    //Modifies the event
-                    eventBusiness.ModifyEvent(selectedEvent, currentUser);
+                    //Modifies the Reminder
+                    reminderBusiness.ModifyReminder(selectedReminder, currentUser);
 
                     //Loads the new list box
-                    LoadEventListBox();
+                    LoadReminderListBox();
 
                     //Shows success info
-                    ShowInfo("Event modified successfully!");
+                    ShowInfo("Reminder modified successfully!");
                 }
             }
             catch(Exception exception)
@@ -67,20 +67,20 @@ namespace UI.UserControls.EventControls
         }
 
         /// <summary>
-        /// Loads the event ListBox.
+        /// Loads the reminder ListBox.
         /// </summary>
-        public void LoadEventListBox()
+        public void LoadReminderListBox()
         {
-            //Gets all user events
-            List<Event> events = eventBusiness.ListAllEvents(currentUser);
+            //Gets all user Reminders
+            List<Reminder> Reminders = reminderBusiness.ListAllReminders(currentUser);
 
             //Deletes current items
-            EventListBox.Items.Clear();
+            ReminderListBox.Items.Clear();
 
-            //Adds events to the List Box
-            foreach (Event @event in events)
+            //Adds Reminders to the List Box
+            foreach (Reminder @Reminder in Reminders)
             {
-                EventListBox.Items.Add(@event);
+                ReminderListBox.Items.Add(@Reminder);
             }
         }
     }

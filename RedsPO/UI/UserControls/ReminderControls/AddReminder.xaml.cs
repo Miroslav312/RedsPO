@@ -14,17 +14,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static UI.UIProperties;
 
-namespace UI.UserControls.EventControls
+namespace UI.UserControls.ReminderControls
 {
     /// <summary>
-    /// Interaction logic for AddEvent.xaml
+    /// Interaction logic for AddReminder.xaml
     /// </summary>
-    public partial class AddEvent : UserControl
+    public partial class AddReminder : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddEvent"/> class.
+        /// Initializes a new instance of the <see cref="AddReminder"/> class.
         /// </summary>
-        public AddEvent()
+        public AddReminder()
         {
             InitializeComponent();
         }
@@ -42,20 +42,20 @@ namespace UI.UserControls.EventControls
 
                 else
                 {
-                    //Creates new instance of event
-                    Event @event = new Event
+                    //Creates new instance of reminder
+                    Reminder @reminder = new Reminder
                     {
-                        //Sets properties for the event
+                        //Sets properties for the reminder
                         Name = NameBox.Text,
                         DueTime = DateTime.Parse(DatePicker.Text),
                         UserId = currentUser.UserId
                     };
 
-                    //Adds the event
-                    eventBusiness.AddEvent(@event);
+                    //Adds the reminder
+                    reminderBusiness.AddReminder(@reminder);
 
                     //Shows success info
-                    ShowInfo("Event added successfully!");
+                    ShowInfo("Reminder added successfully!");
                 }
             }
             catch(Exception exception)

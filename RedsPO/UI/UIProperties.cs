@@ -19,7 +19,10 @@ namespace UI
         static public ReminderBusiness reminderBusiness = new ReminderBusiness(new PODbContext());
 
         static public EventView eventView = new EventView();
+        static public ReminderView reminderView = new ReminderView();
 
+        /// <summary>Shows the error.</summary>
+        /// <param name="errorMessage">The error message.</param>
         public static void ShowError(string errorMessage)
         {
             //Shows a message box with a warning
@@ -29,12 +32,16 @@ namespace UI
             Application.Current.Shutdown();
         }
 
+        /// <summary>Shows the warning.</summary>
+        /// <param name="warningMessage">The warning message.</param>
         public static void ShowWarning(string warningMessage)
         {
             //Shows a message box with a warning
             MessageBox.Show(warningMessage, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
         }
 
+        /// <summary>Shows the information.</summary>
+        /// <param name="warningMessage">The warning message.</param>
         public static void ShowInfo(string warningMessage)
         {
             //Shows a message box with info

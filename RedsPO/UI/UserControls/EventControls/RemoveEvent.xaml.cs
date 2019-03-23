@@ -21,6 +21,9 @@ namespace UI.UserControls.EventControls
     /// </summary>
     public partial class RemoveEvent : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveEvent"/> class.
+        /// </summary>
         public RemoveEvent()
         {
             InitializeComponent();
