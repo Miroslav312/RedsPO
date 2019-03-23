@@ -90,8 +90,20 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIProperties.cs" />
+    <Compile Include="UserControls\EventControls\ListAllEvents.xaml.cs">
+      <DependentUpon>ListAllEvents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventControls\ModifyEvent.xaml.cs">
+      <DependentUpon>ModifyEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EventControls\RemoveEvent.xaml.cs">
+      <DependentUpon>RemoveEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EventControls\AddEvent.xaml.cs">
       <DependentUpon>AddEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\EventView.xaml.cs">
       <DependentUpon>EventView.xaml</DependentUpon>
@@ -116,9 +128,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\EventControls\ListAllEvents.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\EventControls\ModifyEvent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\EventControls\RemoveEvent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\EventControls\AddEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\EventView.xaml">
       <SubType>Designer</SubType>
@@ -179,6 +207,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\mainIcons\listByCompletion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\homeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\mainWindow\eventIcon.png" />
+    <Resource Include="Icons\mainWindow\reminderIcon.png" />
+    <Resource Include="Icons\mainWindow\taskIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

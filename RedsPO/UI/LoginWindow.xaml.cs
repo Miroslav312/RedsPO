@@ -72,7 +72,7 @@ namespace UI
                 {
                     //Sets the current user
                     currentUser = userBusiness.FetchUser(UsernameBox.Text, UserBusiness.HashPassword(PasswordBox.Password));
-
+                    
                     //Hides the instance of the window
                     this.Hide();
 
@@ -81,6 +81,9 @@ namespace UI
                         //Creates a new main window
                         _mainWindow = new MainWindow();
                     }
+
+                    //Sets the HomeView Label
+                    _mainWindow.HomeView.HomeLabel.Content += currentUser.UserName[0].ToString().ToUpper() + currentUser.UserName.Substring(1).ToLower() + "!";
 
                     //Shows the main window
                     _mainWindow.Show();

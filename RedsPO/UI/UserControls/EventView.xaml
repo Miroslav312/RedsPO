@@ -13,17 +13,17 @@
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/addIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="RemoveButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="122,10,0,0">
+        <Button x:Name="RemoveButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="122,10,0,0" Click="RemoveButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/deleteIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="ModifyButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="222,10,0,0">
+        <Button x:Name="ModifyButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="222,10,0,0" Click="ModifyButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/modifyIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="ListAllButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="322,10,0,0">
+        <Button x:Name="ListAllButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="322,10,0,0" Click="ListAllButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/listAllIcon.png"/>
             </Button.Background>
@@ -33,6 +33,6 @@
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/listByDateIcon.png"/>
             </Button.Background>
         </Button>
-        <WrapPanel x:Name="EventFunction" HorizontalAlignment="Left" Height="390" Margin="0,70,0,0" VerticalAlignment="Top" Width="495"/>
+        <WrapPanel x:Name="EventFunction" HorizontalAlignment="Left" Height="390" Margin="0,70,0,0" VerticalAlignment="Top" Width="492"/>
     </Grid>
 </UserControl>

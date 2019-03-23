@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Business
@@ -91,7 +92,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Reminder> ListAllRemindersByDate(DateTime date, User user)
         {
-            return _poDbContext.Reminders.Where(r => r.DueTime == date && r.UserId == user.UserId).ToList();
+            return _poDbContext.Reminders.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
         }
 
         /// <summary>Removes all reminders.</summary>

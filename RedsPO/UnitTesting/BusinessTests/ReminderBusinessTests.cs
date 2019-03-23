@@ -261,33 +261,5 @@ namespace Tests
 
             Assert.Catch(() => mockReminderBusiness.RemoveAllReminders(mockUser), "All null user reminder were removed!");
         }
-
-        /// <summary>
-        /// Test - List all user reminders by date from the database.
-        /// </summary>
-        [Test]
-        public void TestListAllUserRemindersByDateFromTheDatabase()
-        {
-            ReminderBusiness mockReminderBusiness = new ReminderBusiness(_mockContext.Object);
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            string userName = "userName1";
-            string passwordHash = "passwordHash";
-
-            User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
-
-            DateTime dueDate = new DateTime(2019, 1, 1);
-
-            Reminder mockReminder1 = new Reminder() { ReminderId = 3, DueTime = dueDate, Name = "name", UserId = 1 };
-            Reminder mockReminder2 = new Reminder() { ReminderId = 4, DueTime = dueDate, Name = "name", UserId = 1 };
-
-            mockReminderBusiness.AddReminder(mockReminder1);
-            mockReminderBusiness.AddReminder(mockReminder2);
-
-            int count = mockReminderBusiness.ListAllRemindersByDate(dueDate, mockUser).Count();
-            int expectedCount = mockReminderBusiness.GetPODbContext.Reminders.Where(x => x.UserId == mockUser.UserId && x.DueTime == dueDate).ToList().Count();
-
-            Assert.AreEqual(expectedCount, count, "Not all reminders were fetched!");
-        }
     }
 }

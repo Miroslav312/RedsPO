@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Reminder
+public partial class Reminder
 {
     [Key]
     [Required]
@@ -15,4 +15,12 @@ public class Reminder
 
     [Required]
     public int UserId { get; set; }
+}
+
+public partial class Reminder
+{
+    public override string ToString()
+    {
+        return $"{this.Name} {this.DueTime.ToString("d")}";
+    }
 }

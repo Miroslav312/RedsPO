@@ -23,6 +23,9 @@ namespace UI.UserControls
     {
 
         private AddEvent _addEvent = new AddEvent();
+        private RemoveEvent _removeEvent = new RemoveEvent();
+        private ModifyEvent _modifyEvent = new ModifyEvent();
+        private ListAllEvents _listAllEvents = new ListAllEvents();
 
         public EventView()
         {
@@ -38,6 +41,51 @@ namespace UI.UserControls
 
                 //Adds the user control
                 EventFunction.Children.Add(_addEvent);
+            }
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!EventFunction.Children.Contains(_removeEvent))
+            {
+                //Removes all elements
+                EventFunction.Children.Clear();
+
+                //Adds the user control
+                EventFunction.Children.Add(_removeEvent);
+
+                //Loads the Event List Box
+                _removeEvent.LoadEventListBox();
+            }
+        }
+
+        private void ModifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!EventFunction.Children.Contains(_modifyEvent))
+            {
+                //Removes all elements
+                EventFunction.Children.Clear();
+
+                //Adds the user control
+                EventFunction.Children.Add(_modifyEvent);
+
+                //Loads the Event List Box
+                _modifyEvent.LoadEventListBox();
+            }
+        }
+
+        private void ListAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!EventFunction.Children.Contains(_listAllEvents))
+            {
+                //Removes all elements
+                EventFunction.Children.Clear();
+
+                //Adds the user control
+                EventFunction.Children.Add(_listAllEvents);
+
+                //Loads the Event List View
+                _listAllEvents.LoadEventListView();
             }
         }
     }

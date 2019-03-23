@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Personal Organizer" Height="400" Width="400" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FF00F070">
+        Title="Personal Organizer" Height="400" Width="400" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FFCB0120">
     <Grid HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="400" Background="White" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <Button x:Name="CloseButton" Content="" HorizontalAlignment="Left" Margin="370,10,0,0" VerticalAlignment="Top" Width="20" Click="CloseButton_Click" BorderBrush="{x:Null}">
             <Button.Background>
@@ -17,15 +17,15 @@
         <Border x:Name="LoginBorder" BorderThickness="1" HorizontalAlignment="Left" Height="5" Margin="55,158,0,-123" VerticalAlignment="Top" Width="288" Background="White"/>
         <Label x:Name="UsernameLabel" Content="Username" HorizontalAlignment="Left" Height="35" Margin="55,179,0,-174" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="White" FontFamily="Segoe UI Light" FontSize="16"/>
         <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Left" Height="35" Margin="55,237,0,-232" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="White" FontFamily="Segoe UI Light" FontSize="16"/>
-        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="23" Margin="55,277,0,-260" VerticalAlignment="Top" Width="288" Background="#FF706F6F" Foreground="White" BorderBrush="White" SelectionBrush="#FF00F070"/>
-        <TextBox x:Name="UsernameBox" HorizontalAlignment="Left" Height="23" Margin="55,214,0,-197" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="White" SelectionBrush="#FF00F070" Background="#FF706F6F" BorderBrush="White"/>
-        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Height="40" Margin="115,319,0,-319" VerticalAlignment="Top" Width="173" Background="#FF706F6F" Foreground="White" BorderBrush="White" FontFamily="Segoe UI Black" Click="SubmitButton_Click"/>
-        <Rectangle x:Name="ProgramIcon" HorizontalAlignment="Left" Height="30" RadiusY="25" RadiusX="25" VerticalAlignment="Top" Width="30" Margin="10,5,0,0" Stroke="#FF00F070">
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="23" Margin="55,277,0,-260" VerticalAlignment="Top" Width="288" Background="#FF706F6F" Foreground="White" BorderBrush="White" SelectionBrush="#FF00F070" TabIndex="2"/>
+        <TextBox x:Name="UsernameBox" HorizontalAlignment="Left" Height="23" Margin="55,214,0,-197" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="White" SelectionBrush="#FF00F070" Background="#FF706F6F" BorderBrush="White" TabIndex="1"/>
+        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Height="40" Margin="115,319,0,-319" VerticalAlignment="Top" Width="173" Background="#FF706F6F" Foreground="White" BorderBrush="White" FontFamily="Segoe UI Black" Click="SubmitButton_Click" TabIndex="3"/>
+        <Rectangle x:Name="ProgramIcon" HorizontalAlignment="Left" Height="30" RadiusY="25" RadiusX="25" VerticalAlignment="Top" Width="30" Margin="10,5,0,0" Stroke="#FFCB0120">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Icons/loginIcon.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="RegisterButton" Content="I don't have an account :(" HorizontalAlignment="Left" VerticalAlignment="Top" Width="159" Margin="231,373,0,-359" Background="{x:Null}" BorderBrush="{x:Null}" Height="26" Foreground="#FF383838" FontFamily="Segoe UI Semilight" Click="RegisterButton_Click"/>
+        <Button x:Name="RegisterButton" Content="I don't have an account :(" HorizontalAlignment="Left" VerticalAlignment="Top" Width="159" Margin="231,373,0,-359" Background="{x:Null}" BorderBrush="{x:Null}" Height="26" Foreground="#FF383838" FontFamily="Segoe UI Semilight" Click="RegisterButton_Click" TabIndex="4"/>
     </Grid>
 
 </Window>

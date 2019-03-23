@@ -34,20 +34,23 @@ namespace UI.UserControls.EventControls
                     //Shows a message box with a warning
                     ShowWarning("All fields should be full!");
 
-                //Creates new instance of event
-                Event @event = new Event
+                else
                 {
-                    //Sets properties for the event
-                    Name = NameBox.Text,
-                    DueTime = DateTime.Parse(DatePicker.Text),
-                    UserId = currentUser.UserId
-                };
+                    //Creates new instance of event
+                    Event @event = new Event
+                    {
+                        //Sets properties for the event
+                        Name = NameBox.Text,
+                        DueTime = DateTime.Parse(DatePicker.Text),
+                        UserId = currentUser.UserId
+                    };
 
-                //Adds the event
-                eventBusiness.AddEvent(@event);
+                    //Adds the event
+                    eventBusiness.AddEvent(@event);
 
-                //Shows success info
-                ShowInfo("Event added successfully!");
+                    //Shows success info
+                    ShowInfo("Event added successfully!");
+                }
             }
             catch(Exception exception)
             {

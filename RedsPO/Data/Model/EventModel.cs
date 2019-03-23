@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Event
+public partial class Event
 {
     [Key]
     [Required]
@@ -15,4 +15,13 @@ public class Event
 
     [Required]
     public int UserId { get; set; }
+}
+
+
+public partial class Event
+{
+    public override string ToString()
+    {
+        return $"{this.Name} {this.DueTime.ToString("d")}";
+    }
 }

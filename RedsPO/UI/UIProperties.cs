@@ -23,7 +23,7 @@ namespace UI
         public static void ShowError(string errorMessage)
         {
             //Shows a message box with a warning
-            MessageBox.Show(errorMessage, "Critical Error", MessageBoxButton.OK);
+            MessageBox.Show(errorMessage, "Critical Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
 
             //Shuts down the Application
             Application.Current.Shutdown();
@@ -32,13 +32,13 @@ namespace UI
         public static void ShowWarning(string warningMessage)
         {
             //Shows a message box with a warning
-            MessageBox.Show(warningMessage, "Warning", MessageBoxButton.OK);
+            MessageBox.Show(warningMessage, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
         }
 
         public static void ShowInfo(string warningMessage)
         {
             //Shows a message box with info
-            MessageBox.Show(warningMessage, "Info", MessageBoxButton.OK);
+            MessageBox.Show(warningMessage, "Info", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
         }
     }
 }
