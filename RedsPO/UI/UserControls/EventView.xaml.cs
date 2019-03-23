@@ -26,6 +26,7 @@ namespace UI.UserControls
         private RemoveEvent _removeEvent = new RemoveEvent();
         private ModifyEvent _modifyEvent = new ModifyEvent();
         private ListAllEvents _listAllEvents = new ListAllEvents();
+        private ListAllEventsByDate _listAllEventsByDate = new ListAllEventsByDate();
 
         public EventView()
         {
@@ -83,6 +84,22 @@ namespace UI.UserControls
 
                 //Adds the user control
                 EventFunction.Children.Add(_listAllEvents);
+
+                //Loads the Event List View
+                _listAllEvents.LoadEventListView();
+            }
+        }
+
+        private void ListByDateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (!EventFunction.Children.Contains(_listAllEventsByDate))
+            {
+                //Removes all elements
+                EventFunction.Children.Clear();
+
+                //Adds the user control
+                EventFunction.Children.Add(_listAllEventsByDate);
 
                 //Loads the Event List View
                 _listAllEvents.LoadEventListView();

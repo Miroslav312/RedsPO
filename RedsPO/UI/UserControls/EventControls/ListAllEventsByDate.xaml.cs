@@ -17,39 +17,27 @@ using static UI.UIProperties;
 namespace UI.UserControls.EventControls
 {
     /// <summary>
-    /// Interaction logic for RemoveEvent.xaml
+    /// Interaction logic for AddEvent.xaml
     /// </summary>
-    public partial class RemoveEvent : UserControl
+    public partial class ListAllEventsByDate : UserControl
     {
-        public RemoveEvent()
+        public ListAllEventsByDate()
         {
             InitializeComponent();
         }
-
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (EventListBox.SelectedItem == null)
+                if (string.IsNullOrEmpty(DatePicker.Text))
                     //Shows a message box with a warning
                     ShowWarning("All fields should be full!");
 
                 else
                 {
-                    //Gets the event from the box
-                    Event selectedEvent = (Event)EventListBox.SelectedItem;
-
-                    //Gets the eventId of the selected event
-                    int eventId = selectedEvent.EventId;
-
-                    //Removes the event
-                    eventBusiness.RemoveEvent(eventId, currentUser);
-
-                    //Loads the new list box
-                    LoadEventListBox();
-
-                    //Shows success info
-                    ShowInfo("Event removed successfully!");
+                    //Loads the View
+                    LoadEventListViewByDate(DateTime.Parse(DatePicker.Text));
                 }
             }
             catch(Exception exception)
@@ -59,18 +47,18 @@ namespace UI.UserControls.EventControls
             }
         }
 
-        public void LoadEventListBox()
+        public void LoadEventListViewByDate(DateTime date)
         {
             //Gets all user events
-            List<Event> events = eventBusiness.ListAllEvents(currentUser);
+            List<Event> events = eventBusiness.ListAllEventsByDate(date, currentUser);
 
             //Deletes current items
-            EventListBox.Items.Clear();
+            EventListView.Items.Clear();
 
-            //Adds events to the List Box
+            //Adds events to the List View
             foreach (Event @event in events)
             {
-                EventListBox.Items.Add(@event);
+                EventListView.Items.Add(@event);
             }
         }
     }

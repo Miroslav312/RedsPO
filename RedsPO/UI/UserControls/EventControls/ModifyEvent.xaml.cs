@@ -33,6 +33,7 @@ namespace UI.UserControls.EventControls
                 if (EventListBox.SelectedItem == null || string.IsNullOrEmpty(NewNameBox.Text) || string.IsNullOrEmpty(NewDatePicker.Text))
                     //Shows a message box with a warning
                     ShowWarning("All fields should be full!");
+
                 else
                 {
                     //Gets the event from the box

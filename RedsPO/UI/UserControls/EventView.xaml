@@ -28,7 +28,7 @@
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/listAllIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="ListByDateButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="422,10,0,0">
+        <Button x:Name="ListByDateButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="422,10,0,0" Click="ListByDateButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/listByDateIcon.png"/>
             </Button.Background>

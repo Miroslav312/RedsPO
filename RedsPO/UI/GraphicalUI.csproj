@@ -90,6 +90,9 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIProperties.cs" />
+    <Compile Include="UserControls\EventControls\ListAllEventsByDate.xaml.cs">
+      <DependentUpon>ListAllEventsByDate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EventControls\ListAllEvents.xaml.cs">
       <DependentUpon>ListAllEvents.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
     <Page Include="RegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EventControls\ListAllEventsByDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\EventControls\ListAllEvents.xaml">
       <Generator>MSBuild:Compile</Generator>
