@@ -101,6 +101,8 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Task> ListAllTasks(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException("User should not be null!");
             return _poDbContext.Tasks.Where(r => r.UserId == user.UserId).ToList();
         }
 
@@ -109,6 +111,8 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Task> ListAllTasksByDate(DateTime date, User user)
         {
+            if (user == null)
+                throw new ArgumentNullException("User should not be null!");
             return _poDbContext.Tasks.Where(r => DbFunctions.TruncateTime(r.Date) == date.Date && r.UserId == user.UserId).ToList();
         }
         
@@ -116,6 +120,8 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Task> ListAllCompletedTasks(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException("User should not be null!");
             return _poDbContext.Tasks.Where(r => r.IsDone == true && r.UserId == user.UserId).ToList();
         }
 
@@ -123,6 +129,8 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Task> ListAllUncompletedTasks(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException("User should not be null!");
             return _poDbContext.Tasks.Where(r => r.IsDone == false && r.UserId == user.UserId).ToList();
         }
 
@@ -130,6 +138,8 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllCompletedTasks(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException("User should not be null!");
             _poDbContext.Tasks.RemoveRange(_poDbContext.Tasks.Where(x => x.UserId == user.UserId && x.IsDone == true));
             _poDbContext.SaveChanges();
         }
@@ -138,6 +148,8 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllTasks(User user)
         {
+            if (user == null)
+                throw new ArgumentNullException("User should not be null!");
             _poDbContext.Tasks.RemoveRange(_poDbContext.Tasks.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }

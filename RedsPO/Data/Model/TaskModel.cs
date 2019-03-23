@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Task
+public partial class Task
 {
     [Key]
     [Required]
@@ -18,4 +18,12 @@ public class Task
 
     [Required]
     public int UserId { get; set; }
+}
+
+public partial class Task
+{
+    public override string ToString()
+    {
+        return $"{this.Name} {this.Date.ToString("d")} {(IsDone ? "✔" : "✖")}";
+    }
 }

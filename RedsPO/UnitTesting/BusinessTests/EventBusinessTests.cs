@@ -118,7 +118,7 @@ namespace Tests
             
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            mockEventBusiness.DeleteEvent(eventId, mockUser);
+            mockEventBusiness.RemoveEvent(eventId, mockUser);
 
             Assert.Less(mockEventBusiness.GetPODbContext.Events.ToList().Count(), oldCount, "Event not deleted properly!");
         }
@@ -138,7 +138,7 @@ namespace Tests
 
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            Assert.Catch(() => mockEventBusiness.DeleteEvent(eventId, mockUser), "Non existent event was deleted!");
+            Assert.Catch(() => mockEventBusiness.RemoveEvent(eventId, mockUser), "Non existent event was deleted!");
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Tests
             
             Assert.Catch(() => mockEventBusiness.ListAllEvents(mockUser), "Null user events were fetched!");
         }
-
+        
         /// <summary>
         /// Test - Remove all user events from the database.
         /// </summary>
@@ -260,34 +260,6 @@ namespace Tests
             User mockUser = null;
             
             Assert.Catch(() => mockEventBusiness.RemoveAllEvents(mockUser), "All null user events were removed!");
-        }
-
-        /// <summary>
-        /// Test - List all user events by date from the database.
-        /// </summary>
-        [Test]
-        public void TestListAllUserEventsByDateFromTheDatabase()
-        {
-            EventBusiness mockEventBusiness = new EventBusiness(_mockContext.Object);
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            string userName = "userName1";
-            string passwordHash = "passwordHash";
-
-            User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
-
-            DateTime dueDate = new DateTime(2019, 1, 1);
-
-            Event mockEvent1 = new Event() { EventId = 3, DueTime = dueDate, Name = "name", UserId = 1 };
-            Event mockEvent2 = new Event() { EventId = 4, DueTime = dueDate, Name = "name", UserId = 1 };
-
-            mockEventBusiness.AddEvent(mockEvent1);
-            mockEventBusiness.AddEvent(mockEvent2);
-
-            int count = mockEventBusiness.ListAllEventsByDate(dueDate, mockUser).Count();
-            int expectedCount = mockEventBusiness.GetPODbContext.Events.Where(x => x.UserId == mockUser.UserId && x.DueTime == dueDate).ToList().Count();
-
-            Assert.AreEqual(expectedCount, count, "Not all events were fetched!");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace UI
 
             WriteLine(" 1. Add an event");
             WriteLine(" 2. Modify an event");
-            WriteLine(" 3. Delete an event");
+            WriteLine(" 3. Remove an event");
             WriteLine(" 4. List all events");
             WriteLine(" 5. Fetch an event");
             WriteLine(" 6. List all events on a certain date");
@@ -57,7 +57,7 @@ namespace UI
                             break;
 
                         case 3:
-                            DeleteEvent();
+                            RemoveEvent();
                             break;
 
                         case 4:
@@ -151,7 +151,7 @@ namespace UI
         /// <summary>
         /// Deletes an event by its ID.
         /// </summary>
-        public static void DeleteEvent()
+        public static void RemoveEvent()
         {
             Clear();
 
@@ -162,7 +162,7 @@ namespace UI
             WriteLine("Enter event id: ");
             int id = int.Parse(ReadLine());
 
-            EBusiness.DeleteEvent(id, CurrentUser);
+            EBusiness.RemoveEvent(id, CurrentUser);
             WriteLine("Event successfully deleted");
 
             MenuOrExit();

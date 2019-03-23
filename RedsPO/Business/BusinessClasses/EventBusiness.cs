@@ -45,10 +45,10 @@ namespace Business
             }
         }
 
-        /// <summary>Deletes the event.</summary>
+        /// <summary>Removes the event.</summary>
         /// <param name="id">The identifier.</param>
         /// <param name="user">The user.</param>
-        public void DeleteEvent(int id, User user)
+        public void RemoveEvent(int id, User user)
         {
             Event @event = _poDbContext.Events.Find(id);
             if (@event == null && @event.UserId != user.UserId)
@@ -72,6 +72,7 @@ namespace Business
             if (@event == null && @event.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Event either does not exist or is in another user!");
+                //Warning: Event either does not exist or is in another user
             }
             else
             {

@@ -1,0 +1,15 @@
+﻿<UserControl x:Name="HomeViewControl" x:Class="UI.UserControls.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Width="495" Height="460">
+    <Grid>
+        <Rectangle x:Name="Body" Fill="#FF454546" HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="435" Margin="30,30,0,0" UseLayoutRounding="False" RadiusY="25" RadiusX="25"/>
+        <Label x:Name="HomeLabel" Content="Hi, " HorizontalAlignment="Left" Height="83" Margin="30,68,0,0" VerticalAlignment="Top" Width="435" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}" FontFamily="Segoe UI Black" FontSize="48"/>
+        <Border x:Name="HomeBorder" BorderThickness="1" HorizontalAlignment="Left" Height="5" Margin="68,151,0,0" VerticalAlignment="Top" Width="358" Background="White"/>
+        <TextBlock x:Name="DescriptionBox" HorizontalAlignment="Left" Height="200" Margin="68,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="358" Foreground="White" FontSize="18" FontFamily="Segoe UI Semilight" TextAlignment="Justify"><Run Text="Organizing one's life is rarely an easy thing to do. In theory, it's simple, but sure enough, you end up with a seemingly never ending list of things to do, and no clue where to start. Luckily, we have developed "/><Run Foreground="Red" Text="Red's Personal Organizer "/><Run Text="- the best Personal Organizer out there. With a click, your life will be perfectly "/><Run Text="organized"/><Run Text=". "/><Run Foreground="Red" Text="RED"/><Run Text=" and you won't "/><Run Foreground="Red" Text="REGRET!"/></TextBlock>
+    </Grid>
+</UserControl>
