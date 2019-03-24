@@ -163,7 +163,7 @@ namespace UI
             WriteLine("Enter reminder id: ");
             int id = int.Parse(ReadLine());
 
-            RBusiness.DeleteReminder(id, CurrentUser);
+            RBusiness.RemoveReminder(id, CurrentUser);
             WriteLine("Reminder successfully deleted");
 
             MenuOrExit();

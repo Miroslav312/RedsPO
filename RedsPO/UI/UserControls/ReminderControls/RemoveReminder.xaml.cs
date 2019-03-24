@@ -37,7 +37,7 @@ namespace UI.UserControls.ReminderControls
                     int ReminderId = selectedReminder.ReminderId;
 
                     //Removes the Reminder
-                    reminderBusiness.DeleteReminder(ReminderId, currentUser);
+                    reminderBusiness.RemoveReminder(ReminderId, currentUser);
 
                     //Loads the new list box
                     LoadReminderListBox();

@@ -50,6 +50,7 @@ namespace UI
         /// <param name="button">The button.</param>
         public static void SetButtonToggle(Button button)
         {
+            //Sets a border brush
             button.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
@@ -57,6 +58,7 @@ namespace UI
         /// <param name="button">The button.</param>
         public static void RemoveButtonToggle(Button button)
         {
+            //Removes the border brush
             button.BorderBrush = null;
         }
     }

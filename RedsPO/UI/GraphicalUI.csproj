@@ -114,6 +114,9 @@
     <Compile Include="UserControls\TaskControls\ListAllTasks.xaml.cs">
       <DependentUpon>ListAllTasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TaskControls\ListAllTasksByCompletion.xaml.cs">
+      <DependentUpon>ListAllTasksByCompletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TaskControls\ListAllTasksByDate.xaml.cs">
       <DependentUpon>ListAllTasksByDate.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\TaskControls\ListAllTasks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskControls\ListAllTasksByCompletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

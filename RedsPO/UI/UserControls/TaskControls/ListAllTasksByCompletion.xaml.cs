@@ -7,14 +7,14 @@ using static UI.UIProperties;
 namespace UI.UserControls.TaskControls
 {
     /// <summary>
-    /// Interaction logic for ListAllTasksByDate.xaml
+    /// Interaction logic for ListAllTasksByCompletion.xaml
     /// </summary>
-    public partial class ListAllTasksByDate : UserControl
+    public partial class ListAllTasksByCompletion : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAllTasksByDate"/> class.
+        /// Initializes a new instance of the <see cref="ListAllTasksByCompletion"/> class.
         /// </summary>
-        public ListAllTasksByDate()
+        public ListAllTasksByCompletion()
         {
             InitializeComponent();
         }
@@ -26,15 +26,8 @@ namespace UI.UserControls.TaskControls
         {
             try
             {
-                if (string.IsNullOrEmpty(DatePicker.Text))
-                    //Shows a message box with a warning
-                    ShowWarning("All fields should be full!");
-
-                else
-                {
-                    //Loads the View
-                    LoadTaskListViewByDate(DateTime.Parse(DatePicker.Text));
-                }
+                //Loads the View
+                LoadTaskListViewByCompletion((bool)CompletedCheckBox.IsChecked);
             }
             catch(Exception exception)
             {
@@ -45,10 +38,21 @@ namespace UI.UserControls.TaskControls
 
         /// <summary>Loads the task ListView by date.</summary>
         /// <param name="date">The date.</param>
-        public void LoadTaskListViewByDate(DateTime date)
+        public void LoadTaskListViewByCompletion(bool completed)
         {
-            //Gets all user task
-            List<Task> tasks = taskBusiness.ListAllTasksByDate(date, currentUser);
+            //List with tasks
+            List<Task> tasks = new List<Task>();
+
+            if (completed)
+            {
+                //Gets all user task
+                tasks = taskBusiness.ListAllCompletedTasks(currentUser);
+            }
+            else
+            {
+                //Gets all user task
+                tasks = taskBusiness.ListAllUncompletedTasks(currentUser);
+            }
 
             //Deletes current items
             TaskListView.Items.Clear();

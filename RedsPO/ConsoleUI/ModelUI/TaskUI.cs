@@ -183,7 +183,7 @@ namespace UI
             WriteLine("Enter task id: ");
             int id = int.Parse(ReadLine());
 
-            TBusiness.DeleteTask(id, CurrentUser);
+            TBusiness.RemoveTask(id, CurrentUser);
             WriteLine("Task successfully deleted");
 
             MenuOrExit();

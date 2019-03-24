@@ -37,7 +37,7 @@ namespace UI.UserControls.TaskControls
                         //Sets properties for the task
                         Name = NameBox.Text,
                         Date = DateTime.Parse(DatePicker.Text),
-                        IsDone = (bool)CompletedCheckBox.IsChecked ? true : false,
+                        IsDone = (bool)CompletedCheckBox.IsChecked,
                         UserId = currentUser.UserId
                     };
 

@@ -37,7 +37,7 @@ namespace UI.UserControls.TaskControls
                     int TaskId = selectedTask.TaskId;
 
                     //Removes the Task
-                    taskBusiness.DeleteTask(TaskId, currentUser);
+                    taskBusiness.RemoveTask(TaskId, currentUser);
 
                     //Loads the new list box
                     LoadTaskListBox();

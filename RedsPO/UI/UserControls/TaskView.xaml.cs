@@ -26,6 +26,9 @@ namespace UI.UserControls
         /// <summary>The list all tasks by date</summary>
         private ListAllTasksByDate _listAllTasksByDate = new ListAllTasksByDate();
 
+        /// <summary>The list all tasks by completion</summary>
+        private ListAllTasksByCompletion _listAllTasksByCompletion = new ListAllTasksByCompletion();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TaskView"/> class.
         /// </summary>
@@ -127,13 +130,28 @@ namespace UI.UserControls
 
                 //Adds the user control
                 TaskFunction.Children.Add(_listAllTasksByDate);
-
-                //Loads the Task List View
-                _listAllTasks.LoadTaskListView();
             }
 
             //Sets the button toggle
             SetCurrentButtonToggle(ListByDateButton);
+        }
+
+        /// <summary>Handles the Click event of the ListByCompletionButton control.</summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ListByCompletionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!TaskFunction.Children.Contains(_listAllTasksByCompletion))
+            {
+                //Removes all elements
+                TaskFunction.Children.Clear();
+
+                //Adds the user control
+                TaskFunction.Children.Add(_listAllTasksByCompletion);
+            }
+
+            //Sets the button toggle
+            SetCurrentButtonToggle(ListByCompletionButton);
         }
 
         /// <summary>Sets the current button toggle.</summary>
@@ -185,11 +203,6 @@ namespace UI.UserControls
                     RemoveButtonToggle(AddButton);
                     break;
             }
-        }
-
-        private void ListByCompletionButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

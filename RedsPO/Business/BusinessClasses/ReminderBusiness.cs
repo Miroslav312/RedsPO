@@ -23,6 +23,7 @@ namespace Business
             if (userReminder == null)
                 throw new InvalidOperationException("Reminder should not be null!");
 
+            //Adds the user reminder
             _poDbContext.Reminders.Add(userReminder);
             _poDbContext.SaveChanges();
         }
@@ -40,15 +41,16 @@ namespace Business
             }
             else
             {
+                //Modifies the user reminder
                 _poDbContext.Entry(@reminder).CurrentValues.SetValues(userReminder);
                 _poDbContext.SaveChanges();
             }
         }
 
-        /// <summary>Deletes the reminder.</summary>
+        /// <summary>Removes the reminder.</summary>
         /// <param name="id">The identifier.</param>
         /// <param name="user">The user.</param>
-        public void DeleteReminder(int id, User user)
+        public void RemoveReminder(int id, User user)
         {
             Reminder @reminder = _poDbContext.Reminders.Find(id);
             if (reminder == null || @reminder.UserId != user.UserId)
@@ -58,6 +60,7 @@ namespace Business
             }
             else
             {
+                //Removes the user reminder
                 _poDbContext.Reminders.Remove(@reminder);
                 _poDbContext.SaveChanges();
             }
@@ -76,6 +79,7 @@ namespace Business
             }
             else
             {
+                //Returns the user reminder
                 return @reminder;
             }
         }
@@ -84,6 +88,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Reminder> ListAllReminders(User user)
         {
+            //Returns a List with all user reminders
             return _poDbContext.Reminders.Where(r => r.UserId == user.UserId).ToList();
         }
 
@@ -92,6 +97,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Reminder> ListAllRemindersByDate(DateTime date, User user)
         {
+            //Returns a List with all user reminders on a certain date
             return _poDbContext.Reminders.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
         }
 
@@ -99,6 +105,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllReminders(User user)
         {
+            //Removes all user reminders
             _poDbContext.Reminders.RemoveRange(_poDbContext.Reminders.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }
