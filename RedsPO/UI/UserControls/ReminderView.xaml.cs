@@ -1,35 +1,35 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using UI.UserControls.EventControls;
+using UI.UserControls.ReminderControls;
 using static UI.UIProperties;
 
 namespace UI.UserControls
 {
     /// <summary>
-    /// Interaction logic for EventView.xaml
+    /// Interaction logic for ReminderView.xaml
     /// </summary>
-    public partial class EventView : UserControl
+    public partial class ReminderView : UserControl
     {
 
-        /// <summary>The add event</summary>
-        private AddEvent _addEvent = new AddEvent();
+        /// <summary>The add reminder</summary>
+        private AddReminder _addReminder = new AddReminder();
         
-        /// <summary>The remove event</summary>
-        private RemoveEvent _removeEvent = new RemoveEvent();
+        /// <summary>The remove reminder</summary>
+        private RemoveReminder _removeReminder = new RemoveReminder();
         
-        /// <summary>The modify event</summary>
-        private ModifyEvent _modifyEvent = new ModifyEvent();
+        /// <summary>The modify reminder</summary>
+        private ModifyReminder _modifyReminder = new ModifyReminder();
         
-        /// <summary>The list all events</summary>
-        private ListAllEvents _listAllEvents = new ListAllEvents();
-
-        /// <summary>The list all events by date</summary>
-        private ListAllEventsByDate _listAllEventsByDate = new ListAllEventsByDate();
+        /// <summary>The list all reminders</summary>
+        private ListAllReminders _listAllReminders = new ListAllReminders();
+        
+        /// <summary>The list all reminders by date</summary>
+        private ListAllRemindersByDate _listAllRemindersByDate = new ListAllRemindersByDate();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventView"/> class.
+        /// Initializes a new instance of the <see cref="ReminderView"/> class.
         /// </summary>
-        public EventView()
+        public ReminderView()
         {
             InitializeComponent();
         }
@@ -39,13 +39,13 @@ namespace UI.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!EventFunction.Children.Contains(_addEvent))
+            if (!ReminderFunction.Children.Contains(_addReminder))
             {
                 //Removes all elements
-                EventFunction.Children.Clear();
+                ReminderFunction.Children.Clear();
 
                 //Adds the user control
-                EventFunction.Children.Add(_addEvent);
+                ReminderFunction.Children.Add(_addReminder);
             }
 
             //Sets the button toggle
@@ -57,16 +57,16 @@ namespace UI.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!EventFunction.Children.Contains(_removeEvent))
+            if (!ReminderFunction.Children.Contains(_removeReminder))
             {
                 //Removes all elements
-                EventFunction.Children.Clear();
+                ReminderFunction.Children.Clear();
 
                 //Adds the user control
-                EventFunction.Children.Add(_removeEvent);
+                ReminderFunction.Children.Add(_removeReminder);
 
-                //Loads the Event List Box
-                _removeEvent.LoadEventListBox();
+                //Loads the Reminder List Box
+                _removeReminder.LoadReminderListBox();
             }
 
             //Sets the button toggle
@@ -78,16 +78,16 @@ namespace UI.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!EventFunction.Children.Contains(_modifyEvent))
+            if (!ReminderFunction.Children.Contains(_modifyReminder))
             {
                 //Removes all elements
-                EventFunction.Children.Clear();
+                ReminderFunction.Children.Clear();
 
                 //Adds the user control
-                EventFunction.Children.Add(_modifyEvent);
+                ReminderFunction.Children.Add(_modifyReminder);
 
-                //Loads the Event List Box
-                _modifyEvent.LoadEventListBox();
+                //Loads the Reminder List Box
+                _modifyReminder.LoadReminderListBox();
             }
 
             //Sets the button toggle
@@ -99,16 +99,16 @@ namespace UI.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ListAllButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!EventFunction.Children.Contains(_listAllEvents))
+            if (!ReminderFunction.Children.Contains(_listAllReminders))
             {
                 //Removes all elements
-                EventFunction.Children.Clear();
+                ReminderFunction.Children.Clear();
 
                 //Adds the user control
-                EventFunction.Children.Add(_listAllEvents);
+                ReminderFunction.Children.Add(_listAllReminders);
 
-                //Loads the Event List View
-                _listAllEvents.LoadEventListView();
+                //Loads the Reminder List View
+                _listAllReminders.LoadReminderListView();
             }
 
             //Sets the button toggle
@@ -120,16 +120,16 @@ namespace UI.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ListByDateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!EventFunction.Children.Contains(_listAllEventsByDate))
+            if (!ReminderFunction.Children.Contains(_listAllRemindersByDate))
             {
                 //Removes all elements
-                EventFunction.Children.Clear();
+                ReminderFunction.Children.Clear();
 
                 //Adds the user control
-                EventFunction.Children.Add(_listAllEventsByDate);
+                ReminderFunction.Children.Add(_listAllRemindersByDate);
 
-                //Loads the Event List View
-                _listAllEvents.LoadEventListView();
+                //Loads the Reminder List View
+                _listAllReminders.LoadReminderListView();
             }
 
             //Sets the button toggle

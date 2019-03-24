@@ -1,31 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static UI.UIProperties;
 
 namespace UI.UserControls.EventControls
 {
     /// <summary>
-    /// Interaction logic for RemoveEvent.xaml
+    /// Interaction logic for ModifyEvent.xaml
     /// </summary>
     public partial class ModifyEvent : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModifyEvent"/> class.
+        /// </summary>
         public ModifyEvent()
         {
             InitializeComponent();
         }
 
+        /// <summary>Handles the Click event of the ModifyButton control.</summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -60,6 +56,9 @@ namespace UI.UserControls.EventControls
             }
         }
 
+        /// <summary>
+        /// Loads the event ListBox.
+        /// </summary>
         public void LoadEventListBox()
         {
             //Gets all user events

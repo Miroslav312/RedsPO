@@ -29,7 +29,7 @@
                 <ImageBrush ImageSource="Icons/mainWindow/taskIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="ReminderButton" HorizontalAlignment="Left" Height="60" Margin="20,145,0,-165" VerticalAlignment="Top" Width="60" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="{x:Null}" FontSize="18">
+        <Button x:Name="ReminderButton" HorizontalAlignment="Left" Height="60" Margin="20,145,0,-165" VerticalAlignment="Top" Width="60" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="{x:Null}" FontSize="18" Click="ReminderButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/mainWindow/reminderIcon.png"/>
             </Button.Background>

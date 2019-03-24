@@ -4,17 +4,17 @@ using System.Windows;
 using System.Windows.Controls;
 using static UI.UIProperties;
 
-namespace UI.UserControls.EventControls
+namespace UI.UserControls.ReminderControls
 {
     /// <summary>
-    /// Interaction logic for ListAllEventsByDate.xaml
+    /// Interaction logic for ListAllRemindersByDate.xaml
     /// </summary>
-    public partial class ListAllEventsByDate : UserControl
+    public partial class ListAllRemindersByDate : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAllEventsByDate"/> class.
+        /// Initializes a new instance of the <see cref="ListAllRemindersByDate"/> class.
         /// </summary>
-        public ListAllEventsByDate()
+        public ListAllRemindersByDate()
         {
             InitializeComponent();
         }
@@ -33,7 +33,7 @@ namespace UI.UserControls.EventControls
                 else
                 {
                     //Loads the View
-                    LoadEventListViewByDate(DateTime.Parse(DatePicker.Text));
+                    LoadReminderListViewByDate(DateTime.Parse(DatePicker.Text));
                 }
             }
             catch(Exception exception)
@@ -43,20 +43,20 @@ namespace UI.UserControls.EventControls
             }
         }
 
-        /// <summary>Loads the event ListView by date.</summary>
+        /// <summary>Loads the reminder ListView by date.</summary>
         /// <param name="date">The date.</param>
-        public void LoadEventListViewByDate(DateTime date)
+        public void LoadReminderListViewByDate(DateTime date)
         {
-            //Gets all user events
-            List<Event> events = eventBusiness.ListAllEventsByDate(date, currentUser);
+            //Gets all user reminders
+            List<Reminder> reminders = reminderBusiness.ListAllRemindersByDate(date, currentUser);
 
             //Deletes current items
-            EventListView.Items.Clear();
+            ReminderListView.Items.Clear();
 
             //Adds events to the List View
-            foreach (Event @event in events)
+            foreach (Reminder @reminder in reminders)
             {
-                EventListView.Items.Add(@event);
+                ReminderListView.Items.Add(@reminder);
             }
         }
     }

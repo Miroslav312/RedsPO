@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.UserControls"
-             xmlns:EventControls="clr-namespace:UI.UserControls.EventControls" x:Name="EventViewControl" x:Class="UI.UserControls.EventView"
+             xmlns:ReminderControls="clr-namespace:UI.UserControls.ReminderControls" x:Name="ReminderViewControl" x:Class="UI.UserControls.ReminderView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="495" Height="460">
     <Grid>
@@ -34,8 +34,8 @@
                 <ImageBrush ImageSource="/UI;component/Icons/mainIcons/listByDateIcon.png"/>
             </Button.Background>
         </Button>
-        <WrapPanel x:Name="EventFunction" HorizontalAlignment="Left" Height="390" Margin="0,70,0,0" VerticalAlignment="Top" Width="492">
-            <EventControls:AddEvent Height="390" Width="492"/>
+        <WrapPanel x:Name="ReminderFunction" HorizontalAlignment="Left" Height="390" Margin="0,70,0,0" VerticalAlignment="Top" Width="492">
+            <ReminderControls:AddReminder Height="390" Width="492"/>
         </WrapPanel>
     </Grid>
 </UserControl>

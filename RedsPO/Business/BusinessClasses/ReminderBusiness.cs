@@ -33,7 +33,7 @@ namespace Business
         public void ModifyReminder(Reminder userReminder, User user)
         {
             Reminder @reminder = _poDbContext.Reminders.Find(userReminder.ReminderId);
-            if (@reminder == null && @reminder.UserId != user.UserId)
+            if (@reminder == null || @reminder.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Reminder either does not exist or is in another user!");
                 //Warning: Reminder either does not exist or is in another user
@@ -51,7 +51,7 @@ namespace Business
         public void DeleteReminder(int id, User user)
         {
             Reminder @reminder = _poDbContext.Reminders.Find(id);
-            if (reminder == null && reminder.UserId != user.UserId)
+            if (reminder == null || @reminder.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Reminder either does not exist or is in another user!");
                 //Warning: Reminder either does not exist or is in another user
@@ -69,7 +69,7 @@ namespace Business
         public Reminder FetchReminderById(int id, User user)
         {
             Reminder @reminder = _poDbContext.Reminders.Find(id);
-            if (@reminder == null && @reminder.UserId != user.UserId)
+            if (@reminder == null || @reminder.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Reminder either does not exist or is in another user!");
                 //Warning: Reminder either does not exist or is in another user

@@ -33,7 +33,7 @@ namespace Business
         public void ModifyEvent(Event userEvent, User user)
         {
             Event @event = _poDbContext.Events.Find(userEvent.EventId);
-            if (@event == null && @event.UserId != user.UserId)
+            if (@event == null || @event.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Event either does not exist or is in another user!");
                 //Warning: Event either does not exist or is in another user
@@ -51,7 +51,7 @@ namespace Business
         public void RemoveEvent(int id, User user)
         {
             Event @event = _poDbContext.Events.Find(id);
-            if (@event == null && @event.UserId != user.UserId)
+            if (@event == null || @event.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Event either does not exist or is in another user!");
                 //Warning: Event either does not exist or is in another user
@@ -69,7 +69,7 @@ namespace Business
         public Event FetchEventById(int id, User user)
         {
             Event @event = _poDbContext.Events.Find(id);
-            if (@event == null && @event.UserId != user.UserId)
+            if (@event == null || @event.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Event either does not exist or is in another user!");
                 //Warning: Event either does not exist or is in another user

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using Business;
 using UI.UserControls;
 
@@ -11,15 +8,18 @@ namespace UI
 {
     static class UIProperties
     {
-        static public User currentUser;
+        public static User currentUser;
 
-        static public UserBusiness userBusiness = new UserBusiness(new PODbContext());
-        static public EventBusiness eventBusiness = new EventBusiness(new PODbContext());
-        static public TaskBusiness taskBusiness = new TaskBusiness(new PODbContext());
-        static public ReminderBusiness reminderBusiness = new ReminderBusiness(new PODbContext());
+        public static UserBusiness userBusiness = new UserBusiness(new PODbContext());
+        public static EventBusiness eventBusiness = new EventBusiness(new PODbContext());
+        public static TaskBusiness taskBusiness = new TaskBusiness(new PODbContext());
+        public static ReminderBusiness reminderBusiness = new ReminderBusiness(new PODbContext());
 
-        static public EventView eventView = new EventView();
+        public static EventView eventView = new EventView();
+        public static ReminderView reminderView = new ReminderView();
 
+        /// <summary>Shows the error.</summary>
+        /// <param name="errorMessage">The error message.</param>
         public static void ShowError(string errorMessage)
         {
             //Shows a message box with a warning
@@ -29,16 +29,34 @@ namespace UI
             Application.Current.Shutdown();
         }
 
+        /// <summary>Shows the warning.</summary>
+        /// <param name="warningMessage">The warning message.</param>
         public static void ShowWarning(string warningMessage)
         {
             //Shows a message box with a warning
             MessageBox.Show(warningMessage, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
         }
 
+        /// <summary>Shows the information.</summary>
+        /// <param name="warningMessage">The warning message.</param>
         public static void ShowInfo(string warningMessage)
         {
             //Shows a message box with info
             MessageBox.Show(warningMessage, "Info", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+        }
+
+        /// <summary>Sets the button toggle.</summary>
+        /// <param name="button">The button.</param>
+        public static void SetButtonToggle(Button button)
+        {
+            button.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        }
+
+        /// <summary>Removes the button toggle.</summary>
+        /// <param name="button">The button.</param>
+        public static void RemoveButtonToggle(Button button)
+        {
+            button.BorderBrush = null;
         }
     }
 }
