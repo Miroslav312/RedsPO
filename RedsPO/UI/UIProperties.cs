@@ -17,6 +17,7 @@ namespace UI
 
         public static EventView eventView = new EventView();
         public static ReminderView reminderView = new ReminderView();
+        public static TaskView taskView = new TaskView();
 
         /// <summary>Shows the error.</summary>
         /// <param name="errorMessage">The error message.</param>

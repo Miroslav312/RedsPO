@@ -71,6 +71,24 @@ namespace UI
             SetCurrentButtonToggle(ReminderButton);
         }
 
+        /// <summary>Handles the Click event of the TaskButton control.</summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void TaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!MainBody.Children.Contains(taskView))
+            {
+                //Removes all elements
+                MainBody.Children.Clear();
+
+                //Adds the user control
+                MainBody.Children.Add(taskView);
+            }
+
+            //Sets the button toggle
+            SetCurrentButtonToggle(TaskButton);
+        }
+
         /// <summary>Sets the current button toggle.</summary>
         /// <param name="currentButton">The current button.</param>
         private void SetCurrentButtonToggle(Button currentButton)
