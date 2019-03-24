@@ -150,7 +150,7 @@ namespace Tests
             EventBusiness mockEventBusiness = new EventBusiness(_mockContext.Object);
             UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
 
-            int eventId = 2;
+            int eventId = 1;
             string userName = "userName1";
             string passwordHash = "passwordHash";
 

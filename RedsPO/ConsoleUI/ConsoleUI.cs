@@ -26,7 +26,7 @@ namespace UI
         }
 
         /// <summary>
-        /// Initialises the window.
+        /// Initializes the window.
         /// </summary>
         private static void InitializeWindow()
         {

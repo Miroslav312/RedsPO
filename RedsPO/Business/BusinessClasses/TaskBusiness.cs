@@ -33,7 +33,7 @@ namespace Business
         public void ModifyTask(Task userTask, User user)
         {
             Task @task = _poDbContext.Tasks.Find(userTask.TaskId);
-            if (@task == null && @task.UserId != user.UserId)
+            if (@task == null || @task.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Task either does not exist or is in another user!");
                 //Warning: Task either does not exist or is in another user
@@ -51,7 +51,7 @@ namespace Business
         public void DeleteTask(int id, User user)
         {
             Task @task = _poDbContext.Tasks.Find(id);
-            if (@task == null && @task.UserId != user.UserId)
+            if (@task == null || @task.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Task either does not exist or is in another user!");
                 //Warning: Task either does not exist or is in another user
@@ -69,7 +69,7 @@ namespace Business
         public void CompleteTask(int id, User user)
         {
             Task @task = _poDbContext.Tasks.Find(id);
-            if (@task == null && @task.UserId != user.UserId)
+            if (@task == null || @task.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Task either does not exist or is in another user!");
                 //Warning: Task either does not exist or is in another user
@@ -87,7 +87,7 @@ namespace Business
         public Task FetchTaskById(int id, User user)
         {
             Task @task = _poDbContext.Tasks.Find(id);
-            if (@task == null && @task.UserId != user.UserId)
+            if (@task == null || @task.UserId != user.UserId)
             {
                 throw new InvalidOperationException("Task either does not exist or is in another user!");
             }

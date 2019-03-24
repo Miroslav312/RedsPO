@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static UI.UIProperties;
 
 namespace UI
@@ -58,6 +48,9 @@ namespace UI
                 //Adds the user control
                 MainBody.Children.Add(eventView);
             }
+
+            //Sets the button toggle
+            SetCurrentButtonToggle(EventButton);
         }
 
         /// <summary>Handles the Click event of the ReminderButton control.</summary>
@@ -72,6 +65,38 @@ namespace UI
 
                 //Adds the user control
                 MainBody.Children.Add(reminderView);
+            }
+
+            //Sets the button toggle
+            SetCurrentButtonToggle(ReminderButton);
+        }
+
+        /// <summary>Sets the current button toggle.</summary>
+        /// <param name="currentButton">The current button.</param>
+        private void SetCurrentButtonToggle(Button currentButton)
+        {
+            string buttonName = currentButton.Name;
+
+            switch (buttonName)
+            {
+                case "EventButton":
+                    SetButtonToggle(EventButton);
+
+                    RemoveButtonToggle(ReminderButton);
+                    RemoveButtonToggle(TaskButton);
+                    break;
+                case "ReminderButton":
+                    SetButtonToggle(ReminderButton);
+
+                    RemoveButtonToggle(EventButton);
+                    RemoveButtonToggle(TaskButton);
+                    break;
+                case "TaskButton":
+                    SetButtonToggle(TaskButton);
+
+                    RemoveButtonToggle(EventButton);
+                    RemoveButtonToggle(ReminderButton);
+                    break;
             }
         }
     }
