@@ -37,4 +37,4 @@ Here is a more elaborate method documentation: [Documentation](https://raw.githu
 
 ## License
 
-MIT License.
+[MIT License](https://raw.githubusercontent.com/zyppyvids/RedsPO/master/Documentation/LICENSE).
