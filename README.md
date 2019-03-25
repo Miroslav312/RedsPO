@@ -22,11 +22,13 @@ If you are using .Net Core CLI:
 ## App Structure
 
 The projects implements a basic [N-Layer Architecture](https://stackify.com/n-tier-architecture 'N-Layer Architecture'). There are Business, Data and Interface Projects in the Solution.
+
 ![Structure](https://raw.githubusercontent.com/zyppyvids/RedsPO/master/Documentation/Images/App Structure.jpg)
 
 ## Database
 
 For DB provider [MySQL](https://www.mysql.com/ 'MySQL') is used. The DB consists of 4 DB Sets.
+
 ![Diagram](https://raw.githubusercontent.com/zyppyvids/RedsPO/master/Documentation/Images/DB Diagram.png)
 
 ## More Elaborate Method Documentation
