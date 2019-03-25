@@ -33,8 +33,8 @@ For DB provider [MySQL](https://www.mysql.com/ 'MySQL') is used. The DB consists
 
 ## More Elaborate Method Documentation
 
-Here is a more elaborate method documentation: [Documentation](https://raw.githubusercontent.com/zyppyvids/RedsPO/master/Documentation/BusinessMethods.md)
+Here is a more elaborate method documentation: [Documentation](https://github.com/zyppyvids/RedsPO/blob/master/Documentation/BusinessMethods.md)
 
 ## License
 
-[MIT License](https://raw.githubusercontent.com/zyppyvids/RedsPO/master/LICENSE).
+[MIT License](https://github.com/zyppyvids/RedsPO/blob/master/LICENSE).
