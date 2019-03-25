@@ -14,6 +14,7 @@ namespace UI
         {
             if (CurrentUser == null) throw new InvalidOperationException("Not logged into an Account!");
 
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
@@ -39,12 +40,14 @@ namespace UI
         public static void TakeEventInput()
         {
             if (CurrentUser == null)
+                //Shows the start menu
                 StartMenu();
 
             try
             {
                 while (true)
                 {
+                    //Takes the command input
                     int command = int.Parse(ReadLine());
                     switch (command)
                     {
@@ -87,6 +90,7 @@ namespace UI
             }
             catch (Exception currentException)
             {
+                //Shows the current exception message
                 WriteLine("An unexpected ERROR occured! Please try again later.");
                 WriteLine($"[{currentException.Message}]");
                 MenuOrExit();
@@ -98,14 +102,17 @@ namespace UI
         /// </summary>
         public static void AddEvent()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 15) + "ADD EVENT" + new string(' ', 16));
             WriteLine(new string('-', 40));
 
+            //Makes a new empty event
             Event @event = new Event();
 
+            //Gets event data
             WriteLine("Enter event title: ");
             @event.Name = ReadLine();
 
@@ -125,12 +132,14 @@ namespace UI
         /// </summary>
         public static void ModifyEvent()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 17) + "MODIFY" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            //Gets the changed event data
             WriteLine("Enter event id: ");
             int id = int.Parse(ReadLine());
 
@@ -153,15 +162,18 @@ namespace UI
         /// </summary>
         public static void RemoveEvent()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 17) + "DELETE" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            //Gets the event id
             WriteLine("Enter event id: ");
             int id = int.Parse(ReadLine());
 
+            //Removes the event
             EBusiness.RemoveEvent(id, CurrentUser);
             WriteLine("Event successfully deleted");
 
@@ -172,12 +184,14 @@ namespace UI
         /// </summary>
         public static void ListAllEvents()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 12) + "LIST ALL EVENTS" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
+            //Gets all user events and lists them
             List<Event> events = EBusiness.ListAllEvents(CurrentUser);
             if (events.Count > 0)
             {
@@ -199,12 +213,14 @@ namespace UI
         /// </summary>
         public static void FetchEvent()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 14) + "FETCH EVENT" + new string(' ', 15));
             WriteLine(new string('-', 40));
 
+            //Gets the event id
             WriteLine("Enter event id: ");
             int id = int.Parse(ReadLine());
 
@@ -226,12 +242,14 @@ namespace UI
         /// </summary>
         public static void ListAllEventsByDate()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 13) + "EVENTS BY DATE" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
+            //Gets event data
             WriteLine("Enter your date (e.g 2009/02/26):");
             DateTime inputDate = DateTime.Parse(ReadLine());
 
@@ -258,6 +276,7 @@ namespace UI
         /// </summary>
         public static void RemoveAllEvents()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
