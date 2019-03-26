@@ -100,7 +100,7 @@ namespace UI
         /// <summary>
         /// Adds the event.
         /// </summary>
-        public static void AddEvent()
+        protected static void AddEvent()
         {
             //Clears the console window
             Clear();
@@ -130,7 +130,7 @@ namespace UI
         /// <summary>
         /// Modifies an event by its ID.
         /// </summary>
-        public static void ModifyEvent()
+        protected static void ModifyEvent()
         {
             //Clears the console window
             Clear();
@@ -160,7 +160,7 @@ namespace UI
         /// <summary>
         /// Deletes an event by its ID.
         /// </summary>
-        public static void RemoveEvent()
+        protected static void RemoveEvent()
         {
             //Clears the console window
             Clear();
@@ -182,7 +182,7 @@ namespace UI
         /// <summary>
         /// Lists all events.
         /// </summary>
-        public static void ListAllEvents()
+        protected static void ListAllEvents()
         {
             //Clears the console window
             Clear();
@@ -211,7 +211,7 @@ namespace UI
         /// <summary>
         /// Fetches an event.
         /// </summary>
-        public static void FetchEvent()
+        protected static void FetchEvent()
         {
             //Clears the console window
             Clear();
@@ -240,7 +240,7 @@ namespace UI
         /// <summary>
         /// Lists all events on a certain Date.
         /// </summary>
-        public static void ListAllEventsByDate()
+        protected static void ListAllEventsByDate()
         {
             //Clears the console window
             Clear();
@@ -274,7 +274,7 @@ namespace UI
         /// <summary>
         /// Removes all events.
         /// </summary>
-        public static void RemoveAllEvents()
+        protected static void RemoveAllEvents()
         {
             //Clears the console window
             Clear();

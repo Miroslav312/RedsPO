@@ -100,7 +100,7 @@ namespace UI
         /// <summary>
         /// Adds the reminder.
         /// </summary>
-        public static void AddReminder()
+        protected static void AddReminder()
         {
             //Clears the console window
             Clear();
@@ -130,7 +130,7 @@ namespace UI
         /// <summary>
         /// Modifies a reminder by its ID.
         /// </summary>
-        public static void ModifyReminder()
+        protected static void ModifyReminder()
         {
             //Clears the console window
             Clear();
@@ -161,7 +161,7 @@ namespace UI
         /// <summary>
         /// Delete a reminder bu its ID.
         /// </summary>
-        public static void DeleteReminder()
+        protected static void DeleteReminder()
         {
             //Clears the console window
             Clear();
@@ -185,7 +185,7 @@ namespace UI
         /// <summary>
         /// Fetches a reminder.
         /// </summary>
-        public static void FetchReminder()
+        protected static void FetchReminder()
         {
             //Clears the console window
             Clear();
@@ -216,7 +216,7 @@ namespace UI
         /// <summary>
         /// Lists all reminders.
         /// </summary>
-        public static void ListAllReminders()
+        protected static void ListAllReminders()
         {
             //Clears the console window
             Clear();
@@ -245,7 +245,7 @@ namespace UI
         /// <summary>
         /// List all reminder on a certain date.
         /// </summary>
-        public static void ListAllRemindersByDate()
+        protected static void ListAllRemindersByDate()
         {
             //Clears the console window
             Clear();
@@ -279,7 +279,7 @@ namespace UI
         /// <summary>
         /// Removes all reminders.
         /// </summary>
-        public static void RemoveAllReminders()
+        protected static void RemoveAllReminders()
         {
             //Clears the console window
             Clear();

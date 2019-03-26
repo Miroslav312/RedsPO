@@ -53,10 +53,21 @@ namespace UI.UserControls.ReminderControls
             //Deletes current items
             ReminderListView.Items.Clear();
 
-            //Adds events to the List View
-            foreach (Reminder @reminder in reminders)
+            if (reminders.Count == 0)
             {
-                ReminderListView.Items.Add(@reminder);
+                //Shows NoItemsBox
+                NoItemsBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //Hides NoItemsBox
+                NoItemsBox.Visibility = Visibility.Collapsed;
+
+                //Adds events to the List View
+                foreach (Reminder @reminder in reminders)
+                {
+                    ReminderListView.Items.Add(@reminder);
+                }
             }
         }
     }

@@ -13,6 +13,7 @@
         <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="235,49,0,0" VerticalAlignment="Top"/>
         <Label x:Name="DateLabel" Content="Date" HorizontalAlignment="Left" Height="35" Margin="145,42,0,0" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="White" FontFamily="Segoe UI Light" FontSize="16"/>
         <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Height="40" Margin="164,90,0,0" VerticalAlignment="Top" Width="173" Background="#FF706F6F" Foreground="White" BorderBrush="White" FontFamily="Segoe UI Black" Click="SearchButton_Click"/>
+        <TextBlock x:Name="NoItemsBox" HorizontalAlignment="Left" Margin="80,196,0,0" TextWrapping="Wrap" Text="Nothing Here" VerticalAlignment="Top" Height="140" Width="339" FontFamily="Segoe UI Black" FontSize="48" Foreground="White" TextAlignment="Center"/>
     </Grid>
 
 </UserControl>

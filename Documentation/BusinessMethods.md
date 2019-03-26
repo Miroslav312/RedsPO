@@ -38,7 +38,7 @@
   - [IsExisting(user)](#M-Business-UserBusiness-IsExisting-User- 'Business.UserBusiness.IsExisting(User)')
   - [Register(user)](#M-Business-UserBusiness-Register-User- 'Business.UserBusiness.Register(User)')
 
-## EventBusiness `type`
+## EventBusiness `Type`
 
 ##### Namespace
 
@@ -132,7 +132,7 @@ Removes the event.
 | id | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The identifier. |
 | user | [User](#T-User 'User') | The user. |
 
-## ReminderBusiness `type`
+## ReminderBusiness `Type`
 
 ##### Namespace
 
@@ -226,7 +226,7 @@ Removes the reminder.
 | id | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The identifier. |
 | user | [User](#T-User 'User') | The user. |
 
-## TaskBusiness `type`
+## TaskBusiness `Type`
 
 ##### Namespace
 
@@ -369,7 +369,7 @@ Removes the Task.
 | id | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The identifier. |
 | user | [User](#T-User 'User') | The user. |
 
-## UserBusiness `type`
+## UserBusiness `Type`
 
 ##### Namespace
 

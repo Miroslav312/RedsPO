@@ -53,10 +53,21 @@ namespace UI.UserControls.TaskControls
             //Deletes current items
             TaskListView.Items.Clear();
 
-            //Adds tasks to the List View
-            foreach (Task @task in tasks)
+            if (tasks.Count == 0)
             {
-                TaskListView.Items.Add(@task);
+                //Shows NoItemsBox
+                NoItemsBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //Hides NoItemsBox
+                NoItemsBox.Visibility = Visibility.Collapsed;
+
+                //Adds tasks to the List View
+                foreach (Task @task in tasks)
+                {
+                    TaskListView.Items.Add(@task);
+                }
             }
         }
     }

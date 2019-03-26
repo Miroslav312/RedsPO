@@ -49,14 +49,25 @@ namespace UI.UserControls.EventControls
         {
             //Gets all user events
             List<Event> events = eventBusiness.ListAllEventsByDate(date, currentUser);
-
+            
             //Deletes current items
             EventListView.Items.Clear();
 
-            //Adds events to the List View
-            foreach (Event @event in events)
+            if (events.Count == 0)
             {
-                EventListView.Items.Add(@event);
+                //Shows NoItemsBox
+                NoItemsBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //Hides NoItemsBox
+                NoItemsBox.Visibility = Visibility.Collapsed;
+
+                //Adds events to the List View
+                foreach (Event @event in events)
+                {
+                    EventListView.Items.Add(@event);
+                }
             }
         }
     }

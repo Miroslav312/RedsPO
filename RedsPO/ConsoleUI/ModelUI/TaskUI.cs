@@ -121,7 +121,7 @@ namespace UI
         /// <summary>
         /// Adds the task.
         /// </summary>
-        public static void AddTask()
+        protected static void AddTask()
         {
             //Clears the console window
             Clear();
@@ -151,7 +151,7 @@ namespace UI
         /// <summary>
         /// Modifies a task by its ID.
         /// </summary>
-        public static void ModifyTask()
+        protected static void ModifyTask()
         {
             //Clears the console window
             Clear();
@@ -183,7 +183,7 @@ namespace UI
         /// <summary>
         /// Deletes a task by its ID.
         /// </summary>
-        public static void DeleteTask()
+        protected static void DeleteTask()
         {
             //Clears the console window
             Clear();
@@ -205,7 +205,7 @@ namespace UI
         /// <summary>
         /// Marks a task by its ID as done.
         /// </summary>
-        public static void MarkTaskAsDone()
+        protected static void MarkTaskAsDone()
         {
             //Clears the console window
             Clear();
@@ -237,7 +237,7 @@ namespace UI
         /// <summary>
         /// Fetches a task.
         /// </summary>
-        public static void FetchTask()
+        protected static void FetchTask()
         {
             //Clears the console window
             Clear();
@@ -268,7 +268,7 @@ namespace UI
         /// <summary>
         /// Lists all tasks.
         /// </summary>
-        public static void ListAllTasks()
+        protected static void ListAllTasks()
         {
             //Clears the console window
             Clear();
@@ -297,7 +297,7 @@ namespace UI
         /// <summary>
         /// Lists all tasks on a certain Date.
         /// </summary>
-        public static void ListAllTasksByDate()
+        protected static void ListAllTasksByDate()
         {
             //Clears the console window
             Clear();
@@ -332,7 +332,7 @@ namespace UI
         /// <summary>
         /// Lists all completed tasks.
         /// </summary>
-        public static void ListAllCompletedTasks()
+        protected static void ListAllCompletedTasks()
         {
             //Clears the console window
             Clear();
@@ -364,7 +364,7 @@ namespace UI
         /// <summary>
         /// Lists all uncompleted tasks.
         /// </summary>
-        public static void ListAllUncompletedTasks()
+        protected static void ListAllUncompletedTasks()
         {
             //Clears the console window
             Clear();
@@ -395,7 +395,7 @@ namespace UI
         /// <summary>
         /// Removes all completed tasks.
         /// </summary>
-        public static void RemoveAllCompletedTasks()
+        protected static void RemoveAllCompletedTasks()
         {
             //Clears the console window
             Clear();
@@ -414,7 +414,7 @@ namespace UI
         /// <summary>
         /// Removes all tasks.
         /// </summary>
-        public static void RemoveAllTasks()
+        protected static void RemoveAllTasks()
         {
             //Clears the console window
             Clear();

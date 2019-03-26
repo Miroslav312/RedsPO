@@ -12,6 +12,7 @@
         <Rectangle HorizontalAlignment="Left" Height="238" Margin="55,98,0,0" Stroke="White" VerticalAlignment="Top" Width="388" RadiusX="25" RadiusY="25" StrokeThickness="5"/>
         <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Height="40" Margin="246,43,0,0" VerticalAlignment="Top" Width="173" Background="#FF706F6F" Foreground="White" BorderBrush="White" FontFamily="Segoe UI Black" Click="SearchButton_Click"/>
         <CheckBox x:Name="CompletedCheckBox" Content="Completed" HorizontalAlignment="Left" Margin="80,56,0,0" VerticalAlignment="Top" Foreground="White" BorderBrush="{x:Null}"/>
+        <TextBlock x:Name="NoItemsBox" HorizontalAlignment="Left" Margin="80,178,0,0" TextWrapping="Wrap" Text="Nothing Here" VerticalAlignment="Top" Height="159" Width="339" FontFamily="Segoe UI Black" FontSize="48" Foreground="White" TextAlignment="Center"/>
     </Grid>
 
 </UserControl>
