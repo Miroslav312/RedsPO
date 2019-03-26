@@ -141,6 +141,9 @@ namespace UI.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ListByCompletionButton_Click(object sender, RoutedEventArgs e)
         {
+            //Loads the ListView
+            _listAllTasksByCompletion.LoadTaskListViewByCompletion((bool)_listAllTasksByCompletion.CompletedCheckBox.IsChecked);
+
             if (!TaskFunction.Children.Contains(_listAllTasksByCompletion))
             {
                 //Removes all elements
