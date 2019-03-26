@@ -21,7 +21,7 @@ If you are using .Net Core CLI:
 
 ## App Structure
 
-The projects implements a basic [N-Layer Architecture](https://stackify.com/n-tier-architecture). There are Business, Data and Interface Projects in the Solution.
+The application implements a basic [N-Layer Architecture](https://stackify.com/n-tier-architecture). There are Business, Data and Interface Projects in the Solution.
 
 ![Structure](https://raw.githubusercontent.com/zyppyvids/RedsPO/master/Documentation/Images/AppStructure.jpg)
 
