@@ -118,7 +118,7 @@ namespace Tests
 
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            mockTaskBusiness.DeleteTask(taskId, mockUser);
+            mockTaskBusiness.RemoveTask(taskId, mockUser);
 
             Assert.Less(mockTaskBusiness.GetPODbContext.Tasks.ToList().Count(), oldCount, "Task not deleted properly!");
         }
@@ -138,7 +138,7 @@ namespace Tests
 
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            Assert.Catch(() => mockTaskBusiness.DeleteTask(taskId, mockUser), "Non existent task was deleted!");
+            Assert.Catch(() => mockTaskBusiness.RemoveTask(taskId, mockUser), "Non existent task was deleted!");
         }
 
         /// <summary>

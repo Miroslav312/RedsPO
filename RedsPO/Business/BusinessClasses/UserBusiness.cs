@@ -20,6 +20,7 @@ namespace Business
         /// <summary>Fetches all users.</summary>
         public List<User> FetchAllUsers()
         {
+            //Returns a List with all users
             return _poDbContext.Users.ToList();
         }
 
@@ -28,6 +29,7 @@ namespace Business
         /// <param name="passwordHash">The password hash.</param>
         public User FetchUser(string userName, string passwordHash)
         {
+            //Returns the user
             return _poDbContext.Users.FirstOrDefault(x => x.UserName == userName && x.PasswordHash == passwordHash.ToString());
         }
 
@@ -38,6 +40,7 @@ namespace Business
             if (user == null)
                 throw new InvalidOperationException("User should not be null!");
 
+            //Registers the user
             _poDbContext.Users.Add(user);
             _poDbContext.SaveChanges();
         }
@@ -48,6 +51,7 @@ namespace Business
         ///   <c>true</c> if the specified user is existing; otherwise, <c>false</c>.</returns>
         public bool IsExisting(User user)
         {
+            //Returns a bool whether the user exists
             return FetchAllUsers().Contains(user); 
         }
 
@@ -59,6 +63,7 @@ namespace Business
             byte[] bytes = Encoding.UTF8.GetBytes(password);
             byte[] hash = sha256.ComputeHash(bytes);
 
+            //Gets string from Hash's Byte Array
             return GetStringFromHash(hash);
         }
 

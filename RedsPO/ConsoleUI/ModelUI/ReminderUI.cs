@@ -14,6 +14,7 @@ namespace UI
         {
             if (CurrentUser == null) throw new InvalidOperationException("Not logged into an Account!");
 
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
@@ -39,12 +40,14 @@ namespace UI
         public static void TakeReminderInput()
         {
             if (CurrentUser == null)
+                //Shows the start menu
                 StartMenu();
 
             try
             {
                 while (true)
                 {
+                    //Gets the command input
                     int command = int.Parse(ReadLine());
                     switch (command)
                     {
@@ -97,16 +100,19 @@ namespace UI
         /// <summary>
         /// Adds the reminder.
         /// </summary>
-        public static void AddReminder()
+        protected static void AddReminder()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 15) + "ADD REMINDER" + new string(' ', 16));
             WriteLine(new string('-', 40));
 
+            //Makes an empty reminder
             Reminder @reminder= new Reminder();
 
+            //Gets the reminder data
             WriteLine("Enter reminder title: ");
             @reminder.Name = ReadLine();
 
@@ -124,17 +130,20 @@ namespace UI
         /// <summary>
         /// Modifies a reminder by its ID.
         /// </summary>
-        public static void ModifyReminder()
+        protected static void ModifyReminder()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 17) + "MODIFY" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            //Gets reminder id
             WriteLine("Enter reminder id: ");
             int id = int.Parse(ReadLine());
 
+            //Gets the reminder
             Reminder @reminder = RBusiness.FetchReminderById(id, CurrentUser);
 
             WriteLine("Enter new title: ");
@@ -152,18 +161,21 @@ namespace UI
         /// <summary>
         /// Delete a reminder bu its ID.
         /// </summary>
-        public static void DeleteReminder()
+        protected static void DeleteReminder()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 17) + "DELETE" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            //Gets the reminder id
             WriteLine("Enter reminder id: ");
             int id = int.Parse(ReadLine());
 
-            RBusiness.DeleteReminder(id, CurrentUser);
+            //Removes the reminder
+            RBusiness.RemoveReminder(id, CurrentUser);
             WriteLine("Reminder successfully deleted");
 
             MenuOrExit();
@@ -173,17 +185,20 @@ namespace UI
         /// <summary>
         /// Fetches a reminder.
         /// </summary>
-        public static void FetchReminder()
+        protected static void FetchReminder()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 14) + "FETCH REMINDER" + new string(' ', 15));
             WriteLine(new string('-', 40));
 
+            //Get reminder id
             WriteLine("Enter reminder id: ");
             int id = int.Parse(ReadLine());
 
+            //Gets the reminder
             Reminder @reminder = RBusiness.FetchReminderById(id, CurrentUser);
             if (@reminder == null)
             {
@@ -201,14 +216,16 @@ namespace UI
         /// <summary>
         /// Lists all reminders.
         /// </summary>
-        public static void ListAllReminders()
+        protected static void ListAllReminders()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 12) + "LIST ALL REMINDERS" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
+            //Gets all reminders and lists them
             List<Reminder> reminders = RBusiness.ListAllReminders(CurrentUser);
             if (reminders.Count > 0)
             {
@@ -228,14 +245,16 @@ namespace UI
         /// <summary>
         /// List all reminder on a certain date.
         /// </summary>
-        public static void ListAllRemindersByDate()
+        protected static void ListAllRemindersByDate()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 13) + "REMINDERS BY DATE" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
+            //Gets the reminder data
             WriteLine("Enter your due time (e.g 2009/02/26):");
             DateTime inputDate = DateTime.Parse(ReadLine());
 
@@ -260,8 +279,9 @@ namespace UI
         /// <summary>
         /// Removes all reminders.
         /// </summary>
-        public static void RemoveAllReminders()
+        protected static void RemoveAllReminders()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));

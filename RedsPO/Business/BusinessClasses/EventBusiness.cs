@@ -23,6 +23,7 @@ namespace Business
             if (userEvent == null)
                 throw new InvalidOperationException("Event should not be null!");
 
+            //Adds the user event
             _poDbContext.Events.Add(userEvent);
             _poDbContext.SaveChanges();
         }
@@ -40,6 +41,7 @@ namespace Business
             }
             else
             {
+                //Changes the user event
                 _poDbContext.Entry(@event).CurrentValues.SetValues(userEvent);
                 _poDbContext.SaveChanges();
             }
@@ -58,6 +60,7 @@ namespace Business
             }
             else
             {
+                //Removes the user event
                 _poDbContext.Events.Remove(@event);
                 _poDbContext.SaveChanges();
             }
@@ -76,6 +79,7 @@ namespace Business
             }
             else
             {
+                //Returns the user event
                 return @event;
             }
         }
@@ -84,6 +88,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Event> ListAllEvents(User user)
         {
+            //Returns a List with all user events
             return _poDbContext.Events.Where(r => r.UserId == user.UserId).ToList();
         }
 
@@ -92,6 +97,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public List<Event> ListAllEventsByDate(DateTime date, User user)
         {
+            //Returns a List with all user events on a certain date
             return _poDbContext.Events.Where(r => DbFunctions.TruncateTime(r.DueTime) == date.Date && r.UserId == user.UserId).ToList();
         }
 
@@ -99,6 +105,7 @@ namespace Business
         /// <param name="user">The user.</param>
         public void RemoveAllEvents(User user)
         {
+            //Removes all user events
             _poDbContext.Events.RemoveRange(_poDbContext.Events.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }

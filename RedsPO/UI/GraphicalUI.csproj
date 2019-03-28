@@ -108,6 +108,27 @@
     <Compile Include="UserControls\EventControls\AddEvent.xaml.cs">
       <DependentUpon>AddEvent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TaskControls\AddTask.xaml.cs">
+      <DependentUpon>AddTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskControls\ListAllTasks.xaml.cs">
+      <DependentUpon>ListAllTasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskControls\ListAllTasksByCompletion.xaml.cs">
+      <DependentUpon>ListAllTasksByCompletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskControls\ListAllTasksByDate.xaml.cs">
+      <DependentUpon>ListAllTasksByDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskControls\ModifyTask.xaml.cs">
+      <DependentUpon>ModifyTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskControls\RemoveTask.xaml.cs">
+      <DependentUpon>RemoveTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReminderControls\AddReminder.xaml.cs">
       <DependentUpon>AddReminder.xaml</DependentUpon>
     </Compile>
@@ -171,6 +192,34 @@
     <Page Include="UserControls\EventControls\AddEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TaskControls\AddTask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskControls\ListAllTasks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskControls\ListAllTasksByCompletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskControls\ListAllTasksByDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskControls\ModifyTask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskControls\RemoveTask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\ReminderControls\AddReminder.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -258,9 +307,6 @@
     <Resource Include="Icons\mainIcons\modifyIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\mainIcons\listByCompletion.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icons\homeIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -270,6 +316,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\programIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\mainIcons\listByCompletionIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

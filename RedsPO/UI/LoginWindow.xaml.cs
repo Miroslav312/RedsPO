@@ -80,6 +80,12 @@ namespace UI
                 {
                     //Sets the current user
                     currentUser = userBusiness.FetchUser(UsernameBox.Text, UserBusiness.HashPassword(PasswordBox.Password));
+
+                    //Checks for unknown user
+                    if(currentUser == null)
+                    {
+                        throw new InvalidOperationException("Unknown Username or Password!");
+                    }
                     
                     //Hides the instance of the window
                     this.Hide();
@@ -99,6 +105,11 @@ namespace UI
                     //Closes the instance of this window
                     this.Close();
                 }
+            }
+            catch(InvalidOperationException unknowUserException)
+            {
+                //Shows warning for unknown user
+                ShowWarning(unknowUserException.Message);
             }
             catch(Exception exception)
             {

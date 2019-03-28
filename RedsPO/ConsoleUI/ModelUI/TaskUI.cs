@@ -15,6 +15,7 @@ namespace UI
         {
             if (CurrentUser == null) throw new InvalidOperationException("Not logged into an Account!");
 
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
@@ -44,12 +45,14 @@ namespace UI
         public static void TakeTaskInput()
         {
             if (CurrentUser == null)
+                //Shows the start menu
                 StartMenu();
 
             try
             {
                 while (true)
                 {
+                    //Gets the command input
                     int command = int.Parse(ReadLine());
                     switch (command)
                     {
@@ -108,6 +111,7 @@ namespace UI
             }
             catch (Exception currentException)
             {
+                //Shows the current exception message
                 WriteLine("An unexpected ERROR occured! Please try again later.");
                 WriteLine($"[{currentException.Message}]");
                 MenuOrExit();
@@ -117,16 +121,19 @@ namespace UI
         /// <summary>
         /// Adds the task.
         /// </summary>
-        public static void AddTask()
+        protected static void AddTask()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 15) + "ADD TASK" + new string(' ', 16));
             WriteLine(new string('-', 40));
 
+            //Makes an empty task
             Task @task = new Task();
 
+            //Gets the task data
             WriteLine("Enter task title: ");
             @task.Name = ReadLine();
 
@@ -144,19 +151,23 @@ namespace UI
         /// <summary>
         /// Modifies a task by its ID.
         /// </summary>
-        public static void ModifyTask()
+        protected static void ModifyTask()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 17) + "MODIFY" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            //Gets the task id
             WriteLine("Enter task id: ");
             int id = int.Parse(ReadLine());
-
+            
+            //Gets the task
             Task @task = TBusiness.FetchTaskById(id, CurrentUser);
-
+            
+            //Gets the task data
             WriteLine("Enter new title: ");
             @task.Name = ReadLine();
 
@@ -172,18 +183,20 @@ namespace UI
         /// <summary>
         /// Deletes a task by its ID.
         /// </summary>
-        public static void DeleteTask()
+        protected static void DeleteTask()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 17) + "DELETE" + new string(' ', 17));
             WriteLine(new string('-', 40));
 
+            //Gets the task id
             WriteLine("Enter task id: ");
             int id = int.Parse(ReadLine());
 
-            TBusiness.DeleteTask(id, CurrentUser);
+            TBusiness.RemoveTask(id, CurrentUser);
             WriteLine("Task successfully deleted");
 
             MenuOrExit();
@@ -192,17 +205,20 @@ namespace UI
         /// <summary>
         /// Marks a task by its ID as done.
         /// </summary>
-        public static void MarkTaskAsDone()
+        protected static void MarkTaskAsDone()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 11) + "MARK TASK AS DONE" + new string(' ', 11));
             WriteLine(new string('-', 40));
 
+            //Gets the task id
             WriteLine("Enter task id: ");
             int id = int.Parse(ReadLine());
 
+            //Gets the task
             Task @task = TBusiness.FetchTaskById(id, CurrentUser);
 
             if (@task == null || @task.IsDone == true)
@@ -221,17 +237,20 @@ namespace UI
         /// <summary>
         /// Fetches a task.
         /// </summary>
-        public static void FetchTask()
+        protected static void FetchTask()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 14) + "FETCH TASK" + new string(' ', 15));
             WriteLine(new string('-', 40));
 
+            //Gets the task id
             WriteLine("Enter task id: ");
             int id = int.Parse(ReadLine());
 
+            //Gets the task
             Task @task = TBusiness.FetchTaskById(id, CurrentUser);
             if (@task == null)
             {
@@ -249,14 +268,16 @@ namespace UI
         /// <summary>
         /// Lists all tasks.
         /// </summary>
-        public static void ListAllTasks()
+        protected static void ListAllTasks()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 12) + "LIST ALL TASKS" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
+            //Gets all user tasks and lists them
             List<Task> tasks = TBusiness.ListAllTasks(CurrentUser);
             if (tasks.Count > 0)
             {
@@ -276,17 +297,20 @@ namespace UI
         /// <summary>
         /// Lists all tasks on a certain Date.
         /// </summary>
-        public static void ListAllTasksByDate()
+        protected static void ListAllTasksByDate()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 13) + "TASKS BY DATE" + new string(' ', 13));
             WriteLine(new string('-', 40));
 
+            //Gets the task data
             WriteLine("Enter your date (e.g 26/02/2009):");
             DateTime inputDate = DateTime.ParseExact(ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
+            //Gets all user tasks and lists them
             List<Task> tasks= TBusiness.ListAllTasksByDate(inputDate, CurrentUser);
 
             WriteLine($"Listing all tasks on {inputDate.ToString("d")}...");
@@ -308,14 +332,16 @@ namespace UI
         /// <summary>
         /// Lists all completed tasks.
         /// </summary>
-        public static void ListAllCompletedTasks()
+        protected static void ListAllCompletedTasks()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 12) + "COMPLETED TASKS" + new string(' ', 12));
             WriteLine(new string('-', 40));
 
+            //Gets all completed user tasks and lists them
             List<Task> tasks= TBusiness.ListAllCompletedTasks(CurrentUser);
 
             WriteLine("Listing all completed tasks...");
@@ -338,14 +364,16 @@ namespace UI
         /// <summary>
         /// Lists all uncompleted tasks.
         /// </summary>
-        public static void ListAllUncompletedTasks()
+        protected static void ListAllUncompletedTasks()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 11) + "UNCOMPLETED TASKS" + new string(' ', 11));
             WriteLine(new string('-', 40));
 
+            //Gets all uncompleted user tasks and lists them
             List<Task> tasks= TBusiness.ListAllUncompletedTasks(CurrentUser);
 
             WriteLine("Listing all uncompleted tasks...");
@@ -367,14 +395,16 @@ namespace UI
         /// <summary>
         /// Removes all completed tasks.
         /// </summary>
-        public static void RemoveAllCompletedTasks()
+        protected static void RemoveAllCompletedTasks()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 8) + "REMOVE COMPLETED TASKS" + new string(' ', 8));
             WriteLine(new string('-', 40));
 
+            //Removes all completed user tasks
             TBusiness.RemoveAllCompletedTasks(CurrentUser);
             WriteLine("All completed tasks have successfully been removed");
 
@@ -384,14 +414,16 @@ namespace UI
         /// <summary>
         /// Removes all tasks.
         /// </summary>
-        public static void RemoveAllTasks()
+        protected static void RemoveAllTasks()
         {
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
             WriteLine(new string(' ', 8) + "REMOVE ALL TASKS" + new string(' ', 8));
             WriteLine(new string('-', 40));
 
+            //Removes all user tasks
             TBusiness.RemoveAllTasks(CurrentUser);
             WriteLine("All tasks have successfully been removed");
 

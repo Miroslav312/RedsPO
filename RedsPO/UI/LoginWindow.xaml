@@ -25,7 +25,7 @@
                 <ImageBrush ImageSource="Icons/loginIcon.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="RegisterButton" Content="I don't have an account :(" HorizontalAlignment="Left" VerticalAlignment="Top" Width="159" Margin="231,373,0,-359" Background="{x:Null}" BorderBrush="{x:Null}" Height="26" Foreground="#FF383838" FontFamily="Segoe UI Semilight" Click="RegisterButton_Click" TabIndex="4"/>
+        <Button x:Name="RegisterButton" Content="I don't have an account :(" HorizontalAlignment="Left" VerticalAlignment="Top" Width="159" Margin="231,373,0,-359" Background="{x:Null}" BorderBrush="{x:Null}" Height="26" Foreground="White" FontFamily="Segoe UI Semilight" Click="RegisterButton_Click" TabIndex="4"/>
     </Grid>
 
 </Window>

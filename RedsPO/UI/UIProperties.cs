@@ -17,6 +17,7 @@ namespace UI
 
         public static EventView eventView = new EventView();
         public static ReminderView reminderView = new ReminderView();
+        public static TaskView taskView = new TaskView();
 
         /// <summary>Shows the error.</summary>
         /// <param name="errorMessage">The error message.</param>
@@ -49,6 +50,7 @@ namespace UI
         /// <param name="button">The button.</param>
         public static void SetButtonToggle(Button button)
         {
+            //Sets a border brush
             button.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
@@ -56,6 +58,7 @@ namespace UI
         /// <param name="button">The button.</param>
         public static void RemoveButtonToggle(Button button)
         {
+            //Removes the border brush
             button.BorderBrush = null;
         }
     }

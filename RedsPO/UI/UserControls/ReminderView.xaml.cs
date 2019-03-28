@@ -127,9 +127,6 @@ namespace UI.UserControls
 
                 //Adds the user control
                 ReminderFunction.Children.Add(_listAllRemindersByDate);
-
-                //Loads the Reminder List View
-                _listAllReminders.LoadReminderListView();
             }
 
             //Sets the button toggle

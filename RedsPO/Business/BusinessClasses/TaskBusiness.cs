@@ -23,6 +23,7 @@ namespace Business
             if (userTask == null)
                 throw new InvalidOperationException("Task should not be null!");
 
+            //Adds the user task
             _poDbContext.Tasks.Add(userTask);
             _poDbContext.SaveChanges();
         }
@@ -40,15 +41,16 @@ namespace Business
             }
             else
             {
+                //Modifies the user task
                 _poDbContext.Entry(@task).CurrentValues.SetValues(userTask);
                 _poDbContext.SaveChanges();
             }
         }
 
-        /// <summary>Deletes the Task.</summary>
+        /// <summary>Removes the Task.</summary>
         /// <param name="id">The identifier.</param>
         /// <param name="user">The user.</param>
-        public void DeleteTask(int id, User user)
+        public void RemoveTask(int id, User user)
         {
             Task @task = _poDbContext.Tasks.Find(id);
             if (@task == null || @task.UserId != user.UserId)
@@ -58,6 +60,7 @@ namespace Business
             }
             else
             {
+                //Removes the user task
                 _poDbContext.Tasks.Remove(@task);
                 _poDbContext.SaveChanges();
             }
@@ -76,7 +79,8 @@ namespace Business
             }
             else
             {
-            @task.IsDone = true;
+                //Completes the user task
+                @task.IsDone = true;
                 _poDbContext.SaveChanges();
             }
         }
@@ -93,6 +97,7 @@ namespace Business
             }
             else
             {
+                //Returns the user task
                 return @task;
             }
         }
@@ -103,6 +108,8 @@ namespace Business
         {
             if (user == null)
                 throw new ArgumentNullException("User should not be null!");
+
+            //Returns a List with all user tasks
             return _poDbContext.Tasks.Where(r => r.UserId == user.UserId).ToList();
         }
 
@@ -113,6 +120,8 @@ namespace Business
         {
             if (user == null)
                 throw new ArgumentNullException("User should not be null!");
+
+            //Returns a List with all user tasks on a certain date
             return _poDbContext.Tasks.Where(r => DbFunctions.TruncateTime(r.Date) == date.Date && r.UserId == user.UserId).ToList();
         }
         
@@ -122,6 +131,8 @@ namespace Business
         {
             if (user == null)
                 throw new ArgumentNullException("User should not be null!");
+
+            //Returns a List with all completed user tasks
             return _poDbContext.Tasks.Where(r => r.IsDone == true && r.UserId == user.UserId).ToList();
         }
 
@@ -131,6 +142,8 @@ namespace Business
         {
             if (user == null)
                 throw new ArgumentNullException("User should not be null!");
+
+            //Returns a List with all uncompleted user tasks
             return _poDbContext.Tasks.Where(r => r.IsDone == false && r.UserId == user.UserId).ToList();
         }
 
@@ -140,6 +153,8 @@ namespace Business
         {
             if (user == null)
                 throw new ArgumentNullException("User should not be null!");
+
+            //Removes all completed user tasks
             _poDbContext.Tasks.RemoveRange(_poDbContext.Tasks.Where(x => x.UserId == user.UserId && x.IsDone == true));
             _poDbContext.SaveChanges();
         }
@@ -150,6 +165,8 @@ namespace Business
         {
             if (user == null)
                 throw new ArgumentNullException("User should not be null!");
+
+            //Removes all user tasks
             _poDbContext.Tasks.RemoveRange(_poDbContext.Tasks.Where(x => x.UserId == user.UserId));
             _poDbContext.SaveChanges();
         }

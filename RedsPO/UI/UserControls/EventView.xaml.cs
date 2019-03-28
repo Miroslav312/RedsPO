@@ -127,9 +127,6 @@ namespace UI.UserControls
 
                 //Adds the user control
                 EventFunction.Children.Add(_listAllEventsByDate);
-
-                //Loads the Event List View
-                _listAllEvents.LoadEventListView();
             }
 
             //Sets the button toggle

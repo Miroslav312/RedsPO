@@ -21,7 +21,9 @@ namespace UI
         /// </summary>
         public static void Main()
         {
+            //Initializes the window
             InitializeWindow();
+            //Shows the start menu
             StartMenu();
         }
 
@@ -30,11 +32,14 @@ namespace UI
         /// </summary>
         private static void InitializeWindow()
         {
+            //Changes console colors
             BackgroundColor = ConsoleColor.White;
             ForegroundColor = ConsoleColor.Black;
 
+            //Clears the console window
             Clear();
 
+            //Changes the console title
             Title = "RedsPO";
         }
 
@@ -45,8 +50,10 @@ namespace UI
         {
             try
             {
+                //Clears the console
                 Clear();
 
+                //Shows the menu
                 WriteLine(new string('-', 40));
                 WriteLine(new string(' ', 19) + "HI" + new string(' ', 19));
                 WriteLine(new string('-', 40));
@@ -54,6 +61,7 @@ namespace UI
                 WriteLine("2. Sign in your Account");
                 WriteLine(new string('-', 40));
 
+                //Takes command input
                 int command = int.Parse(ReadLine());
 
                 switch (command)
@@ -73,6 +81,7 @@ namespace UI
             }
             catch
             {
+                //Returns to the start menu
                 StartMenu();
             }
         }
@@ -88,15 +97,19 @@ namespace UI
             string answer = ReadLine();
             if (answer.ToLower() == "menu")
             {
+                //Shows the menu
                 ShowMenu();
+                //Takes input
                 TakeInput();
             }
             else if (answer.ToLower() == "exit")
             {
+                //Exits the program
                 ExitProgram();
             }
             else
             {
+                //Relaunches this method
                 MenuOrExit();
             }
         }
@@ -108,6 +121,7 @@ namespace UI
         {
             if (CurrentUser == null) throw new InvalidOperationException("Not logged into an Account!");
 
+            //Clears the console window
             Clear();
 
             WriteLine(new string('-', 40));
@@ -127,12 +141,14 @@ namespace UI
         public static void TakeInput()
         {
             if (CurrentUser == null)
+                //Shows the start menu
                 StartMenu();
 
             try
             {
                 while (true)
                 {
+                    //Takes command input
                     int command = int.Parse(ReadLine());
                     switch (command)
                     {
@@ -158,6 +174,7 @@ namespace UI
             }
             catch (Exception currentException)
             {
+                //Shows current exception message
                 WriteLine("An unexpected ERROR occured! Please try again later.");
                 WriteLine($"[{currentException.Message}]");
                 MenuOrExit();
@@ -169,9 +186,11 @@ namespace UI
         /// </summary>
         public static void ExitProgram()
         {
+            //Clears the console window
             Clear();
 
             WriteLine("Have a nice day!");
+            //Exits the environment with ExitCode = 0
             Environment.Exit(0);
         }
     }

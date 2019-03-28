@@ -24,7 +24,7 @@
                 </TransformGroup>
             </Border.RenderTransform>
         </Border>
-        <Button x:Name="TaskButton" HorizontalAlignment="Left" Height="60" Margin="20,236,0,-256" VerticalAlignment="Top" Width="60" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="{x:Null}" FontSize="18">
+        <Button x:Name="TaskButton" HorizontalAlignment="Left" Height="60" Margin="20,236,0,-256" VerticalAlignment="Top" Width="60" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="{x:Null}" FontSize="18" Click="TaskButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/mainWindow/taskIcon.png"/>
             </Button.Background>

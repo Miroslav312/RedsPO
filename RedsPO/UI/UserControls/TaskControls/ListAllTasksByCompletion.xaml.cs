@@ -4,17 +4,17 @@ using System.Windows;
 using System.Windows.Controls;
 using static UI.UIProperties;
 
-namespace UI.UserControls.EventControls
+namespace UI.UserControls.TaskControls
 {
     /// <summary>
-    /// Interaction logic for ListAllEventsByDate.xaml
+    /// Interaction logic for ListAllTasksByCompletion.xaml
     /// </summary>
-    public partial class ListAllEventsByDate : UserControl
+    public partial class ListAllTasksByCompletion : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAllEventsByDate"/> class.
+        /// Initializes a new instance of the <see cref="ListAllTasksByCompletion"/> class.
         /// </summary>
-        public ListAllEventsByDate()
+        public ListAllTasksByCompletion()
         {
             InitializeComponent();
         }
@@ -26,15 +26,8 @@ namespace UI.UserControls.EventControls
         {
             try
             {
-                if (string.IsNullOrEmpty(DatePicker.Text))
-                    //Shows a message box with a warning
-                    ShowWarning("All fields should be full!");
-
-                else
-                {
-                    //Loads the View
-                    LoadEventListViewByDate(DateTime.Parse(DatePicker.Text));
-                }
+                //Loads the View
+                LoadTaskListViewByCompletion((bool)CompletedCheckBox.IsChecked);
             }
             catch(Exception exception)
             {
@@ -43,17 +36,28 @@ namespace UI.UserControls.EventControls
             }
         }
 
-        /// <summary>Loads the event ListView by date.</summary>
+        /// <summary>Loads the task ListView by date.</summary>
         /// <param name="date">The date.</param>
-        public void LoadEventListViewByDate(DateTime date)
+        public void LoadTaskListViewByCompletion(bool completed)
         {
-            //Gets all user events
-            List<Event> events = eventBusiness.ListAllEventsByDate(date, currentUser);
-            
-            //Deletes current items
-            EventListView.Items.Clear();
+            //List with tasks
+            List<Task> tasks = new List<Task>();
 
-            if (events.Count == 0)
+            if (completed)
+            {
+                //Gets all user task
+                tasks = taskBusiness.ListAllCompletedTasks(currentUser);
+            }
+            else
+            {
+                //Gets all user task
+                tasks = taskBusiness.ListAllUncompletedTasks(currentUser);
+            }
+
+            //Deletes current items
+            TaskListView.Items.Clear();
+
+            if (tasks.Count == 0)
             {
                 //Shows NoItemsBox
                 NoItemsBox.Visibility = Visibility.Visible;
@@ -62,11 +66,11 @@ namespace UI.UserControls.EventControls
             {
                 //Hides NoItemsBox
                 NoItemsBox.Visibility = Visibility.Collapsed;
-
-                //Adds events to the List View
-                foreach (Event @event in events)
+                
+                //Adds tasks to the List View
+                foreach (Task @task in tasks)
                 {
-                    EventListView.Items.Add(@event);
+                    TaskListView.Items.Add(@task);
                 }
             }
         }

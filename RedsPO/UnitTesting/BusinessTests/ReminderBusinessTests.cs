@@ -118,7 +118,7 @@ namespace Tests
 
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            mockReminderBusiness.DeleteReminder(reminderId, mockUser);
+            mockReminderBusiness.RemoveReminder(reminderId, mockUser);
 
             Assert.Less(mockReminderBusiness.GetPODbContext.Reminders.ToList().Count(), oldCount, "Reminder not deleted properly!");
         }
@@ -138,7 +138,7 @@ namespace Tests
 
             User mockUser = mockUserBusiness.FetchUser(userName, passwordHash);
 
-            Assert.Catch(() => mockReminderBusiness.DeleteReminder(reminderId, mockUser), "Non existent reminder was deleted!");
+            Assert.Catch(() => mockReminderBusiness.RemoveReminder(reminderId, mockUser), "Non existent reminder was deleted!");
         }
 
         /// <summary>
