@@ -19,6 +19,8 @@ namespace UI
         public static ReminderView reminderView = new ReminderView();
         public static TaskView taskView = new TaskView();
 
+        public static NotificationManager notificationManager;
+
         /// <summary>Shows the error.</summary>
         /// <param name="errorMessage">The error message.</param>
         public static void ShowError(string errorMessage)
