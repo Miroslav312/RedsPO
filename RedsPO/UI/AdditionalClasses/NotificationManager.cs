@@ -2,21 +2,44 @@
 using System.Collections.Generic;
 using Notifications.Wpf;
 using static UI.UIProperties;
+using System.Timers;
 
 namespace UI
 {
     class NotificationManager
     {
+        private Timer _timer;
+        private const int _periodOfDelay = 86400000;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationManager"/> class.
         /// </summary>
         public NotificationManager()
         {
+            //Calls the manager methods
+            EventManager();
+            TaskManager();
+            ReminderManager();
+
+            //Set ups the timer
+            _timer = new Timer(_periodOfDelay);
+            _timer.Elapsed += new ElapsedEventHandler(ElapsedHandler);
+            _timer.Enabled = true;
+
+            //Keeps the instance of the timer alive
+            GC.KeepAlive(_timer);
+        }
+
+        /// <summary>Elapseds the handler.</summary>
+        /// <param name="source">The source.</param>
+        /// <param name="e">The <see cref="ElapsedEventArgs"/> instance containing the event data.</param>
+        private static void ElapsedHandler(object source, ElapsedEventArgs e)
+        {
             EventManager();
             TaskManager();
             ReminderManager();
         }
-        
+
         /// <summary>
         /// Manages event toasts.
         /// </summary>
