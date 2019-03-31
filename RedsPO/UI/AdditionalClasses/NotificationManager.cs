@@ -30,7 +30,7 @@ namespace UI
             GC.KeepAlive(_timer);
         }
 
-        /// <summary>Elapseds the handler.</summary>
+        /// <summary>Handler for elapsed time.</summary>
         /// <param name="source">The source.</param>
         /// <param name="e">The <see cref="ElapsedEventArgs"/> instance containing the event data.</param>
         private static void ElapsedHandler(object source, ElapsedEventArgs e)
