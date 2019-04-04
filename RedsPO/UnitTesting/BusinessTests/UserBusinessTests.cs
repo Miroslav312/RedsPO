@@ -89,6 +89,32 @@ namespace Tests
         }
 
         /// <summary>
+        /// Test - Register null userName user to the database.
+        /// </summary>
+        [Test]
+        public void TestRegisterNullUserNameUserToTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User mockUser = new User() { UserId = 3, UserName = null, FirstName = "firstName", LastName = "lastName", PasswordHash = "passwordHash" };
+            
+            Assert.Catch(() => mockUserBusiness.Register(mockUser), "User with null user name was registered properly!");
+        }
+
+        /// <summary>
+        /// Test - Register null passwordHash user to the database.
+        /// </summary>
+        [Test]
+        public void TestRegisterNullPasswordHashUserToTheDatabase()
+        {
+            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
+
+            User mockUser = new User() { UserId = 3, UserName = "userName", FirstName = "firstName", LastName = "lastName", PasswordHash = null };
+
+            Assert.Catch(() => mockUserBusiness.Register(mockUser), "User with null password hash was registered properly!");
+        }
+
+        /// <summary>
         /// Test - Register null user to the database.
         /// </summary>
         [Test]
@@ -99,34 +125,6 @@ namespace Tests
             User mockUser = null;
 
             Assert.Catch(() => mockUserBusiness.Register(mockUser), "Null user registered to the database!");
-        }
-
-        /// <summary>
-        /// Test - Fetch all users from the database.
-        /// </summary>
-        [Test]
-        public void TestFetchAllUsersFromTheDatabase()
-        {
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            List<User> mockUsers = mockUserBusiness.FetchAllUsers();
-
-            Assert.AreEqual(mockUsers.Count(), mockUserBusiness.GetPODbContext.Users.Count(), "Not all users are fetched!");
-        }
-
-        /// <summary>
-        /// Test - False fetch all users from the database.
-        /// </summary>
-        [Test]
-        public void TestFalseFetchAllUsersFromTheDatabase()
-        {
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            List<User> mockUsers = mockUserBusiness.FetchAllUsers();
-
-            mockUsers.Add(new User());
-
-            Assert.AreNotEqual(mockUsers.Count(), mockUserBusiness.GetPODbContext.Users.Count(), "Not all users are fetched!");
         }
 
         /// <summary>
@@ -164,32 +162,6 @@ namespace Tests
         }
 
         /// <summary>
-        /// Test - User is existing in the database.
-        /// </summary>
-        [Test]
-        public void TestUserIsExistingInTheDatabase()
-        {
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            User existingUser = mockUserBusiness.GetPODbContext.Users.ToList()[0];
-
-            Assert.True(mockUserBusiness.IsExisting(existingUser), "IsExisting() returns False for existing User!");
-        }
-
-        /// <summary>
-        /// Test - User not existing in the database.
-        /// </summary>
-        [Test]
-        public void TestUserNotExistingInTheDatabase()
-        {
-            UserBusiness mockUserBusiness = new UserBusiness(_mockContext.Object);
-
-            User nonExistingUser = new User();
-
-            Assert.False(mockUserBusiness.IsExisting(nonExistingUser), "IsExisting() returns True for non existing User!");
-        }
-
-        /// <summary>
         /// Test - Hash password.
         /// </summary>
         [Test]
@@ -198,6 +170,21 @@ namespace Tests
             string text = "testText";
 
             string expectedHash = "85AC464C2F22837C991C50FDAA5FACC25A09FD7664B5D50427F69B4DF7744BDC";
+
+            string returnedHash = UserBusiness.HashPassword(text);
+
+            Assert.True(expectedHash == returnedHash, "Hashing of passwords is incorrect!");
+        }
+
+        /// <summary>
+        /// Test - Second Hash password.
+        /// </summary>
+        [Test]
+        public void TestSecondHashPassword()
+        {
+            string text = "testText1";
+
+            string expectedHash = "D540E00AEB67987568C15923B61F8029BD80C7AB07F644306C6735029CDE17EE";
 
             string returnedHash = UserBusiness.HashPassword(text);
 
