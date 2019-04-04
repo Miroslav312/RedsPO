@@ -17,13 +17,6 @@ namespace Business
             _poDbContext = poDbContext;
         }
 
-        /// <summary>Fetches all users.</summary>
-        public List<User> FetchAllUsers()
-        {
-            //Returns a List with all users
-            return _poDbContext.Users.ToList();
-        }
-
         /// <summary>Fetches the user.</summary>
         /// <param name="userName">Name of the user.</param>
         /// <param name="passwordHash">The password hash.</param>
@@ -37,22 +30,12 @@ namespace Business
         /// <param name="user">The user.</param>
         public void Register(User user)
         {
-            if (user == null)
+            if (user == null || user.UserName == null || user.PasswordHash == null)
                 throw new InvalidOperationException("User should not be null!");
 
             //Registers the user
             _poDbContext.Users.Add(user);
             _poDbContext.SaveChanges();
-        }
-
-        /// <summary>Determines whether the specified user is existing.</summary>
-        /// <param name="user">The user.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified user is existing; otherwise, <c>false</c>.</returns>
-        public bool IsExisting(User user)
-        {
-            //Returns a bool whether the user exists
-            return FetchAllUsers().Contains(user); 
         }
 
         /// <summary>Hashes the password with SHA256 Hash.</summary>
