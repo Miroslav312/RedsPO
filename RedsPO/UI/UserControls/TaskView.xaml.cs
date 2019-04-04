@@ -168,6 +168,7 @@ namespace UI.UserControls
                 case "AddButton":
                     SetButtonToggle(AddButton);
 
+                    RemoveButtonToggle(ListByCompletionButton);
                     RemoveButtonToggle(RemoveButton);
                     RemoveButtonToggle(ModifyButton);
                     RemoveButtonToggle(ListAllButton);
@@ -176,6 +177,7 @@ namespace UI.UserControls
                 case "RemoveButton":
                     SetButtonToggle(RemoveButton);
 
+                    RemoveButtonToggle(ListByCompletionButton);
                     RemoveButtonToggle(AddButton);
                     RemoveButtonToggle(ModifyButton);
                     RemoveButtonToggle(ListAllButton);
@@ -184,6 +186,7 @@ namespace UI.UserControls
                 case "ModifyButton":
                     SetButtonToggle(ModifyButton);
 
+                    RemoveButtonToggle(ListByCompletionButton);
                     RemoveButtonToggle(RemoveButton);
                     RemoveButtonToggle(AddButton);
                     RemoveButtonToggle(ListAllButton);
@@ -192,6 +195,7 @@ namespace UI.UserControls
                 case "ListAllButton":
                     SetButtonToggle(ListAllButton);
 
+                    RemoveButtonToggle(ListByCompletionButton);
                     RemoveButtonToggle(RemoveButton);
                     RemoveButtonToggle(ModifyButton);
                     RemoveButtonToggle(AddButton);
@@ -200,6 +204,16 @@ namespace UI.UserControls
                 case "ListByDateButton":
                     SetButtonToggle(ListByDateButton);
 
+                    RemoveButtonToggle(ListByCompletionButton);
+                    RemoveButtonToggle(RemoveButton);
+                    RemoveButtonToggle(ModifyButton);
+                    RemoveButtonToggle(ListAllButton);
+                    RemoveButtonToggle(AddButton);
+                    break;
+                case "ListByCompletionButton":
+                    SetButtonToggle(ListByCompletionButton);
+
+                    RemoveButtonToggle(ListByDateButton);
                     RemoveButtonToggle(RemoveButton);
                     RemoveButtonToggle(ModifyButton);
                     RemoveButtonToggle(ListAllButton);

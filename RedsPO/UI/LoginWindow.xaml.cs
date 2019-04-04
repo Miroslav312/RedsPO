@@ -104,6 +104,9 @@ namespace UI
 
                     //Closes the instance of this window
                     this.Close();
+                    
+                    //Creates a notification manager
+                    notificationManager = new NotificationManager();
                 }
             }
             catch(InvalidOperationException unknowUserException)
